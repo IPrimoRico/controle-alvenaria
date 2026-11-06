@@ -28,7 +28,8 @@ const DEFAULT_STATE = {
   configuracoes: {
     preco_m2_levantamento: 16.0,
     preco_m_primeira_fiada: 10.0,
-    altura_padrao_m: 2.65,
+    preco_churrasqueira_rs: '', // Valor unitário por churrasqueira inteira de Sical (em branco até definir)
+    altura_padrao_m: 2.85,
     descontar_vaos: false,
     limite_vao_m2: 2.0,
     regra_vao: 'excedente', // 'excedente' (só desconta o que passar do limite) ou 'integral'

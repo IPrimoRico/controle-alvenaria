@@ -17,9 +17,11 @@ export default function Predio3DAndares({
   const [hoveredAndarInfo, setHoveredAndarInfo] = useState(null);
   const [mostrarEstrutural3D, setMostrarEstrutural3D] = useState(true);
   const [mostrarCubetas3D, setMostrarCubetas3D] = useState(true);
+  const [mostrarGaragensCaixaDagua3D, setMostrarGaragensCaixaDagua3D] = useState(true);
   const [andarIsolado3D, setAndarIsolado3D] = useState('TODOS'); // 'TODOS' ou 1..14
 
-  const totalParedesPorTipo = dwgData?.wallPieces?.length || 137;
+  const totalParedesPorTipo = dwgData?.totalPedaçosParedePorTipo || 100;
+  const totalChurrPorTipo = dwgData?.totalChurrasqueirasPorTipo || 5;
   const precoLev = Number(configuracoes?.preco_m2_levantamento) || 16.0;
   const precoFiada = Number(configuracoes?.preco_m_primeira_fiada) || 10.0;
   const structIfc = dwgData?.structuralIfc || null;
@@ -42,11 +44,23 @@ export default function Predio3DAndares({
       let levRs = 0;
       let reparoCount = 0;
       let areaTotalPotencialM2 = 0;
+      const churrFinalizadasSet = new Set();
 
       for (const wp of dwgData?.wallPieces || []) {
         const guid = `TIPO-${String(tipo).padStart(2, '0')}::${wp.id}`;
         const m = medicoesMap?.[guid];
-        const altPadrao = wp.alturaPadraoM || 2.85;
+
+        if (wp.isChurrasqueira) {
+          if (m?.status === 'Finalizada' && wp.churrasqueiraId) {
+            churrFinalizadasSet.add(wp.churrasqueiraId);
+          }
+          continue;
+        }
+
+        const altPadrao =
+          tipo === 14
+            ? wp.alturaPadraoTipo14M || +(wp.alturaPadraoM + 0.08).toFixed(2)
+            : wp.alturaPadraoM || 2.85;
         areaTotalPotencialM2 += wp.comprimentoM * altPadrao;
 
         if (!m) continue;
@@ -83,6 +97,7 @@ export default function Predio3DAndares({
         levM2,
         levRs,
         reparoCount,
+        churrDoneCount: churrFinalizadasSet.size,
         pctLev,
         pctFiada,
         areaTotalPotencialM2: +areaTotalPotencialM2.toFixed(2),
@@ -173,36 +188,59 @@ export default function Predio3DAndares({
       opacity: isIsolated ? 0.48 : 0.35,
     });
 
-    // 1. Níveis de Embasamento e Cobertura (quando exibindo todos os pavimentos)
-    if (!isIsolated) {
-      const baseStoreys = (dwgData.ifcStoreys || []).filter((s) => !s.isTipo);
-      const baseSlabMat = new THREE.MeshStandardMaterial({
-        color: 0x334155,
-        roughness: 0.8,
-        metalness: 0.15,
-        transparent: true,
-        opacity: 0.5,
-      });
-
-      for (const st of baseStoreys) {
-        const isPodium = st.elevation < 20;
-        const w = isPodium ? slabW * 1.22 : slabW * 0.55;
-        const d = isPodium ? slabD * 1.18 : slabD * 0.55;
-        const slabMesh = new THREE.Mesh(
-          new THREE.BoxGeometry(w, 0.22, d),
-          baseSlabMat
-        );
-        slabMesh.position.set(0, st.elevation, 0);
-        buildingGroup.add(slabMesh);
-      }
-    }
-
-    // Geometria unitária para InstancedMesh das 368 cubetas por andar
+    // Geometria unitária para InstancedMesh das 368 cubetas por andar e dos 1.176 elementos das Garagens + Caixa d'Água
     const unitBoxGeo = new THREE.BoxGeometry(1, 1, 1);
 
-    // 2. Os 14 Andares Tipos (TIPO 01 a TIPO 14)
+    // 1. Estrutural 3D das Garagens (Térreo 1, Térreo 2, Mezanino, Garagens, Lazer) e da Caixa d'Água / Cobertura (New Life Studios 2025-02-06.IFC)
+    if (!isIsolated && mostrarGaragensCaixaDagua3D && structIfc?.garageAndRoofElements?.length > 0) {
+      const elems = structIfc.garageAndRoofElements.filter((el) => el.storey !== '1 Tipo');
+      const cols = elems.filter((e) => e.kind === 'column');
+      const beams = elems.filter((e) => e.kind === 'beam');
+      const slabsAndRamps = elems.filter(
+        (e) => e.kind === 'slab' || e.kind === 'ramp' || e.kind === 'stair'
+      );
+
+      const dummy = new THREE.Object3D();
+
+      const addInstancedGroup = (arr, material, minThickness = 0.12) => {
+        if (!arr.length) return;
+        const inst = new THREE.InstancedMesh(unitBoxGeo, material, arr.length);
+        arr.forEach((el, idx) => {
+          const wM = Math.max(minThickness, (el.maxX - el.minX) * scaleCmToM);
+          const dM = Math.max(minThickness, (el.maxY - el.minY) * scaleCmToM);
+          const hM = Math.max(0.12, Number(el.heightM) || 0.25);
+          const cxM = ((el.minX + el.maxX) / 2 - centerX) * scaleCmToM;
+          const czM = -((el.minY + el.maxY) / 2 - centerY) * scaleCmToM;
+          const cyM = (Number(el.zBottomM) || 0) + hM / 2;
+          dummy.position.set(cxM, cyM, czM);
+          dummy.scale.set(wM, hM, dM);
+          dummy.updateMatrix();
+          inst.setMatrixAt(idx, dummy.matrix);
+        });
+        inst.instanceMatrix.needsUpdate = true;
+        buildingGroup.add(inst);
+      };
+
+      const garageSlabMat = new THREE.MeshStandardMaterial({
+        color: 0x64748b,
+        roughness: 0.65,
+        metalness: 0.15,
+        transparent: true,
+        opacity: 0.62,
+      });
+
+      addInstancedGroup(cols, pilarMat, 0.18);
+      addInstancedGroup(beams, beamMat, 0.12);
+      addInstancedGroup(slabsAndRamps, garageSlabMat, 0.2);
+    }
+
+    // 2. Os 14 Andares Tipos (TIPO 01 a TIPO 14, sendo TIPO 14 com +8 cm de pé-direito = 3,23 m)
     for (let tipo = 1; tipo <= 14; tipo++) {
       if (isIsolated && tipo !== isolatedTipoNum) continue;
+
+      const isTipo14 = tipo === 14;
+      const deltaTipo14 = isTipo14 ? 0.08 : 0;
+      const peDireitoAndar = isTipo14 ? 3.23 : 3.15;
 
       const stInfo = resumo14Tipos.find((r) => r.andarTipo === tipo);
       const yBase = stInfo ? stInfo.elevacao : 18.6 + tipo * 3.15;
@@ -228,14 +266,14 @@ export default function Predio3DAndares({
       floorHitBoxesRef.current.push(slabMesh);
 
       // Hitbox invisível envolvendo o volume do pavimento
-      const volGeo = new THREE.BoxGeometry(slabW + 0.4, 3.1, slabD + 0.4);
+      const volGeo = new THREE.BoxGeometry(slabW + 0.4, peDireitoAndar, slabD + 0.4);
       const volMat = new THREE.MeshBasicMaterial({
         transparent: true,
         opacity: 0.0,
         depthWrite: false,
       });
       const volMesh = new THREE.Mesh(volGeo, volMat);
-      volMesh.position.y = 1.55;
+      volMesh.position.y = peDireitoAndar / 2;
       volMesh.userData = {
         isFloorHitBox: true,
         andarTipo: tipo,
@@ -247,17 +285,17 @@ export default function Predio3DAndares({
 
       // 2a. Elementos do IFC Estrutural TQS (New Life Studios 2025-02-06.IFC)
       if (mostrarEstrutural3D && structIfc) {
-        // Pilares P1..P15 (altura 3.15 m)
+        // Pilares P1..P15 (altura 3.15 m nos Tipos 01..13 e 3.23 m no Tipo 14)
         for (const col of structIfc.columns || []) {
           const wM = Math.max(0.15, (col.maxX - col.minX) * scaleCmToM);
           const dM = Math.max(0.15, (col.maxY - col.minY) * scaleCmToM);
           const cxM = ((col.minX + col.maxX) / 2 - centerX) * scaleCmToM;
           const czM = -((col.minY + col.maxY) / 2 - centerY) * scaleCmToM;
           const colMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(wM, 3.15, dM),
+            new THREE.BoxGeometry(wM, peDireitoAndar, dM),
             pilarMat
           );
-          colMesh.position.set(cxM, 3.15 / 2, czM);
+          colMesh.position.set(cxM, peDireitoAndar / 2, czM);
           floorGroup.add(colMesh);
         }
 
@@ -266,7 +304,7 @@ export default function Predio3DAndares({
           const wM = Math.max(0.1, (b.maxX - b.minX) * scaleCmToM);
           const dM = Math.max(0.1, (b.maxY - b.minY) * scaleCmToM);
           const hM = Math.max(0.15, (b.depthCm || 50) * scaleCmToM);
-          const yBotM = Math.max(1.2, b.heightM || 2.65);
+          const yBotM = Math.max(1.2, (b.heightM || 2.65) + deltaTipo14);
           const cxM = ((b.minX + b.maxX) / 2 - centerX) * scaleCmToM;
           const czM = -((b.minY + b.maxY) / 2 - centerY) * scaleCmToM;
 
@@ -279,7 +317,7 @@ export default function Predio3DAndares({
         }
       }
 
-      // 2b. As 368 Cubetas Atex 800 (64,8x64,8 cm, H=25 cm, de 2,85 m a 3,10 m + capa de 5 cm até 3,15 m)
+      // 2b. As 368 Cubetas Atex 800 (64,8x64,8 cm, H=25 cm, de 2,85 m a 3,10 m nos Tipos 01..13; 2,93 m a 3,18 m no Tipo 14)
       if (mostrarCubetas3D && structIfc?.cubetas?.length > 0) {
         const shouldRenderAllCubetas = isIsolated || tipo === 14 || tipo === 1;
         if (shouldRenderAllCubetas) {
@@ -290,13 +328,13 @@ export default function Predio3DAndares({
             cubetasArr.length
           );
           const dummy = new THREE.Object3D();
+          const yFundoNervura = 2.85 + deltaTipo14;
           cubetasArr.forEach((c, idx) => {
             const wM = Math.max(0.1, (c.maxX - c.minX) * scaleCmToM);
             const dM = Math.max(0.1, (c.maxY - c.minY) * scaleCmToM);
             const cxM = ((c.minX + c.maxX) / 2 - centerX) * scaleCmToM;
             const czM = -((c.minY + c.maxY) / 2 - centerY) * scaleCmToM;
-            // A cubeta fica entre 2.85m (fundo da nervura) e 3.10m (fundo da capa de 5cm)
-            dummy.position.set(cxM, 2.85 + 0.25 / 2, czM);
+            dummy.position.set(cxM, yFundoNervura + 0.25 / 2, czM);
             dummy.scale.set(wM, 0.25, dM);
             dummy.updateMatrix();
             instMesh.setMatrixAt(idx, dummy.matrix);
@@ -306,7 +344,7 @@ export default function Predio3DAndares({
         }
       }
 
-      // 2c. As 137 Paredes do DWG extrudadas com sua ALTURA ESTRUTURAL REAL (subindo até 3,10m dentro das cubetas ou parando sob as vigas!)
+      // 2c. As Paredes do DWG extrudadas com sua ALTURA ESTRUTURAL REAL (+8cm no Tipo 14)
       for (const wp of dwgData.wallPieces) {
         const guid = `TIPO-${String(tipo).padStart(2, '0')}::${wp.id}`;
         const minX = Math.min(...wp.polygon.map((p) => p.x));
@@ -314,7 +352,9 @@ export default function Predio3DAndares({
         const minY = Math.min(...wp.polygon.map((p) => p.y));
         const maxY = Math.max(...wp.polygon.map((p) => p.y));
 
-        const wallHeight = Number(wp.alturaPadraoM) || 2.85;
+        const wallHeight = isTipo14
+          ? Number(wp.alturaPadraoTipo14M) || +(Number(wp.alturaPadraoM || 2.85) + 0.08).toFixed(2)
+          : Number(wp.alturaPadraoM) || 2.85;
         const wM = Math.max(0.09, (maxX - minX) * scaleCmToM);
         const dM = Math.max(0.09, (maxY - minY) * scaleCmToM);
         const cxM = ((minX + maxX) / 2 - centerX) * scaleCmToM;
@@ -322,7 +362,7 @@ export default function Predio3DAndares({
 
         const wGeo = new THREE.BoxGeometry(wM, wallHeight, dM);
         const wMat = new THREE.MeshStandardMaterial({
-          color: 0xcbd5e1,
+          color: wp.isChurrasqueira ? 0xfb923c : 0xcbd5e1,
           roughness: 0.55,
         });
         const wMesh = new THREE.Mesh(wGeo, wMat);
@@ -330,6 +370,7 @@ export default function Predio3DAndares({
         wMesh.userData = {
           isFloorHitBox: true,
           andarTipo: tipo,
+          isChurrasqueira: Boolean(wp.isChurrasqueira),
           nome: `TIPO ${String(tipo).padStart(2, '0')}`,
           slabMesh,
         };
@@ -442,19 +483,20 @@ export default function Predio3DAndares({
       dom.removeEventListener('pointerup', onPointerUp);
       renderer.dispose();
     };
-  }, [dwgData, mostrarEstrutural3D, mostrarCubetas3D, andarIsolado3D]);
+  }, [dwgData, mostrarEstrutural3D, mostrarCubetas3D, mostrarGaragensCaixaDagua3D, andarIsolado3D]);
 
   // Atualiza cores das paredes 3D nos 14 andares tipos sempre que medicoesMap mudar
   useEffect(() => {
     update3DWallColors();
-  }, [medicoesMap, mostrarEstrutural3D, mostrarCubetas3D, andarIsolado3D]);
+  }, [medicoesMap, mostrarEstrutural3D, mostrarCubetas3D, mostrarGaragensCaixaDagua3D, andarIsolado3D]);
 
   function update3DWallColors() {
     const mapMeshes = wallMeshesByGuidRef.current || {};
     Object.entries(mapMeshes).forEach(([guid, mesh]) => {
       const m = medicoesMap?.[guid];
+      const isChurr = mesh.userData?.isChurrasqueira;
       if (!m) {
-        mesh.material.color.setHex(0xcbd5e1);
+        mesh.material.color.setHex(isChurr ? 0xfb923c : 0xcbd5e1);
       } else if (m.status === 'Finalizada') {
         mesh.material.color.setHex(0x10b981); // Verde
       } else if (m.status === 'Reparo' || m.fiada_status === 'Reparo') {
@@ -462,7 +504,7 @@ export default function Predio3DAndares({
       } else if (m.fiada_status === 'Finalizada') {
         mesh.material.color.setHex(0xf59e0b); // Âmbar (1ª Fiada pronta)
       } else {
-        mesh.material.color.setHex(0xcbd5e1);
+        mesh.material.color.setHex(isChurr ? 0xfb923c : 0xcbd5e1);
       }
     });
   }
@@ -503,6 +545,15 @@ export default function Predio3DAndares({
                 onChange={(e) => setMostrarCubetas3D(e.target.checked)}
               />
               <span>🟪 368 Cubetas Atex 800</span>
+            </label>
+
+            <label className="checkbox-inline-pill">
+              <input
+                type="checkbox"
+                checked={mostrarGaragensCaixaDagua3D}
+                onChange={(e) => setMostrarGaragensCaixaDagua3D(e.target.checked)}
+              />
+              <span>🚗💧 Garagens + Caixa d'Água 3D</span>
             </label>
 
             <select
@@ -589,6 +640,7 @@ export default function Predio3DAndares({
                 <th>Cota 3D (IFC)</th>
                 <th>1ª Fiada (R$ {precoFiada}/m)</th>
                 <th>Levantamento (R$ {precoLev}/m²)</th>
+                <th>🔥 Churrasqueiras (Sical)</th>
                 <th>Reparos</th>
                 <th>Progresso do Andar</th>
                 <th>Ação</th>
@@ -602,7 +654,9 @@ export default function Predio3DAndares({
                   onClick={() => onSelectAndarTipo(row.andarTipo)}
                 >
                   <td>
-                    <strong className="floor-name-badge">{row.nome}</strong>
+                    <strong className="floor-name-badge">
+                      {row.nome} {row.andarTipo === 14 ? '(+8cm)' : ''}
+                    </strong>
                   </td>
                   <td>+{row.elevacao.toFixed(2)} m</td>
                   <td>
@@ -624,6 +678,16 @@ export default function Predio3DAndares({
                         R$ {row.levRs.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                       </span>
                     </div>
+                  </td>
+                  <td>
+                    <span
+                      style={{
+                        color: row.churrDoneCount > 0 ? '#fb923c' : '#94a3b8',
+                        fontWeight: 600,
+                      }}
+                    >
+                      🔥 {row.churrDoneCount}/{totalChurrPorTipo} feitas
+                    </span>
                   </td>
                   <td>
                     {row.reparoCount > 0 ? (

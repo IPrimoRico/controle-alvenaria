@@ -46,6 +46,25 @@ export default function DashboardProducao({
 
   const precoLev = Number(configuracoes?.preco_m2_levantamento) || 16.0;
   const precoFiada = Number(configuracoes?.preco_m_primeira_fiada) || 10.0;
+  const precoChurrRaw = configuracoes?.preco_churrasqueira_rs;
+  const precoChurrDefinido =
+    precoChurrRaw !== undefined && precoChurrRaw !== null && String(precoChurrRaw).trim() !== ''
+      ? Number(precoChurrRaw) || 0
+      : 0;
+
+  // Mapa rápido de peças de churrasqueira (P-101 a P-137 -> CHURR-01 a CHURR-05)
+  const churrMapByWallId = useMemo(() => {
+    const map = {};
+    for (const w of dwgData?.paredes || []) {
+      if (w.isChurrasqueira || w.churrasqueiraId) {
+        map[w.id] = {
+          churrasqueiraId: w.churrasqueiraId || 'CHURR-01',
+          churrasqueiraNome: w.churrasqueiraNome || 'Churrasqueira Sical',
+        };
+      }
+    }
+    return map;
+  }, [dwgData]);
 
   const adicionarProximoAno = () => {
     const maxAno = Math.max(...anosDisponiveis);
@@ -64,6 +83,8 @@ export default function DashboardProducao({
         levantamentoRs: 0,
         fiadaM: 0,
         fiadaRs: 0,
+        churrasqueirasCount: 0,
+        churrasqueirasRs: 0,
         totalRs: 0,
         paredesFinalizadas: 0,
         paredesReparo: 0,
@@ -80,6 +101,9 @@ export default function DashboardProducao({
         levantamentoM2: 0,
         levantamentoRs: 0,
         levantamentoParedes: 0,
+        churrasqueirasMes: 0,
+        churrasqueirasTotalObra: 0,
+        churrasqueirasRs: 0,
         reparosCount: 0,
         totalRs: 0,
         diasComApontamento: new Set(),
@@ -91,9 +115,28 @@ export default function DashboardProducao({
     let totalParedesFinalizadasObra = 0;
     let totalParedesReparoObra = 0;
 
+    // Agrupa churrasqueiras inteiras por pavimento ("TIPO-01::CHURR-01") para contar cada churrasqueira 1 única vez
+    const churrasqueirasUnicas = {};
+
     const listaMedicoes = Object.values(medicoesMap || {});
 
     for (const item of listaMedicoes) {
+      const churrInfo = churrMapByWallId[item.parede_id];
+      const isChurr = Boolean(item.is_churrasqueira || item.churrasqueira_id || churrInfo);
+
+      if (isChurr) {
+        const chId = item.churrasqueira_id || churrInfo?.churrasqueiraId || 'CHURR-01';
+        const andarStr = String(item.andar_tipo || 1).padStart(2, '0');
+        const chKey = `TIPO-${andarStr}::${chId}`;
+        if (!churrasqueirasUnicas[chKey] || item.status === 'Finalizada') {
+          churrasqueirasUnicas[chKey] = {
+            ...item,
+            churrasqueira_id: chId,
+          };
+        }
+        continue; // Churrasqueiras de Sical NÃO entram na medição por área m² nem m linear de 1ª fiada
+      }
+
       const compM = Number(item.comprimento_m) || 0;
       const areaM2 = Number(item.area_liquida_m2) || 0;
       const valFiada = Number(item.fiada_valor_rs) || +(compM * precoFiada).toFixed(2);
@@ -158,11 +201,43 @@ export default function DashboardProducao({
       }
     }
 
+    // Contabiliza as Churrasqueiras de Sical inteiras (5 por Tipo = 70 nos 14 Tipos)
+    let totalChurrasqueirasFinalizadasObra = 0;
+    for (const ch of Object.values(churrasqueirasUnicas)) {
+      if (ch.status === 'Finalizada') {
+        totalChurrasqueirasFinalizadasObra += 1;
+        const pId = Number(ch.levantamento_pedreiro_id);
+        if (porPedreiroNoMes[pId]) {
+          porPedreiroNoMes[pId].churrasqueirasTotalObra += 1;
+        }
+        const dataCh = ch.levantamento_data || (ch.updated_at ? ch.updated_at.slice(0, 10) : null);
+        if (dataCh) {
+          const [y, m] = String(dataCh).split('-').map(Number);
+          const valCh = precoChurrDefinido > 0 ? precoChurrDefinido : 0;
+          if (y === Number(anoSelecionado) && porMes[m]) {
+            porMes[m].churrasqueirasCount += 1;
+            porMes[m].churrasqueirasRs += valCh;
+            porMes[m].totalRs += valCh;
+          }
+          if (y === Number(anoSelecionado) && m === Number(mesSelecionado)) {
+            if (porPedreiroNoMes[pId]) {
+              porPedreiroNoMes[pId].churrasqueirasMes += 1;
+              porPedreiroNoMes[pId].churrasqueirasRs += valCh;
+              porPedreiroNoMes[pId].totalRs += valCh;
+              porPedreiroNoMes[pId].diasComApontamento.add(dataCh);
+            }
+          }
+        }
+      }
+    }
+
     const dadosMesAtual = porMes[mesSelecionado] || {
       levantamentoM2: 0,
       levantamentoRs: 0,
       fiadaM: 0,
       fiadaRs: 0,
+      churrasqueirasCount: 0,
+      churrasqueirasRs: 0,
       totalRs: 0,
     };
 
@@ -184,10 +259,12 @@ export default function DashboardProducao({
       acumuladoObraFiadaM,
       totalParedesFinalizadasObra,
       totalParedesReparoObra,
+      totalChurrasqueirasFinalizadasObra,
     };
-  }, [medicoesMap, pedreiros, anoSelecionado, mesSelecionado, modoGrafico, precoLev, precoFiada]);
+  }, [medicoesMap, pedreiros, anoSelecionado, mesSelecionado, modoGrafico, precoLev, precoFiada, precoChurrDefinido, churrMapByWallId]);
 
-  const totalParedes14Tipos = (dwgData?.totalPedaçosParedePorTipo || 137) * 14;
+  const totalParedes14Tipos = (dwgData?.totalPedaçosParedePorTipo || 100) * 14;
+  const totalChurrasqueiras14Tipos = (dwgData?.totalChurrasqueirasPorTipo || 5) * 14;
   const pctGeralObra = Math.min(
     100,
     Math.round((estatisticas.totalParedesFinalizadasObra / totalParedes14Tipos) * 100)
@@ -309,6 +386,22 @@ export default function DashboardProducao({
             </div>
 
             <div className="form-group">
+              <label>Valor por Churrasqueira Sical (R$ / un.)</label>
+              <input
+                type="number"
+                step="10"
+                placeholder="Em branco (definir depois)"
+                value={formConfig.preco_churrasqueira_rs ?? ''}
+                onChange={(e) =>
+                  setFormConfig({
+                    ...formConfig,
+                    preco_churrasqueira_rs: e.target.value === '' ? '' : Number(e.target.value),
+                  })
+                }
+              />
+            </div>
+
+            <div className="form-group">
               <label>Altura Padrão da Parede na Laje (m)</label>
               <input
                 type="number"
@@ -409,7 +502,7 @@ export default function DashboardProducao({
         </div>
 
         <div className="summary-card obra-geral">
-          <span className="summary-tag">Avanço Geral (14 Andares Tipos)</span>
+          <span className="summary-tag">Avanço Geral Alvenaria (14 Tipos)</span>
           <div className="summary-main-val">
             {pctGeralObra}% <small>({estatisticas.totalParedesFinalizadasObra}/{totalParedes14Tipos} paredes)</small>
           </div>
@@ -421,6 +514,44 @@ export default function DashboardProducao({
               </strong>
             ) : (
               '0 em reparo'
+            )}
+          </div>
+        </div>
+
+        <div className="summary-card churr-card" style={{ borderLeft: '4px solid #f97316' }}>
+          <span className="summary-tag">🔥 Churrasqueiras Sical (Fora da Área m²)</span>
+          <div className="summary-main-val">
+            {estatisticas.totalChurrasqueirasFinalizadasObra}/{totalChurrasqueiras14Tipos}{' '}
+            <small>feitas ({estatisticas.dadosMesAtual.churrasqueirasCount} no mês)</small>
+          </div>
+          <div className="summary-sub-val" style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+            <span>Valor un. R$:</span>
+            <input
+              type="number"
+              step="10"
+              placeholder="Em branco"
+              value={configuracoes?.preco_churrasqueira_rs ?? ''}
+              onChange={(e) =>
+                onSaveConfiguracoes({
+                  ...configuracoes,
+                  preco_churrasqueira_rs: e.target.value === '' ? '' : Number(e.target.value),
+                })
+              }
+              style={{
+                width: '105px',
+                padding: '2px 6px',
+                borderRadius: '6px',
+                border: '1px solid #475569',
+                background: '#0f172a',
+                color: '#f8fafc',
+                fontSize: '0.8rem',
+              }}
+              title="Deixe em branco ou digite o valor pago por churrasqueira inteira de Sical"
+            />
+            {precoChurrDefinido > 0 && (
+              <strong style={{ color: '#fb923c' }}>
+                • Mês: R$ {estatisticas.dadosMesAtual.churrasqueirasRs.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+              </strong>
             )}
           </div>
         </div>
@@ -589,6 +720,7 @@ export default function DashboardProducao({
                 <th>Dias no Mês</th>
                 <th>1ª Fiada no Mês (R$ {precoFiada}/m)</th>
                 <th>Levantamento no Mês (R$ {precoLev}/m²)</th>
+                <th>🔥 Churrasqueiras (Sical)</th>
                 <th>Média por Dia (1ª Fiada / Alvenaria)</th>
                 <th>Total a Receber ({nomeMesAtual})</th>
                 <th>Ações</th>
@@ -649,6 +781,18 @@ export default function DashboardProducao({
                         <strong>{p.levantamentoM2.toFixed(2)} m²</strong>
                         <span>
                           R$ {p.levantamentoRs.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} ({p.levantamentoParedes} par.)
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="prod-cell">
+                        <strong style={{ color: p.churrasqueirasTotalObra > 0 ? '#fb923c' : '#94a3b8' }}>
+                          {p.churrasqueirasMes} no mês ({p.churrasqueirasTotalObra} total)
+                        </strong>
+                        <span>
+                          {precoChurrDefinido > 0
+                            ? `R$ ${p.churrasqueirasRs.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                            : 'Valor un. em branco'}
                         </span>
                       </div>
                     </td>

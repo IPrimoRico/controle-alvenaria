@@ -55,6 +55,8 @@ export default function PlantaDwgMedicao({
   const precoFiada = Number(configuracoes?.preco_m_primeira_fiada) || 10.0;
 
   const walls = dwgData?.wallPieces || [];
+  const isTipo14 = Number(andarTipo) === 14;
+  const deltaTipo14 = isTipo14 ? 0.08 : 0;
   const primaryWallId = selectedWallIds[0] || null;
   const primaryWall = useMemo(
     () => walls.find((w) => w.id === primaryWallId) || null,
@@ -66,11 +68,13 @@ export default function PlantaDwgMedicao({
     if (!primaryWall) return;
     const guid = `TIPO-${String(andarTipo).padStart(2, '0')}::${primaryWall.id}`;
     const saved = medicoesMap?.[guid];
-    const alturaPadraoParede =
-      alturasPorParede?.[primaryWall.id] ||
-      primaryWall.alturaPadraoM ||
-      Number(configuracoes?.altura_padrao_m) ||
-      2.85;
+    const baseCustomHeight = alturasPorParede?.[primaryWall.id]
+      ? +(Number(alturasPorParede[primaryWall.id]) + deltaTipo14).toFixed(2)
+      : null;
+    const defaultWallHeight = isTipo14
+      ? primaryWall.alturaPadraoTipo14M || +(Number(primaryWall.alturaPadraoM || 2.85) + 0.08).toFixed(2)
+      : primaryWall.alturaPadraoM || Number(configuracoes?.altura_padrao_m) || 2.85;
+    const alturaPadraoParede = baseCustomHeight || defaultWallHeight;
 
     if (saved) {
       setModoCanto(saved.modo_canto || 'padrao_sem_duplicar');
@@ -98,7 +102,7 @@ export default function PlantaDwgMedicao({
       setDescontarVaoParede(Boolean(configuracoes?.descontar_vaos));
       setObservacao('');
     }
-  }, [primaryWall, andarTipo, medicoesMap, alturasPorParede, configuracoes]);
+  }, [primaryWall, andarTipo, isTipo14, deltaTipo14, medicoesMap, alturasPorParede, configuracoes]);
 
   // Troca comprimento ao alternar regra de canto (Sem duplicar vs Face Externa vs Face Interna)
   const handleSelectModoCanto = (novoModo) => {
@@ -151,7 +155,7 @@ export default function PlantaDwgMedicao({
       const pFiadaObj = pedreiros.find((p) => String(p.id) === String(fiadaPedreiroId));
       const pLevObj = pedreiros.find((p) => String(p.id) === String(levPedreiroId));
 
-      const itemsPayload = selectedWallIds.map((wId) => {
+      const itemsPayload = selectedWallIds.map((wId, idx) => {
         const wObj = walls.find((w) => w.id === wId);
         const guid = `TIPO-${String(andarTipo).padStart(2, '0')}::${wId}`;
         const existente = medicoesMap?.[guid] || {};
@@ -160,18 +164,25 @@ export default function PlantaDwgMedicao({
         const compUsado = isSingle
           ? Number(comprimentoInput)
           : Number(existente.comprimento_m) || wObj.comprimentoM;
+        const defaultWHeight = isTipo14
+          ? wObj.alturaPadraoTipo14M || +(Number(wObj.alturaPadraoM || 2.85) + 0.08).toFixed(2)
+          : wObj.alturaPadraoM || 2.85;
         const altUsada = isSingle
-          ? Number(alturaInput) || wObj.alturaPadraoM || 2.85
+          ? Number(alturaInput) || defaultWHeight
           : Number(existente.altura_m) ||
-            alturasPorParede?.[wId] ||
-            wObj.alturaPadraoM ||
-            2.85;
+            (alturasPorParede?.[wId]
+              ? +(Number(alturasPorParede[wId]) + deltaTipo14).toFixed(2)
+              : defaultWHeight);
 
         return {
           andar_tipo: Number(andarTipo),
           parede_id: wId,
           layer: wObj.layer,
           espessura_cm: wObj.espessuraCm,
+          is_churrasqueira: Boolean(wObj.isChurrasqueira),
+          churrasqueira_id: wObj.churrasqueiraId || null,
+          churrasqueira_nome: wObj.churrasqueiraNome || null,
+          is_churrasqueira_principal: Boolean(wObj.isChurrasqueira && idx === 0),
           modo_canto: isSingle ? modoCanto : existente.modo_canto || 'padrao_sem_duplicar',
           comprimento_m: compUsado,
           altura_m: altUsada,
@@ -222,9 +233,18 @@ export default function PlantaDwgMedicao({
     }
   };
 
-  // Clique em uma parede na planta DWG
+  // Clique em uma parede na planta DWG (se for peça de Churrasqueira de Sical, seleciona a Churrasqueira inteira de uma vez!)
   const handleWallClick = (wallId, e) => {
     e.stopPropagation();
+    const clickedWall = walls.find((w) => w.id === wallId);
+    if (clickedWall?.isChurrasqueira && clickedWall.churrasqueiraId) {
+      const churrIds = walls
+        .filter((w) => w.churrasqueiraId === clickedWall.churrasqueiraId)
+        .map((w) => w.id);
+      setSelectedWallIds(churrIds);
+      return;
+    }
+
     if (multiSelectMode || e.shiftKey || e.ctrlKey) {
       setSelectedWallIds((prev) =>
         prev.includes(wallId)
@@ -239,7 +259,11 @@ export default function PlantaDwgMedicao({
   // Selecionar todas as paredes visíveis no filtro atual
   const handleSelectAllFiltered = () => {
     const ids = walls
-      .filter((w) => filtroLayer === 'TODAS' || w.layer === filtroLayer)
+      .filter((w) => {
+        if (filtroLayer === 'TODAS') return !w.isChurrasqueira;
+        if (filtroLayer === 'CHURRASQUEIRAS_SICAL') return Boolean(w.isChurrasqueira);
+        return w.layer === filtroLayer && !w.isChurrasqueira;
+      })
       .map((w) => w.id);
     setSelectedWallIds(ids);
     setMultiSelectMode(true);
@@ -303,7 +327,7 @@ export default function PlantaDwgMedicao({
                 className={`tipo-pill-btn ${isSel ? 'active' : ''}`}
                 onClick={() => onChangeAndarTipo(num)}
               >
-                TIPO {String(num).padStart(2, '0')}
+                TIPO {String(num).padStart(2, '0')} {num === 14 ? '(+8cm)' : ''}
               </button>
             );
           })}
@@ -322,7 +346,10 @@ export default function PlantaDwgMedicao({
                 value={filtroLayer}
                 onChange={(e) => setFiltroLayer(e.target.value)}
               >
-                <option value="TODAS">Todas as Layers (137 paredes)</option>
+                <option value="TODAS">Todas (100 Paredes + 5 Churrasqueiras)</option>
+                <option value="CHURRASQUEIRAS_SICAL">
+                  🔥 Somente 5 Churrasqueiras de Sical (Fora da Área m²)
+                </option>
                 {Object.entries(dwgData?.layers || {}).map(([layerName, info]) => (
                   <option key={layerName} value={layerName}>
                     {layerName} ({info.label})
@@ -472,16 +499,21 @@ export default function PlantaDwgMedicao({
                 </g>
               )}
 
-              {/* 2. Os 137 Pedaços de Parede Clicáveis */}
+              {/* 2. Os 100 Pedaços de Parede + 37 Peças das 5 Churrasqueiras de Sical Clicáveis */}
               {walls.map((w) => {
                 const isFilteredOut =
-                  filtroLayer !== 'TODAS' && w.layer !== filtroLayer;
+                  filtroLayer !== 'TODAS' &&
+                  (filtroLayer === 'CHURRASQUEIRAS_SICAL'
+                    ? !w.isChurrasqueira
+                    : w.layer !== filtroLayer || w.isChurrasqueira);
                 const isSelected = selectedWallIds.includes(w.id);
                 const guid = `TIPO-${String(andarTipo).padStart(2, '0')}::${w.id}`;
                 const saved = medicoesMap?.[guid];
 
-                let fillColor = 'rgba(203, 213, 225, 0.25)';
-                let strokeColor = w.corLayer || '#eab308';
+                let fillColor = w.isChurrasqueira
+                  ? 'rgba(249, 115, 22, 0.32)'
+                  : 'rgba(203, 213, 225, 0.25)';
+                let strokeColor = w.isChurrasqueira ? '#f97316' : w.corLayer || '#eab308';
 
                 if (modoCor === 'levantamento') {
                   if (saved?.status === 'Finalizada') {
@@ -508,7 +540,9 @@ export default function PlantaDwgMedicao({
                 }
 
                 if (isSelected) {
-                  fillColor = 'rgba(56, 189, 248, 0.85)';
+                  fillColor = w.isChurrasqueira
+                    ? 'rgba(249, 115, 22, 0.85)'
+                    : 'rgba(56, 189, 248, 0.85)';
                   strokeColor = '#ffffff';
                 }
 
@@ -554,8 +588,8 @@ export default function PlantaDwgMedicao({
                       strokeWidth={isSelected ? 3.2 : 1.8}
                     />
 
-                    {/* Linha Vermelha Escura de Medição (como no exemplo do usuário) */}
-                    {mostrarLinhasMedicao && !isFilteredOut && linhaMed && (
+                    {/* Linha Vermelha Escura de Medição (apenas para paredes de alvenaria; churrasqueiras não entram em m²) */}
+                    {mostrarLinhasMedicao && !w.isChurrasqueira && !isFilteredOut && linhaMed && (
                       <line
                         x1={toSvgX(linhaMed.x1)}
                         y1={toSvgY(linhaMed.y1)}
@@ -567,19 +601,37 @@ export default function PlantaDwgMedicao({
                       />
                     )}
 
-                    {/* Rótulo de comprimento / código da parede */}
+                    {/* Quando a parede selecionada possui Trecho Verde (Cubeta +25cm) e Trecho Vermelho (Fundo da Laje), destaca no desenho igual à imagem do usuário! */}
+                    {isSelected &&
+                      !w.isChurrasqueira &&
+                      (w.trechosVisualizacao || []).map((tr, tIdx) => (
+                        <line
+                          key={`tr-${w.id}-${tIdx}`}
+                          x1={toSvgX(tr.x1)}
+                          y1={toSvgY(tr.y1)}
+                          x2={toSvgX(tr.x2)}
+                          y2={toSvgY(tr.y2)}
+                          stroke={tr.tipo === 'cubeta_verde' ? '#22c55e' : '#ef4444'}
+                          strokeWidth="6.5"
+                          strokeLinecap="round"
+                        />
+                      ))}
+
+                    {/* Rótulo de comprimento / código da parede ou churrasqueira */}
                     {(mostrarCodigos || isSelected) && !isFilteredOut && (
                       <text
                         x={toSvgX(w.center.x)}
                         y={toSvgY(w.center.y)}
                         textAnchor="middle"
                         dominantBaseline="central"
-                        fill={isSelected ? '#ffffff' : '#e2e8f0'}
-                        fontSize={isSelected ? '13' : '9.5'}
+                        fill={isSelected ? '#ffffff' : w.isChurrasqueira ? '#fed7aa' : '#e2e8f0'}
+                        fontSize={isSelected ? '13' : w.isChurrasqueira ? '8.5' : '9.5'}
                         fontWeight="700"
                         className="dwg-wall-label"
                       >
-                        {w.id} ({compExibido}m)
+                        {w.isChurrasqueira
+                          ? w.churrasqueiraId
+                          : `${w.id} (${compExibido}m)`}
                       </text>
                     )}
                   </g>
@@ -604,12 +656,145 @@ export default function PlantaDwgMedicao({
             <div className="empty-inspector-card">
               <h3>Toque ou clique em um pedaço de parede na planta DWG</h3>
             </div>
+          ) : primaryWall.isChurrasqueira ? (
+            <div className="dwg-inspector-content">
+              <div className="dwg-wall-header-box" style={{ borderLeft: '4px solid #f97316' }}>
+                <div>
+                  <span className="wall-floor-tag" style={{ color: '#fb923c' }}>
+                    TIPO {String(andarTipo).padStart(2, '0')} • 🔥 Churrasqueira Inteira de Sical (Fora da Área m²)
+                  </span>
+                  <h3>
+                    {primaryWall.churrasqueiraId} — {primaryWall.churrasqueiraNome}
+                  </h3>
+                  <small style={{ color: '#cbd5e1' }}>
+                    {primaryWall.churrasqueiraApto} • {selectedWallIds.length} peças de Sical ({selectedWallIds.join(', ')})
+                  </small>
+                </div>
+                <code className="wall-guid-pill">
+                  TIPO-{String(andarTipo).padStart(2, '0')}::{primaryWall.churrasqueiraId}
+                </code>
+              </div>
+
+              {/* Atalho rápido para alternar entre as 5 Churrasqueiras do Andar */}
+              <div className="inspector-section-box">
+                <h4>🔥 Selecionar Churrasqueira do Pavimento (5 Unidades)</h4>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '6px' }}>
+                  {(dwgData?.churrasqueirasPorTipo || []).map((ch) => {
+                    const firstPieceGuid = `TIPO-${String(andarTipo).padStart(2, '0')}::${ch.pecasIds[0]}`;
+                    const chDone = medicoesMap?.[firstPieceGuid]?.status === 'Finalizada';
+                    const isCurrent = primaryWall.churrasqueiraId === ch.id;
+                    return (
+                      <button
+                        key={ch.id}
+                        type="button"
+                        className={`chip-height ${isCurrent ? 'active' : ''}`}
+                        style={{
+                          borderColor: chDone ? '#10b981' : '#f97316',
+                          color: chDone ? '#6ee7b7' : '#fed7aa',
+                        }}
+                        onClick={() => setSelectedWallIds(ch.pecasIds)}
+                      >
+                        {chDone ? '✓ ' : '🔥 '}
+                        {ch.id} ({ch.pecasIds.length} pçs)
+                      </button>
+                    );
+                  })}
+                </div>
+                <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '8px', marginBottom: 0 }}>
+                  ℹ️ As churrasqueiras de Sical <strong>não entram na medição por área (m²)</strong> nem de 1ª fiada. Elas são apontadas <strong>inteiras de uma única vez</strong>. O valor unitário em R$ fica em branco na Aba 1 para você preencher quando desejar.
+                </p>
+              </div>
+
+              <div className="inspector-section-box lev-box">
+                <div className="box-title-flex">
+                  <h4>👷 Execução da Churrasqueira Inteira ({primaryWall.churrasqueiraId})</h4>
+                  <span className={`status-pill ${(statusSalvo?.status || 'Pendente').toLowerCase()}`}>
+                    {statusSalvo?.status || 'Pendente'}
+                  </span>
+                </div>
+
+                <div className="dims-inputs-row">
+                  <div className="form-group">
+                    <label>Pedreiro Responsável pela Churrasqueira</label>
+                    <select
+                      value={levPedreiroId}
+                      onChange={(e) => setLevPedreiroId(e.target.value)}
+                    >
+                      <option value="">-- Selecione o Pedreiro --</option>
+                      {pedreiros.map((p) => (
+                        <option key={p.id} value={p.id}>
+                          {p.nome}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Data de Conclusão</label>
+                    <input
+                      type="date"
+                      value={levData}
+                      onChange={(e) => setLevData(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>Observação</label>
+                  <input
+                    type="text"
+                    value={observacao}
+                    onChange={(e) => setObservacao(e.target.value)}
+                    placeholder="Opcional..."
+                  />
+                </div>
+
+                <label className="checkbox-apply-all highlight-replicate">
+                  <input
+                    type="checkbox"
+                    checked={replicarTodos14Tipos}
+                    onChange={(e) => setReplicarTodos14Tipos(e.target.checked)}
+                  />
+                  <span>
+                    🔁 Replicar esta Churrasqueira ({primaryWall.churrasqueiraId}) nos 14 Andares Tipos
+                  </span>
+                </label>
+
+                <div className="status-btns-3">
+                  <button
+                    type="button"
+                    disabled={saving}
+                    className="btn-act lev-ok"
+                    onClick={() => dispararSalvamento({ status: 'Finalizada' })}
+                  >
+                    ✓ Churrasqueira Feita Inteira
+                  </button>
+                  <button
+                    type="button"
+                    disabled={saving}
+                    className="btn-act reparo"
+                    onClick={() => dispararSalvamento({ status: 'Reparo' })}
+                  >
+                    ⚠ Reparo
+                  </button>
+                  <button
+                    type="button"
+                    disabled={saving}
+                    className="btn-act pendente"
+                    onClick={() => dispararSalvamento({ status: 'Pendente' })}
+                  >
+                    Limpar
+                  </button>
+                </div>
+              </div>
+
+              {feedback && <div className="feedback-alert">{feedback}</div>}
+            </div>
           ) : (
             <div className="dwg-inspector-content">
               <div className="dwg-wall-header-box">
                 <div>
                   <span className="wall-floor-tag">
-                    TIPO {String(andarTipo).padStart(2, '0')} • Layer: {primaryWall.layer}
+                    TIPO {String(andarTipo).padStart(2, '0')} {isTipo14 ? '(Pé-Direito +8cm)' : ''} • Layer: {primaryWall.layer}
                   </span>
                   <h3>
                     {selectedWallIds.length > 1
@@ -636,36 +821,90 @@ export default function PlantaDwgMedicao({
                     }}
                   >
                     <div style={{ color: '#e9d5ff', fontWeight: 700, marginBottom: '4px' }}>
-                      🏗️ Estrutura Acima (`New Life Studios 2025-02-06.IFC`):
+                      🏗️ Estrutura Acima (`New Life Studios 2025-02-06.IFC` {isTipo14 ? '• TIPO 14 +8cm' : ''}):
                     </div>
                     <div style={{ color: '#f8fafc', fontWeight: 600 }}>
                       {primaryWall.estruturaAcima}
                     </div>
-                    {primaryWall.qtdCubetasAcima > 0 && (
-                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '6px' }}>
-                        <button
-                          type="button"
-                          className={`chip-height ${Number(alturaInput) === 3.1 ? 'active' : ''}`}
-                          onClick={() => setAlturaInput(3.1)}
-                        >
-                          🟪 Dentro da Cubeta até Capa: 3,10m
-                        </button>
-                        <button
-                          type="button"
-                          className={`chip-height ${Number(alturaInput) === primaryWall.alturaComCubetaExataM ? 'active' : ''}`}
-                          onClick={() => setAlturaInput(primaryWall.alturaComCubetaExataM)}
-                        >
-                          📐 Descontar Nervuras 12,5cm: {primaryWall.alturaComCubetaExataM}m
-                        </button>
-                        <button
-                          type="button"
-                          className={`chip-height ${Number(alturaInput) === 2.85 ? 'active' : ''}`}
-                          onClick={() => setAlturaInput(2.85)}
-                        >
-                          🧱 Fundo da Nervura: 2,85m
-                        </button>
+
+                    {/* Detalhamento Trecho Verde (Cubeta +25cm) vs Trecho Vermelho (Fundo da Laje) */}
+                    {primaryWall.compCubetaVerdeM > 0 && (
+                      <div
+                        style={{
+                          marginTop: '6px',
+                          padding: '6px 8px',
+                          borderRadius: '6px',
+                          background: 'rgba(15, 23, 42, 0.65)',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '3px',
+                        }}
+                      >
+                        <span style={{ color: '#4ade80', fontWeight: 600 }}>
+                          🟢 Trecho na Cubeta (+25cm = {(3.1 + deltaTipo14).toFixed(2)}m direto):{' '}
+                          <strong>{primaryWall.compCubetaVerdeM} m</strong>
+                        </span>
+                        {primaryWall.compMacicoVermelhoM > 0 && (
+                          <span style={{ color: '#f87171', fontWeight: 600 }}>
+                            🔴 Trecho Fundo da Laje ({(2.85 + deltaTipo14).toFixed(2)}m):{' '}
+                            <strong>{primaryWall.compMacicoVermelhoM} m</strong>
+                          </span>
+                        )}
                       </div>
                     )}
+
+                    {/* Detalhamento de Dente de Viga Descontado */}
+                    {primaryWall.compDenteVigaM > 0 && (
+                      <div
+                        style={{
+                          marginTop: '5px',
+                          color: '#38bdf8',
+                          fontWeight: 600,
+                          fontSize: '0.79rem',
+                        }}
+                      >
+                        🔵 Dente de Viga Descontado ({(primaryWall.nomesDenteViga || []).join(', ')}):{' '}
+                        {primaryWall.compDenteVigaM} m na altura de{' '}
+                        {((primaryWall.alturaDenteVigaM || 2.65) + deltaTipo14).toFixed(2)}m
+                      </div>
+                    )}
+
+                    <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '6px' }}>
+                      <button
+                        type="button"
+                        className={`chip-height ${
+                          Number(alturaInput) ===
+                          (isTipo14 ? primaryWall.alturaPadraoTipo14M : primaryWall.alturaPadraoM)
+                            ? 'active'
+                            : ''
+                        }`}
+                        onClick={() =>
+                          setAlturaInput(
+                            isTipo14 ? primaryWall.alturaPadraoTipo14M : primaryWall.alturaPadraoM
+                          )
+                        }
+                      >
+                        🎯 Altura Calculada ({isTipo14 ? primaryWall.alturaPadraoTipo14M : primaryWall.alturaPadraoM}m)
+                      </button>
+                      <button
+                        type="button"
+                        className={`chip-height ${
+                          Number(alturaInput) === +(3.1 + deltaTipo14).toFixed(2) ? 'active' : ''
+                        }`}
+                        onClick={() => setAlturaInput(+(3.1 + deltaTipo14).toFixed(2))}
+                      >
+                        🟢 100% Cubeta (+25cm): {(3.1 + deltaTipo14).toFixed(2)}m
+                      </button>
+                      <button
+                        type="button"
+                        className={`chip-height ${
+                          Number(alturaInput) === +(2.85 + deltaTipo14).toFixed(2) ? 'active' : ''
+                        }`}
+                        onClick={() => setAlturaInput(+(2.85 + deltaTipo14).toFixed(2))}
+                      >
+                        🔴 100% Fundo Laje: {(2.85 + deltaTipo14).toFixed(2)}m
+                      </button>
+                    </div>
                   </div>
                 )}
 

@@ -21,18 +21,59 @@ const WALL_LAYERS = {
   'SICAL-10': { espessuraCm: 10, corHex: '#38bdf8', label: 'Sical 10 cm' },
 };
 
-function pointInPoly(x, y, poly) {
-  let inside = false;
-  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-    const xi = poly[i][0],
-      yi = poly[i][1];
-    const xj = poly[j][0],
-      yj = poly[j][1];
-    const intersect =
-      yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi + 1e-12) + xi;
-    if (intersect) inside = !inside;
+// Definição espacial das 5 Churrasqueiras de Sical por Pavimento Tipo (feitas inteiras de uma vez, fora da área m²)
+function classifyChurrasqueira(polygon, layer) {
+  if (!layer.startsWith('SICAL')) return null;
+  const xs = polygon.map((p) => p.x);
+  const ys = polygon.map((p) => p.y);
+  const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+  const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+  const lenX = Math.max(...xs) - Math.min(...xs);
+  const lenY = Math.max(...ys) - Math.min(...ys);
+  const maxSpan = Math.max(lenX, lenY);
+
+  // Paredes da escada/elevador central (X=3300..3760, Y=2470..2980 com comprimentos grandes ou coladas ao núcleo) não são churrasqueiras
+  if (cx >= 3300 && cx <= 3760 && cy >= 2470 && cy <= 2980) {
+    return null;
   }
-  return inside;
+  if (maxSpan > 150) return null;
+
+  if (cy > 2850 && cx < 3350) {
+    return {
+      id: 'CHURR-01',
+      nome: 'Churrasqueira 01 (Sacada Sup. Oeste)',
+      apto: 'Apto Final 01 (Noroeste)',
+    };
+  }
+  if (cy > 2850 && cx >= 4000) {
+    return {
+      id: 'CHURR-02',
+      nome: 'Churrasqueira 02 (Sacada Sup. Leste)',
+      apto: 'Apto Final 02 (Nordeste)',
+    };
+  }
+  if (cy < 2000 && cx < 3000) {
+    return {
+      id: 'CHURR-03',
+      nome: 'Churrasqueira 03 (Sacada Inf. Oeste)',
+      apto: 'Aptos Inferiores Oeste',
+    };
+  }
+  if (cy < 2000 && cx >= 3700 && cx <= 4100) {
+    return {
+      id: 'CHURR-04',
+      nome: 'Churrasqueira 04 (Sacada Inf. Central)',
+      apto: 'Aptos Inferiores Centrais',
+    };
+  }
+  if (cy < 2000 && cx > 4350) {
+    return {
+      id: 'CHURR-05',
+      nome: 'Churrasqueira 05 (Sacada Inf. Leste)',
+      apto: 'Aptos Inferiores Leste',
+    };
+  }
+  return null;
 }
 
 function boxOverlap(a, b, tol = 0.5) {
@@ -143,7 +184,7 @@ function extractStructuralIfc() {
     return [];
   }
 
-  // Extrai elementos do pavimento tipo padrão (#264438 -> #201 '2 Tipo-001', cota 2486 cm, piso abaixo em 2171 cm)
+  // 1. Extrai elementos do pavimento tipo padrão (#264438 -> #201 '2 Tipo-001', cota 2486 cm, piso abaixo em 2171 cm)
   const rel = map.get('264438');
   const elemIds = [...rel.matchAll(/#(\d+)/g)].map((x) => x[1]).slice(0, -1);
 
@@ -208,7 +249,7 @@ function extractStructuralIfc() {
     }
   }
 
-  // Extrai todas as 373 cubetas (IFCOPENINGELEMENT de L1 #111084 e L2 #116952)
+  // 2. Extrai todas as cubetas (IFCOPENINGELEMENT de L1 #111084 e L2 #116952)
   const cubetas = [];
   for (const [, val] of map.entries()) {
     if (
@@ -248,11 +289,84 @@ function extractStructuralIfc() {
     }
   }
 
+  // 3. Extrai todo o Estrutural 3D das Garagens (Térreo 1, Térreo 2, Mezanino, Garagens, Lazer, Esc, 1 Tipo)
+  // e da Cobertura / Caixa d'Água (Cobertura, Casa Máq, Reservatório, Fechamento)
+  const garageAndRoofElements = [];
+  for (const [, val] of map.entries()) {
+    if (!val.startsWith('IFCRELCONTAINEDINSPATIALSTRUCTURE(')) continue;
+    const stId = val.match(/,#(\d+)\)$/)?.[1];
+    const stDef = map.get(stId) || '';
+    const sm = stDef.match(
+      /IFCBUILDINGSTOREY\('[^']+',#\d+,'([^']*)',[^,]*,[^,]*,#\d+,[^,]*,[^,]*,\.ELEMENT\.,([0-9.E+-]+)\)/
+    );
+    if (!sm) continue;
+    const rawStoreyName = sm[1]
+      .replace(/\\X\\E9/g, 'é')
+      .replace(/\\X\\E1/g, 'á');
+    // Ignora os '2 Tipo-001'..'2 Tipo-013' pois já são renderizados no loop dos Tipos
+    if (rawStoreyName.startsWith('2 Tipo-')) continue;
+
+    const eIds = [...val.matchAll(/#(\d+)/g)].map((x) => x[1]).slice(0, -1);
+    for (const eid of eIds) {
+      const def = map.get(eid);
+      if (!def) continue;
+      let kind = null;
+      if (def.startsWith('IFCCOLUMN(')) kind = 'column';
+      else if (def.startsWith('IFCBEAM(')) kind = 'beam';
+      else if (def.startsWith('IFCSLAB(')) kind = 'slab';
+      else if (def.startsWith('IFCRAMP(')) kind = 'ramp';
+      else if (def.startsWith('IFCSTAIR(')) kind = 'stair';
+      if (!kind) continue;
+
+      const m = def.match(
+        /IFC(?:COLUMN|BEAM|SLAB|RAMP|STAIR)\('[^']+',#\d+,'([^']*)','([^']*)','[^']*',#(\d+),#(\d+)/
+      );
+      if (!m) continue;
+      const lp = getLocalPlacement(m[3]);
+      const pds = map.get(m[4]);
+      for (const rMatch of pds.matchAll(/#(\d+)/g)) {
+        const rep = map.get(rMatch[1]);
+        if (!rep || !rep.startsWith('IFCSHAPEREPRESENTATION(')) continue;
+        for (const iMatch of [...rep.matchAll(/#(\d+)/g)].slice(1)) {
+          const item = map.get(iMatch[1]);
+          if (item && item.startsWith('IFCEXTRUDEDAREASOLID(')) {
+            const em = item.match(
+              /IFCEXTRUDEDAREASOLID\(#(\d+),#(\d+),#(\d+),([0-9.E+-]+)\)/
+            );
+            if (!em) continue;
+            const poly2d = getProfilePolygon(em[1]);
+            if (!poly2d.length) continue;
+            const pos3d = getAxis2Placement(em[2]);
+            const depthCm = Number(em[4]);
+            const worldPts = poly2d.map((pt) =>
+              transform2D([pt[0], pt[1], 0], [...lp, pos3d])
+            );
+            const xs = worldPts.map((p) => +(p[0] + IFC_TO_DWG_OFFSET_X).toFixed(1));
+            const ys = worldPts.map((p) => +(p[1] + IFC_TO_DWG_OFFSET_Y).toFixed(1));
+            const zBottomCm = worldPts[0] ? worldPts[0][2] : 0;
+            garageAndRoofElements.push({
+              kind,
+              storey: rawStoreyName,
+              name: m[1],
+              minX: Math.min(...xs),
+              maxX: Math.max(...xs),
+              minY: Math.min(...ys),
+              maxY: Math.max(...ys),
+              zBottomM: +(zBottomCm / 100).toFixed(2),
+              heightM: +(depthCm / 100).toFixed(2),
+            });
+          }
+        }
+      }
+    }
+  }
+
   return {
     arquivo: 'New Life Studios 2025-02-06.IFC',
     sistema: 'TQS 21.15.25 — Exata / SEP Engenharia',
     peDireitoEstruturalTipoCm: 315,
     peDireitoEstruturalTipo14Cm: 323,
+    acrescimoTipo14M: 0.08,
     especificacaoCubeta: {
       fabricante: 'Atex',
       modelo: 'Atex 800 Capa 5.0 H 25.0',
@@ -270,6 +384,7 @@ function extractStructuralIfc() {
     beams,
     slabs,
     cubetas,
+    garageAndRoofElements,
   };
 }
 
@@ -281,7 +396,6 @@ async function extractAll() {
   const data = libredwg.dwg_read_data(arrayBuf, Dwg_File_Type.DWG);
   const db = libredwg.convert(data);
 
-  // 1. Extrai elementos estruturais de referência (Pilares, Perímetro Estrutural, Janelas)
   const insertEnt = db.entities.find((e) => e.type === 'INSERT' && e.name === 'estrutural');
   const offsetX = insertEnt?.insertionPoint?.x || 0;
   const offsetY = insertEnt?.insertionPoint?.y || 0;
@@ -331,10 +445,8 @@ async function extractAll() {
       y2: +l.endPoint.y.toFixed(2),
     }));
 
-  // 1b. Extrai geometria 3D estrutural real (New Life Studios 2025-02-06.IFC)
   const structuralIfc = extractStructuralIfc();
 
-  // 2. Extrai e agrupa as linhas de paredes por Layer
   const rawLines = db.entities
     .filter((e) => e.type === 'LINE' && WALL_LAYERS[e.layer])
     .map((l) => {
@@ -400,16 +512,47 @@ async function extractAll() {
 
   const wallPieces = [];
 
-  function computeWallStructuralMetrics(polygon, orientacao, espessuraCm, comprimentoM) {
+  /**
+   * Calcula a geometria exata da parede segundo as regras do usuário:
+   * 1. Trecho Verde (Dentro das Cubetas, unindo nervuras intermediárias pelo encunhamento): H = 3,10m (3,18m no Tipo 14)
+   * 2. Trecho Vermelho (Onde acabam as cubetas no canto da parede / maciço / capitel): H = 2,85m (2,93m no Tipo 14)
+   * 3. Paredes exatamente embaixo da nervura longitudinal: H = 2,85m igual laje maciça (2,93m no Tipo 14)
+   * 4. Vigas e dentes de vigas de borda com rebaixo: desconta o dente no trecho exato da viga
+   */
+  function computeWallStructuralMetrics(polygon, orientacao, espessuraCm, comprimentoM, churrInfo) {
+    if (churrInfo) {
+      return {
+        isChurrasqueira: true,
+        churrasqueiraId: churrInfo.id,
+        churrasqueiraNome: churrInfo.nome,
+        churrasqueiraApto: churrInfo.apto,
+        estruturaAcima: `${churrInfo.nome} — Medição por Unidade Inteira (Fora da Área m²)`,
+        tipoEstruturaAcima: 'churrasqueira',
+        qtdCubetasAcima: 0,
+        compCubetaVerdeM: 0,
+        compMacicoVermelhoM: 0,
+        compDenteVigaM: 0,
+        alturaDenteVigaM: 0,
+        trechosVisualizacao: [],
+        alturaPadraoM: 2.85,
+        alturaPadraoTipo14M: 2.93,
+      };
+    }
+
     if (!structuralIfc) {
       return {
-        estruturaAcima: 'Altura Padrão (2,65 m)',
+        isChurrasqueira: false,
+        churrasqueiraId: null,
+        estruturaAcima: 'Altura Padrão (2,85 m)',
         tipoEstruturaAcima: 'padrao',
         qtdCubetasAcima: 0,
-        alturaPadraoM: 2.65,
-        alturaComCubetaCheiaM: 2.65,
-        alturaComCubetaExataM: 2.65,
-        alturaSemCubetaM: 2.65,
+        compCubetaVerdeM: 0,
+        compMacicoVermelhoM: comprimentoM,
+        compDenteVigaM: 0,
+        alturaDenteVigaM: 0,
+        trechosVisualizacao: [],
+        alturaPadraoM: 2.85,
+        alturaPadraoTipo14M: 2.93,
       };
     }
 
@@ -428,153 +571,239 @@ async function extractAll() {
       maxY += espessuraCm / 2;
     }
     const wb = { minX, maxX, minY, maxY };
-    const wArea = Math.max(1, (maxX - minX) * (maxY - minY));
+    const isH = orientacao === 'H';
+    const wStart = isH ? minX : minY;
+    const wEnd = isH ? maxX : maxY;
+    const rawLenCm = Math.max(1, wEnd - wStart);
+    const scaleFactor = (comprimentoM * 100) / rawLenCm;
+    const posTransversal = isH ? (minY + maxY) / 2 : (minX + maxX) / 2;
 
-    // Vigas que se sobrepõem à parede
-    const hitBeams = structuralIfc.beams
-      .filter((b) => boxOverlap(wb, b, 0.3) > 0)
-      .map((b) => ({
-        ...b,
-        overlapRatio: boxOverlap(wb, b, 0) / wArea,
-      }));
-    const longBeams = hitBeams.filter((b) => b.overlapRatio >= 0.3);
-    const hitCubetas = structuralIfc.cubetas.filter((c) => boxOverlap(wb, c, 0.3) > 0);
-    const hitSlabs = structuralIfc.slabs.filter((s) => boxOverlap(wb, s, 0.3) > 0);
-
-    // Amostragem ao longo da parede (a cada 2 cm) para perfil exato sob vigas, nervuras e cubetas
-    const steps = Math.max(10, Math.round(comprimentoM * 50));
-    let sumExact = 0,
-      sumFullCubeta = 0,
-      sumNoCubeta = 0;
-
-    for (let s = 0; s < steps; s++) {
-      const t = (s + 0.5) / steps;
-      const x = orientacao === 'H' ? minX + t * (maxX - minX) : (minX + maxX) / 2;
-      const y = orientacao === 'V' ? minY + t * (maxY - minY) : (minY + maxY) / 2;
-      const crossOffsets = [-espessuraCm * 0.35, 0, espessuraCm * 0.35];
-
-      let beamH = null;
-      for (const co of crossOffsets) {
-        const px = orientacao === 'V' ? x + co : x;
-        const py = orientacao === 'H' ? y + co : y;
-        for (const b of structuralIfc.beams) {
-          if (
-            px >= b.minX - 0.5 &&
-            px <= b.maxX + 0.5 &&
-            py >= b.minY - 0.5 &&
-            py <= b.maxY + 0.5 &&
-            pointInPoly(px, py, b.poly)
-          ) {
-            if (beamH === null || b.heightM < beamH) beamH = b.heightM;
-          }
+    // 1. Verifica interseção com vigas ao longo do eixo da parede
+    const beamIntervals = [];
+    for (const b of structuralIfc.beams) {
+      if (boxOverlap(wb, b, 0.3) > 0) {
+        const bStart = Math.max(wStart, isH ? b.minX : b.minY);
+        const bEnd = Math.min(wEnd, isH ? b.maxX : b.maxY);
+        if (bEnd > bStart) {
+          beamIntervals.push({
+            name: b.name,
+            depthCm: b.depthCm,
+            heightM: b.heightM,
+            start: bStart,
+            end: bEnd,
+            spanCm: bEnd - bStart,
+          });
         }
-      }
-
-      if (beamH !== null) {
-        sumExact += beamH;
-        sumFullCubeta += beamH;
-        sumNoCubeta += beamH;
-        continue;
-      }
-
-      let inCubeta = false;
-      for (const co of crossOffsets) {
-        const px = orientacao === 'V' ? x + co : x;
-        const py = orientacao === 'H' ? y + co : y;
-        for (const c of structuralIfc.cubetas) {
-          if (px >= c.minX && px <= c.maxX && py >= c.minY && py <= c.maxY) {
-            inCubeta = true;
-            break;
-          }
-        }
-        if (inCubeta) break;
-      }
-
-      let slabH = 2.85;
-      let isL1L2 = false;
-      for (const sl of structuralIfc.slabs) {
-        if (
-          x >= sl.minX - 2 &&
-          x <= sl.maxX + 2 &&
-          y >= sl.minY - 2 &&
-          y <= sl.maxY + 2 &&
-          pointInPoly(x, y, sl.poly)
-        ) {
-          if (sl.name === 'L1' || sl.name === 'L2') isL1L2 = true;
-          else if (sl.name === 'L6' || sl.name === 'L7') slabH = 3.0;
-          else slabH = sl.heightM;
-        }
-      }
-
-      if (inCubeta) {
-        sumExact += 3.1;
-        sumFullCubeta += 3.1;
-        sumNoCubeta += 2.85;
-      } else if (isL1L2) {
-        sumExact += 2.85;
-        sumFullCubeta += 3.1;
-        sumNoCubeta += 2.85;
-      } else {
-        sumExact += slabH;
-        sumFullCubeta += slabH;
-        sumNoCubeta += slabH;
       }
     }
 
-    const avgExact = +(sumExact / steps).toFixed(3);
-    const avgFull = +(sumFullCubeta / steps).toFixed(3);
-    const avgNoCubeta = +(sumNoCubeta / steps).toFixed(3);
+    const totalBeamSpanCm = beamIntervals.reduce((acc, b) => acc + b.spanCm, 0);
+    const isLongitudinalBeam = totalBeamSpanCm / rawLenCm >= 0.65;
 
-    let estruturaAcima = '';
-    let tipoEstruturaAcima = '';
-    let alturaPadraoM = avgFull;
+    // 2. Verifica se é parede inteiramente sob viga longitudinal
+    if (isLongitudinalBeam) {
+      const minBeam = beamIntervals.reduce((a, b) => (a.heightM <= b.heightM ? a : b));
+      const beamNames = [...new Set(beamIntervals.map((b) => `${b.name} (h=${b.depthCm}cm)`))].join(' + ');
+      const hTipo = +minBeam.heightM.toFixed(2);
+      return {
+        isChurrasqueira: false,
+        churrasqueiraId: null,
+        estruturaAcima: `Sob Viga ${beamNames} → H=${hTipo.toFixed(2)}m`,
+        tipoEstruturaAcima: 'viga',
+        qtdCubetasAcima: 0,
+        compCubetaVerdeM: 0,
+        compMacicoVermelhoM: comprimentoM,
+        compDenteVigaM: 0,
+        alturaDenteVigaM: hTipo,
+        trechosVisualizacao: [
+          {
+            tipo: 'vermelho_fundo',
+            label: `Viga ${minBeam.name} (${hTipo.toFixed(2)}m)`,
+            x1: isH ? wStart : posTransversal,
+            y1: isH ? posTransversal : wStart,
+            x2: isH ? wEnd : posTransversal,
+            y2: isH ? posTransversal : wEnd,
+          },
+        ],
+        alturaPadraoM: hTipo,
+        alturaPadraoTipo14M: +(hTipo + 0.08).toFixed(2),
+      };
+    }
 
-    if (longBeams.length > 0) {
-      // Parede corre longitudinalmente sob viga
-      const minBeam = longBeams.reduce((a, b) => (a.heightM <= b.heightM ? a : b));
-      const beamNames = [...new Set(longBeams.map((b) => `${b.name} (h=${b.depthCm}cm)`))].join(' + ');
-      estruturaAcima = `Viga ${beamNames} → H=${minBeam.heightM.toFixed(2)}m`;
-      tipoEstruturaAcima = 'viga';
-      alturaPadraoM = +minBeam.heightM.toFixed(2);
-    } else if (hitCubetas.length > 0) {
+    // 3. Verifica cubetas que cruzam esta parede
+    const hitCubetas = structuralIfc.cubetas.filter((c) => boxOverlap(wb, c, 0.8) > 0);
+    const hitSlabs = structuralIfc.slabs.filter((s) => boxOverlap(wb, s, 0.5) > 0);
+
+    // Dentes de vigas que têm rebaixo (heightM < 2.85m) cruzando parcialmente a parede
+    const droppedTeeth = beamIntervals.filter((b) => b.heightM < 2.85);
+    const toothRawCm = Math.min(
+      rawLenCm,
+      droppedTeeth.reduce((acc, b) => acc + b.spanCm, 0)
+    );
+    const compDenteVigaM = +(toothRawCm * scaleFactor / 100).toFixed(3);
+    const alturaDenteVigaM =
+      droppedTeeth.length > 0
+        ? Math.min(...droppedTeeth.map((b) => b.heightM))
+        : 2.85;
+    const nomesDenteViga = [...new Set(droppedTeeth.map((b) => `${b.name} (H=${b.heightM}m)`))].join(', ');
+
+    if (hitCubetas.length > 0) {
+      // Projeta cada cubeta no eixo da parede e une cubetas consecutivas separadas apenas pela nervura (<= 22 cm)
+      const cubIntervals = hitCubetas
+        .map((c) => [
+          Math.max(wStart, isH ? c.minX : c.minY),
+          Math.min(wEnd, isH ? c.maxX : c.maxY),
+        ])
+        .filter(([a, b]) => b > a)
+        .sort((a, b) => a[0] - b[0]);
+
+      const mergedGreen = [];
+      for (const intv of cubIntervals) {
+        if (!mergedGreen.length) mergedGreen.push([...intv]);
+        else {
+          const last = mergedGreen[mergedGreen.length - 1];
+          if (intv[0] - last[1] <= 22.0) {
+            last[1] = Math.max(last[1], intv[1]);
+          } else {
+            mergedGreen.push([...intv]);
+          }
+        }
+      }
+
+      const greenRawCm = mergedGreen.reduce((acc, [a, b]) => acc + (b - a), 0);
+      const compCubetaVerdeM = +Math.min(
+        comprimentoM,
+        +(greenRawCm * scaleFactor / 100).toFixed(3)
+      ).toFixed(3);
+      const restanteForaCubetaM = +Math.max(0, comprimentoM - compCubetaVerdeM).toFixed(3);
+      const compDenteEfetivoM = +Math.min(restanteForaCubetaM, compDenteVigaM).toFixed(3);
+      const compMacicoVermelhoM = +Math.max(
+        0,
+        restanteForaCubetaM - compDenteEfetivoM
+      ).toFixed(3);
+
+      // Cálculo exato da área somando Trecho Verde (3,10m) + Trecho Vermelho Fundo da Laje (2,85m) + Dente de Viga (se houver)
+      const areaTipoPadraoM2 =
+        compCubetaVerdeM * 3.1 +
+        compMacicoVermelhoM * 2.85 +
+        compDenteEfetivoM * alturaDenteVigaM;
+      const alturaEquivalenteM = +(areaTipoPadraoM2 / comprimentoM).toFixed(3);
+      const alturaEquivalenteTipo14M = +(alturaEquivalenteM + 0.08).toFixed(3);
+
+      // Monta os segmentos visuais Verde (Cubeta) e Vermelho (Fundo da Laje / Dente) para mostrar na planta DWG!
+      const trechosVisualizacao = [];
+      let cursor = wStart;
+      for (const [gStart, gEnd] of mergedGreen) {
+        if (gStart - cursor > 1.0) {
+          trechosVisualizacao.push({
+            tipo: 'vermelho_fundo',
+            label: `Fundo da Laje 2,85m (${(((gStart - cursor) * scaleFactor) / 100).toFixed(2)}m)`,
+            x1: isH ? cursor : posTransversal,
+            y1: isH ? posTransversal : cursor,
+            x2: isH ? gStart : posTransversal,
+            y2: isH ? posTransversal : gStart,
+          });
+        }
+        trechosVisualizacao.push({
+          tipo: 'verde_cubeta',
+          label: `Cubeta +25cm = 3,10m (${(((gEnd - gStart) * scaleFactor) / 100).toFixed(2)}m)`,
+          x1: isH ? gStart : posTransversal,
+          y1: isH ? posTransversal : gStart,
+          x2: isH ? gEnd : posTransversal,
+          y2: isH ? posTransversal : gEnd,
+        });
+        cursor = gEnd;
+      }
+      if (wEnd - cursor > 1.0) {
+        trechosVisualizacao.push({
+          tipo: 'vermelho_fundo',
+          label: `Fundo da Laje 2,85m (${(((wEnd - cursor) * scaleFactor) / 100).toFixed(2)}m)`,
+          x1: isH ? cursor : posTransversal,
+          y1: isH ? posTransversal : cursor,
+          x2: isH ? wEnd : posTransversal,
+          y2: isH ? posTransversal : wEnd,
+        });
+      }
+
       const slabName = hitCubetas[0].slab;
-      estruturaAcima = `Laje Cubeta ${slabName} (${hitCubetas.length} cubetas Atex 800, capa 5cm) → H=3,10m`;
-      tipoEstruturaAcima = 'cubeta';
-      alturaPadraoM = 3.1;
-    } else if (hitSlabs.some((s) => s.name === 'L6' || s.name === 'L7')) {
+      const resumoPartes = [];
+      if (compCubetaVerdeM > 0) resumoPartes.push(`🟢 ${compCubetaVerdeM}m na Cubeta (3,10m)`);
+      if (compMacicoVermelhoM > 0) resumoPartes.push(`🔴 ${compMacicoVermelhoM}m no Fundo da Laje (2,85m)`);
+      if (compDenteEfetivoM > 0)
+        resumoPartes.push(`🔵 ${compDenteEfetivoM}m sob Dente ${nomesDenteViga}`);
+
+      return {
+        isChurrasqueira: false,
+        churrasqueiraId: null,
+        estruturaAcima: `Laje ${slabName}: ${resumoPartes.join(' + ')} → H méd=${alturaEquivalenteM}m`,
+        tipoEstruturaAcima: 'cubeta_parcial',
+        qtdCubetasAcima: hitCubetas.length,
+        compCubetaVerdeM,
+        compMacicoVermelhoM,
+        compDenteVigaM: compDenteEfetivoM,
+        alturaDenteVigaM,
+        nomesDenteViga,
+        trechosVisualizacao,
+        alturaPadraoM: alturaEquivalenteM,
+        alturaPadraoTipo14M: alturaEquivalenteTipo14M,
+      };
+    }
+
+    // 4. Paredes sem cubeta (Exatamente embaixo da nervura longitudinal, capitel maciço ou laje maciça/rebaixada)
+    let baseSlabH = 2.85;
+    let tipoEst = 'nervura_capitel';
+    let descEst = 'Sob Nervura/Laje Maciça (h=30cm) → Pé-direito normal H=2,85m';
+
+    if (hitSlabs.some((s) => s.name === 'L6' || s.name === 'L7')) {
       const sName = hitSlabs.find((s) => s.name === 'L6' || s.name === 'L7').name;
-      estruturaAcima = `Laje ${sName} (h=15cm) → H=3,00m`;
-      tipoEstruturaAcima = 'laje_rebaixada';
-      alturaPadraoM = 3.0;
+      baseSlabH = 3.0;
+      tipoEst = 'laje_rebaixada';
+      descEst = `Laje ${sName} (h=15cm) → H=3,00m`;
     } else if (hitSlabs.some((s) => s.name === 'L1' || s.name === 'L2')) {
       const sName = hitSlabs.find((s) => s.name === 'L1' || s.name === 'L2').name;
-      estruturaAcima = `Nervura/Capitel ${sName} (h=30cm) → H=2,85m`;
-      tipoEstruturaAcima = 'nervura_capitel';
-      alturaPadraoM = 2.85;
+      baseSlabH = 2.85;
+      tipoEst = 'nervura_capitel';
+      descEst = `Embaixo da Nervura / Maciço ${sName} (h=30cm) → H=2,85m`;
     } else if (hitSlabs.length > 0) {
       const s = hitSlabs[0];
-      estruturaAcima = `Laje Maciça ${s.name} (h=${s.depthCm}cm) → H=${s.heightM.toFixed(2)}m`;
-      tipoEstruturaAcima = 'laje_macica';
-      alturaPadraoM = +s.heightM.toFixed(2);
-    } else if (hitBeams.length > 0) {
-      const b = hitBeams[0];
-      estruturaAcima = `Viga ${b.name} (h=${b.depthCm}cm) → H=${b.heightM.toFixed(2)}m`;
-      tipoEstruturaAcima = 'viga';
-      alturaPadraoM = +b.heightM.toFixed(2);
-    } else {
-      estruturaAcima = 'Laje/Viga de Borda (h=30cm) → H=2,85m';
-      tipoEstruturaAcima = 'laje_macica';
-      alturaPadraoM = 2.85;
+      baseSlabH = +s.heightM.toFixed(2);
+      tipoEst = 'laje_macica';
+      descEst = `Laje Maciça ${s.name} (h=${s.depthCm}cm) → H=${baseSlabH.toFixed(2)}m`;
+    }
+
+    const compDenteEfetivoM = +Math.min(comprimentoM, compDenteVigaM).toFixed(3);
+    const compMacicoVermelhoM = +Math.max(0, comprimentoM - compDenteEfetivoM).toFixed(3);
+    const areaTotal =
+      compMacicoVermelhoM * baseSlabH + compDenteEfetivoM * alturaDenteVigaM;
+    const alturaEq = +(areaTotal / comprimentoM).toFixed(3);
+
+    if (compDenteEfetivoM > 0) {
+      descEst += ` (Descontado dente de ${compDenteEfetivoM}m na ${nomesDenteViga})`;
     }
 
     return {
-      estruturaAcima,
-      tipoEstruturaAcima,
-      qtdCubetasAcima: hitCubetas.length,
-      alturaPadraoM,
-      alturaComCubetaCheiaM: tipoEstruturaAcima === 'cubeta' ? 3.1 : alturaPadraoM,
-      alturaComCubetaExataM: avgExact,
-      alturaSemCubetaM: avgNoCubeta,
+      isChurrasqueira: false,
+      churrasqueiraId: null,
+      estruturaAcima: descEst,
+      tipoEstruturaAcima: tipoEst,
+      qtdCubetasAcima: 0,
+      compCubetaVerdeM: 0,
+      compMacicoVermelhoM,
+      compDenteVigaM: compDenteEfetivoM,
+      alturaDenteVigaM,
+      nomesDenteViga,
+      trechosVisualizacao: [
+        {
+          tipo: 'vermelho_fundo',
+          label: `Fundo da Laje ${alturaEq.toFixed(2)}m`,
+          x1: isH ? wStart : posTransversal,
+          y1: isH ? posTransversal : wStart,
+          x2: isH ? wEnd : posTransversal,
+          y2: isH ? posTransversal : wEnd,
+        },
+      ],
+      alturaPadraoM: alturaEq,
+      alturaPadraoTipo14M: +(alturaEq + 0.08).toFixed(3),
     };
   }
 
@@ -676,11 +905,13 @@ async function extractAll() {
 
     const comprimentoM = +(comprimentoPadraoCm / 100).toFixed(3);
     const orientacao = isHoriz ? 'H' : 'V';
+    const churrInfo = classifyChurrasqueira(polygon, layer);
     const structMetrics = computeWallStructuralMetrics(
       polygon,
       orientacao,
       t,
-      comprimentoM
+      comprimentoM,
+      churrInfo
     );
 
     wallPieces.push({
@@ -688,8 +919,8 @@ async function extractAll() {
       codigo,
       guid,
       layer,
-      layerLabel: WALL_LAYERS[layer].label,
-      corLayer: WALL_LAYERS[layer].corHex,
+      layerLabel: churrInfo ? `🔥 ${churrInfo.nome}` : WALL_LAYERS[layer].label,
+      corLayer: churrInfo ? '#f97316' : WALL_LAYERS[layer].corHex,
       espessuraCm: t,
       orientacao,
       temCanto: hasCornerStart || hasCornerEnd,
@@ -810,6 +1041,22 @@ async function extractAll() {
     }
   }
 
+  // Agrupa resumo das 5 Churrasqueiras por Pavimento Tipo
+  const churrasqueirasMap = {};
+  for (const w of wallPieces) {
+    if (!w.isChurrasqueira) continue;
+    if (!churrasqueirasMap[w.churrasqueiraId]) {
+      churrasqueirasMap[w.churrasqueiraId] = {
+        id: w.churrasqueiraId,
+        nome: w.churrasqueiraNome,
+        apto: w.churrasqueiraApto,
+        wallIds: [],
+      };
+    }
+    churrasqueirasMap[w.churrasqueiraId].wallIds.push(w.id);
+  }
+  const churrasqueirasPorTipo = Object.values(churrasqueirasMap);
+
   let minX = Infinity,
     minY = Infinity,
     maxX = -Infinity,
@@ -823,7 +1070,6 @@ async function extractAll() {
     }
   }
 
-  // 3. Extrai os pavimentos reais do arquivo NEW LIFE_05072024.ifc
   const ifcContent = fs.readFileSync(IFC_PATH, 'latin1');
   const storeyRegex =
     /#(\d+)=IFCBUILDINGSTOREY\('([^']+)',#\d+,'([^']+)',[^,]*,[^,]*,#\d+,[^,]*,'([^']+)',\.ELEMENT\.,([-\d.]+)\);/g;
@@ -855,15 +1101,19 @@ async function extractAll() {
 
   ifcStoreys.sort((a, b) => a.elevation - b.elevation);
 
+  const paredesAlvenariaCount = wallPieces.filter((w) => !w.isChurrasqueira).length;
+
   const outputData = {
     projeto: 'NEW LIFE — Controle de Medição de Alvenaria',
     arquivoIfc: 'NEW LIFE_05072024.ifc',
     arquivoIfcEstrutural: 'New Life Studios 2025-02-06.IFC',
     arquivoDwg: 'app medição.dwg',
-    totalPedaçosParedePorTipo: wallPieces.length,
+    totalPedaçosParedePorTipo: paredesAlvenariaCount,
+    totalChurrasqueirasPorTipo: churrasqueirasPorTipo.length,
     totalAndaresTipo: 14,
     bounds: { minX, minY, maxX, maxY, width: maxX - minX, height: maxY - minY },
     layers: WALL_LAYERS,
+    churrasqueirasPorTipo,
     ifcStoreys,
     structuralPolylines,
     structuralIfc,
@@ -888,13 +1138,9 @@ async function extractAll() {
   );
 
   console.log('✅ Extração concluída com sucesso!');
-  console.log('Total de pedaços de parede por Pavimento Tipo:', wallPieces.length);
-  console.log('Total de cubetas extraídas por Tipo:', structuralIfc?.cubetas?.length || 0);
-  const byType = {};
-  for (const w of wallPieces) {
-    byType[w.tipoEstruturaAcima] = (byType[w.tipoEstruturaAcima] || 0) + 1;
-  }
-  console.log('Resumo das paredes por estrutura acima:', byType);
+  console.log('Paredes de alvenaria por Tipo (fora churrasqueiras):', paredesAlvenariaCount);
+  console.log('Churrasqueiras de Sical por Tipo:', churrasqueirasPorTipo.length, churrasqueirasPorTipo.map((c) => `${c.id} (${c.wallIds.length} peças)`));
+  console.log('Elementos 3D das Garagens + Caixa d\'Água:', structuralIfc?.garageAndRoofElements?.length || 0);
 }
 
 extractAll();

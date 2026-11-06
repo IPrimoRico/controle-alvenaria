@@ -6,7 +6,8 @@ const DEFAULT_STATE = {
   configuracoes: {
     preco_m2_levantamento: 16.0,
     preco_m_primeira_fiada: 10.0,
-    altura_padrao_m: 2.65,
+    preco_churrasqueira_rs: '',
+    altura_padrao_m: 2.85,
     descontar_vaos: false,
     limite_vao_m2: 2.0,
     regra_vao: 'excedente',
@@ -52,9 +53,34 @@ export function saveLocalState(state) {
  * Garante funcionamento 100% autônomo no GitHub Pages (github.io) em qualquer dispositivo!
  */
 export function calcularAreasEValoresClient(item, config) {
+  const isChurr = Boolean(item.is_churrasqueira || item.churrasqueira_id);
   const comprimentoM = Number(item.comprimento_m) || 0;
-  const alturaM = Number(item.altura_m) || Number(config.altura_padrao_m) || 2.65;
+  const alturaM = Number(item.altura_m) || Number(config.altura_padrao_m) || 2.85;
   const areaVaoM2 = Math.max(0, Number(item.area_vao_m2) || 0);
+
+  if (isChurr) {
+    const status = item.status || 'Pendente';
+    const precoChurrRaw = config.preco_churrasqueira_rs;
+    const precoChurr =
+      precoChurrRaw !== undefined && precoChurrRaw !== null && String(precoChurrRaw).trim() !== ''
+        ? Number(precoChurrRaw) || 0
+        : 0;
+    const isPrincipal = Boolean(item.is_churrasqueira_principal);
+    const churrasqueiraValorRs =
+      status === 'Finalizada' && isPrincipal && precoChurr > 0 ? +precoChurr.toFixed(2) : 0;
+
+    return {
+      comprimento_m: +comprimentoM.toFixed(3),
+      altura_m: +alturaM.toFixed(3),
+      area_vao_m2: 0,
+      desconto_vao_aplicado_m2: 0,
+      area_bruta_m2: 0,
+      area_liquida_m2: 0,
+      fiada_valor_rs: 0,
+      levantamento_valor_rs: 0,
+      churrasqueira_valor_rs: churrasqueiraValorRs,
+    };
+  }
 
   const areaBrutaM2 = +(comprimentoM * alturaM).toFixed(3);
 
@@ -96,6 +122,7 @@ export function calcularAreasEValoresClient(item, config) {
     area_liquida_m2: areaLiquidaM2,
     fiada_valor_rs: fiadaValorRs,
     levantamento_valor_rs: levantamentoValorRs,
+    churrasqueira_valor_rs: 0,
   };
 }
 
@@ -287,25 +314,39 @@ export async function saveMedicaoParedes(payload) {
     const paredeId = rawItem.parede_id;
     if (!paredeId) continue;
 
+    const andarOrigem = Number(rawItem.andar_tipo) || 1;
     if (aplicarAlturaEmTodosOsTipos && rawItem.altura_m) {
-      state.alturasPorParede[paredeId] = Number(rawItem.altura_m);
+      const altBaseTipo1a13 =
+        andarOrigem === 14 ? +(Number(rawItem.altura_m) - 0.08).toFixed(2) : Number(rawItem.altura_m);
+      state.alturasPorParede[paredeId] = altBaseTipo1a13;
     }
 
     const andaresAlvo =
       Array.isArray(andaresParaReplicar) && andaresParaReplicar.length > 0
         ? andaresParaReplicar
-        : [Number(rawItem.andar_tipo) || 1];
+        : [andarOrigem];
 
     for (const andar of andaresAlvo) {
-      const guid = `TIPO-${String(andar).padStart(2, '0')}::${paredeId}`;
+      const andarNum = Number(andar);
+      const guid = `TIPO-${String(andarNum).padStart(2, '0')}::${paredeId}`;
       const existente = state.medicoes[guid] || {};
+
+      let alturaAndar = Number(rawItem.altura_m) || existente.altura_m || config.altura_padrao_m || 2.85;
+      if (rawItem.altura_m && andarNum !== andarOrigem) {
+        if (andarNum === 14 && andarOrigem !== 14) {
+          alturaAndar = +(Number(rawItem.altura_m) + 0.08).toFixed(2);
+        } else if (andarNum !== 14 && andarOrigem === 14) {
+          alturaAndar = +(Number(rawItem.altura_m) - 0.08).toFixed(2);
+        }
+      }
 
       const merged = {
         ...existente,
         ...rawItem,
+        altura_m: alturaAndar,
         guid,
-        andar_tipo: Number(andar),
-        pavimento_nome: `TIPO ${String(andar).padStart(2, '0')}`,
+        andar_tipo: andarNum,
+        pavimento_nome: `TIPO ${String(andarNum).padStart(2, '0')}`,
         parede_id: paredeId,
         updated_at: new Date().toISOString(),
       };
