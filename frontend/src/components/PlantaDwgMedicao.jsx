@@ -18,6 +18,7 @@ export default function PlantaDwgMedicao({
   const [modoCor, setModoCor] = useState('levantamento'); // 'levantamento' | 'fiada' | 'layer'
   const [mostrarLinhasMedicao, setMostrarLinhasMedicao] = useState(true);
   const [mostrarCodigos, setMostrarCodigos] = useState(true);
+  const [mostrarEstruturalOverlay, setMostrarEstruturalOverlay] = useState(true);
 
   // Controles de Zoom e Pan (compatível com Mouse e Touch Celular/Tablet)
   const [zoom, setZoom] = useState(1.0);
@@ -67,9 +68,9 @@ export default function PlantaDwgMedicao({
     const saved = medicoesMap?.[guid];
     const alturaPadraoParede =
       alturasPorParede?.[primaryWall.id] ||
-      Number(configuracoes?.altura_padrao_m) ||
       primaryWall.alturaPadraoM ||
-      2.65;
+      Number(configuracoes?.altura_padrao_m) ||
+      2.85;
 
     if (saved) {
       setModoCanto(saved.modo_canto || 'padrao_sem_duplicar');
@@ -159,7 +160,12 @@ export default function PlantaDwgMedicao({
         const compUsado = isSingle
           ? Number(comprimentoInput)
           : Number(existente.comprimento_m) || wObj.comprimentoM;
-        const altUsada = Number(alturaInput) || 2.65;
+        const altUsada = isSingle
+          ? Number(alturaInput) || wObj.alturaPadraoM || 2.85
+          : Number(existente.altura_m) ||
+            alturasPorParede?.[wId] ||
+            wObj.alturaPadraoM ||
+            2.85;
 
         return {
           andar_tipo: Number(andarTipo),
@@ -346,6 +352,15 @@ export default function PlantaDwgMedicao({
             <label className="checkbox-inline-pill">
               <input
                 type="checkbox"
+                checked={mostrarEstruturalOverlay}
+                onChange={(e) => setMostrarEstruturalOverlay(e.target.checked)}
+              />
+              <span>🟪 Vigas + 368 Cubetas (IFC Estrutural)</span>
+            </label>
+
+            <label className="checkbox-inline-pill">
+              <input
+                type="checkbox"
                 checked={multiSelectMode}
                 onChange={(e) => setMultiSelectMode(e.target.checked)}
               />
@@ -423,6 +438,39 @@ export default function PlantaDwgMedicao({
                   />
                 );
               })}
+
+              {/* 1b. Overlay do IFC Estrutural TQS: 368 Cubetas Atex 800 + 65 Vigas (V701..V718 / Vborda) */}
+              {mostrarEstruturalOverlay && dwgData?.structuralIfc && (
+                <g className="structural-ifc-overlay" style={{ pointerEvents: 'none' }}>
+                  {(dwgData.structuralIfc.cubetas || []).map((c, idx) => (
+                    <rect
+                      key={`cub-${idx}`}
+                      x={toSvgX(c.minX)}
+                      y={toSvgY(c.maxY)}
+                      width={Math.max(1, c.maxX - c.minX)}
+                      height={Math.max(1, c.maxY - c.minY)}
+                      fill="rgba(168, 85, 247, 0.08)"
+                      stroke="rgba(168, 85, 247, 0.28)"
+                      strokeWidth="0.9"
+                      strokeDasharray="3 2"
+                    />
+                  ))}
+                  {(dwgData.structuralIfc.beams || []).map((b, idx) => {
+                    const pts = (b.poly || [])
+                      .map(([px, py]) => `${toSvgX(px)},${toSvgY(py)}`)
+                      .join(' ');
+                    return (
+                      <polygon
+                        key={`beam-${idx}`}
+                        points={pts}
+                        fill="rgba(56, 189, 248, 0.10)"
+                        stroke="rgba(56, 189, 248, 0.42)"
+                        strokeWidth="1.2"
+                      />
+                    );
+                  })}
+                </g>
+              )}
 
               {/* 2. Os 137 Pedaços de Parede Clicáveis */}
               {walls.map((w) => {
@@ -572,9 +620,54 @@ export default function PlantaDwgMedicao({
                 <code className="wall-guid-pill">{guidAtual}</code>
               </div>
 
-              {/* 1. Cuidado com o Canto (Não contar encontro duas vezes) e Altura na Laje */}
+              {/* 1. Cuidado com o Canto (Não contar encontro duas vezes) e Altura na Laje / Estrutural */}
               <div className="inspector-section-box">
-                <h4>📏 1. Geometria, Canto e Altura na Laje</h4>
+                <h4>📏 1. Geometria, Canto e Altura pelo 3D Estrutural</h4>
+
+                {selectedWallIds.length === 1 && primaryWall.estruturaAcima && (
+                  <div
+                    style={{
+                      background: 'rgba(168, 85, 247, 0.14)',
+                      border: '1px solid rgba(168, 85, 247, 0.4)',
+                      borderRadius: '8px',
+                      padding: '8px 10px',
+                      marginBottom: '10px',
+                      fontSize: '0.82rem',
+                    }}
+                  >
+                    <div style={{ color: '#e9d5ff', fontWeight: 700, marginBottom: '4px' }}>
+                      🏗️ Estrutura Acima (`New Life Studios 2025-02-06.IFC`):
+                    </div>
+                    <div style={{ color: '#f8fafc', fontWeight: 600 }}>
+                      {primaryWall.estruturaAcima}
+                    </div>
+                    {primaryWall.qtdCubetasAcima > 0 && (
+                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '6px' }}>
+                        <button
+                          type="button"
+                          className={`chip-height ${Number(alturaInput) === 3.1 ? 'active' : ''}`}
+                          onClick={() => setAlturaInput(3.1)}
+                        >
+                          🟪 Dentro da Cubeta até Capa: 3,10m
+                        </button>
+                        <button
+                          type="button"
+                          className={`chip-height ${Number(alturaInput) === primaryWall.alturaComCubetaExataM ? 'active' : ''}`}
+                          onClick={() => setAlturaInput(primaryWall.alturaComCubetaExataM)}
+                        >
+                          📐 Descontar Nervuras 12,5cm: {primaryWall.alturaComCubetaExataM}m
+                        </button>
+                        <button
+                          type="button"
+                          className={`chip-height ${Number(alturaInput) === 2.85 ? 'active' : ''}`}
+                          onClick={() => setAlturaInput(2.85)}
+                        >
+                          🧱 Fundo da Nervura: 2,85m
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {selectedWallIds.length === 1 && (
                   <div className="corner-rule-selector">
@@ -628,7 +721,7 @@ export default function PlantaDwgMedicao({
                   </div>
 
                   <div className="form-group">
-                    <label>Altura na Laje / Viga (m)</label>
+                    <label>Altura na Laje / Viga / Cubeta (m)</label>
                     <input
                       type="number"
                       step="0.01"
@@ -638,10 +731,10 @@ export default function PlantaDwgMedicao({
                   </div>
                 </div>
 
-                {/* Botões rápidos de altura sob laje/viga */}
+                {/* Botões rápidos de altura sob laje/viga/cubeta */}
                 <div className="quick-heights-row">
-                  <span>Alturas rápidas:</span>
-                  {[2.45, 2.55, 2.65, 2.75, 2.85, 3.0].map((h) => (
+                  <span>Alturas estruturais:</span>
+                  {[2.45, 2.65, 2.75, 2.85, 3.0, 3.1].map((h) => (
                     <button
                       key={h}
                       type="button"

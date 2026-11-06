@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { IFCLoader } from 'web-ifc-three/IFCLoader';
 
 export default function Predio3DAndares({
   dwgData,
@@ -16,12 +15,14 @@ export default function Predio3DAndares({
   const hoveredFloorRef = useRef(null);
 
   const [hoveredAndarInfo, setHoveredAndarInfo] = useState(null);
-  const [loadingRawIfc, setLoadingRawIfc] = useState(false);
-  const [rawIfcLoaded, setRawIfcLoaded] = useState(false);
+  const [mostrarEstrutural3D, setMostrarEstrutural3D] = useState(true);
+  const [mostrarCubetas3D, setMostrarCubetas3D] = useState(true);
+  const [andarIsolado3D, setAndarIsolado3D] = useState('TODOS'); // 'TODOS' ou 1..14
 
   const totalParedesPorTipo = dwgData?.wallPieces?.length || 137;
   const precoLev = Number(configuracoes?.preco_m2_levantamento) || 16.0;
   const precoFiada = Number(configuracoes?.preco_m_primeira_fiada) || 10.0;
+  const structIfc = dwgData?.structuralIfc || null;
 
   // Calcula o avanço individual de cada um dos 14 Andares Tipos
   const resumo14Tipos = useMemo(() => {
@@ -40,10 +41,14 @@ export default function Predio3DAndares({
       let levM2 = 0;
       let levRs = 0;
       let reparoCount = 0;
+      let areaTotalPotencialM2 = 0;
 
       for (const wp of dwgData?.wallPieces || []) {
         const guid = `TIPO-${String(tipo).padStart(2, '0')}::${wp.id}`;
         const m = medicoesMap?.[guid];
+        const altPadrao = wp.alturaPadraoM || 2.85;
+        areaTotalPotencialM2 += wp.comprimentoM * altPadrao;
+
         if (!m) continue;
 
         if (m.fiada_status === 'Finalizada') {
@@ -80,25 +85,36 @@ export default function Predio3DAndares({
         reparoCount,
         pctLev,
         pctFiada,
+        areaTotalPotencialM2: +areaTotalPotencialM2.toFixed(2),
       });
     }
     return lista;
   }, [dwgData, medicoesMap, totalParedesPorTipo, precoLev, precoFiada]);
 
-  // Constrói o modelo 3D completo do Edifício NEW LIFE (25 níveis do IFC + 14 Andares Tipos clicáveis com as paredes do DWG)
+  // Constrói o modelo 3D integrado: Arquitetônico (NEW LIFE_05072024.ifc) + Estrutural TQS (New Life Studios 2025-02-06.IFC) + Paredes DWG
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !dwgData) return;
 
     const width = container.clientWidth || 900;
-    const height = container.clientHeight || 420;
+    const height = container.clientHeight || 460;
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#0b1120');
     sceneRef.current = scene;
 
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.5, 1500);
-    camera.position.set(52, 55, 68);
+    const isIsolated = andarIsolado3D !== 'TODOS';
+    const isolatedTipoNum = isIsolated ? Number(andarIsolado3D) : null;
+    const targetY = isIsolated
+      ? (resumo14Tipos.find((r) => r.andarTipo === isolatedTipoNum)?.elevacao || 25) + 1.5
+      : 38;
+
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.3, 1500);
+    if (isIsolated) {
+      camera.position.set(18, targetY + 8, 22);
+    } else {
+      camera.position.set(52, 55, 68);
+    }
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
@@ -109,14 +125,14 @@ export default function Predio3DAndares({
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.06;
-    controls.target.set(0, 36, 0);
+    controls.target.set(0, targetY, 0);
     controls.update();
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.78));
-    const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.85);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+    const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.9);
     dirLight1.position.set(70, 120, 80);
     scene.add(dirLight1);
-    const dirLight2 = new THREE.DirectionalLight(0x60a5fa, 0.4);
+    const dirLight2 = new THREE.DirectionalLight(0x60a5fa, 0.45);
     dirLight2.position.set(-70, 50, -60);
     scene.add(dirLight2);
 
@@ -131,49 +147,76 @@ export default function Predio3DAndares({
     const centerX = (bounds.minX + bounds.maxX) / 2;
     const centerY = (bounds.minY + bounds.maxY) / 2;
     const scaleCmToM = 0.01;
-    const slabW = bounds.width * scaleCmToM + 0.8;
-    const slabD = bounds.height * scaleCmToM + 0.8;
+    const slabW = bounds.width * scaleCmToM + 0.4;
+    const slabD = bounds.height * scaleCmToM + 0.4;
 
     floorHitBoxesRef.current = [];
     wallMeshesByGuidRef.current = {};
 
-    // 1. Níveis de Embasamento e Cobertura do arquivo NEW LIFE_05072024.ifc
-    const baseStoreys = (dwgData.ifcStoreys || []).filter((s) => !s.isTipo);
-    const baseSlabMat = new THREE.MeshStandardMaterial({
-      color: 0x334155,
-      roughness: 0.8,
+    // Materiais compartilhados para alta performance em celular/tablet/notebook
+    const pilarMat = new THREE.MeshStandardMaterial({
+      color: 0xf97316, // Laranja estrutural TQS (Pilares P1..P15)
+      roughness: 0.5,
+      metalness: 0.2,
+    });
+    const beamMat = new THREE.MeshStandardMaterial({
+      color: 0x38bdf8, // Azul estrutural TQS (Vigas V701..V718 / Vborda)
+      roughness: 0.45,
       metalness: 0.15,
       transparent: true,
-      opacity: 0.55,
+      opacity: isIsolated ? 0.72 : 0.55,
+    });
+    const cubetaMat = new THREE.MeshStandardMaterial({
+      color: 0xa855f7, // Roxo translúcido indicando as cubetas Atex 800 (H=25cm, capa=5cm)
+      roughness: 0.4,
+      transparent: true,
+      opacity: isIsolated ? 0.48 : 0.35,
     });
 
-    for (const st of baseStoreys) {
-      const isPodium = st.elevation < 20;
-      const w = isPodium ? slabW * 1.25 : slabW * 0.55;
-      const d = isPodium ? slabD * 1.2 : slabD * 0.55;
-      const slabMesh = new THREE.Mesh(
-        new THREE.BoxGeometry(w, 0.25, d),
-        baseSlabMat
-      );
-      slabMesh.position.set(0, st.elevation, 0);
-      buildingGroup.add(slabMesh);
+    // 1. Níveis de Embasamento e Cobertura (quando exibindo todos os pavimentos)
+    if (!isIsolated) {
+      const baseStoreys = (dwgData.ifcStoreys || []).filter((s) => !s.isTipo);
+      const baseSlabMat = new THREE.MeshStandardMaterial({
+        color: 0x334155,
+        roughness: 0.8,
+        metalness: 0.15,
+        transparent: true,
+        opacity: 0.5,
+      });
+
+      for (const st of baseStoreys) {
+        const isPodium = st.elevation < 20;
+        const w = isPodium ? slabW * 1.22 : slabW * 0.55;
+        const d = isPodium ? slabD * 1.18 : slabD * 0.55;
+        const slabMesh = new THREE.Mesh(
+          new THREE.BoxGeometry(w, 0.22, d),
+          baseSlabMat
+        );
+        slabMesh.position.set(0, st.elevation, 0);
+        buildingGroup.add(slabMesh);
+      }
     }
 
-    // 2. Os 14 Andares Tipos (TIPO 01 a TIPO 14) com as 137 paredes reais do DWG extrudadas em 3D!
+    // Geometria unitária para InstancedMesh das 368 cubetas por andar
+    const unitBoxGeo = new THREE.BoxGeometry(1, 1, 1);
+
+    // 2. Os 14 Andares Tipos (TIPO 01 a TIPO 14)
     for (let tipo = 1; tipo <= 14; tipo++) {
+      if (isIsolated && tipo !== isolatedTipoNum) continue;
+
       const stInfo = resumo14Tipos.find((r) => r.andarTipo === tipo);
       const yBase = stInfo ? stInfo.elevacao : 18.6 + tipo * 3.15;
       const floorGroup = new THREE.Group();
       floorGroup.position.y = yBase;
 
-      // Laje do Pavimento Tipo (Hitbox clicável para abrir o DWG daquele pavimento)
-      const slabGeo = new THREE.BoxGeometry(slabW, 0.22, slabD);
+      // Laje de Piso do Pavimento Tipo (Hitbox clicável para abrir o DWG daquele pavimento)
+      const slabGeo = new THREE.BoxGeometry(slabW, 0.1, slabD);
       const slabMat = new THREE.MeshStandardMaterial({
         color: 0x475569,
         roughness: 0.7,
         metalness: 0.1,
         transparent: true,
-        opacity: 0.78,
+        opacity: 0.75,
       });
       const slabMesh = new THREE.Mesh(slabGeo, slabMat);
       slabMesh.userData = {
@@ -184,15 +227,15 @@ export default function Predio3DAndares({
       floorGroup.add(slabMesh);
       floorHitBoxesRef.current.push(slabMesh);
 
-      // Hitbox invisível envolvendo o volume do pavimento para facilitar o clique em qualquer parte do andar no 3D
-      const volGeo = new THREE.BoxGeometry(slabW + 0.5, 2.9, slabD + 0.5);
+      // Hitbox invisível envolvendo o volume do pavimento
+      const volGeo = new THREE.BoxGeometry(slabW + 0.4, 3.1, slabD + 0.4);
       const volMat = new THREE.MeshBasicMaterial({
         transparent: true,
         opacity: 0.0,
         depthWrite: false,
       });
       const volMesh = new THREE.Mesh(volGeo, volMat);
-      volMesh.position.y = 1.45;
+      volMesh.position.y = 1.55;
       volMesh.userData = {
         isFloorHitBox: true,
         andarTipo: tipo,
@@ -202,8 +245,68 @@ export default function Predio3DAndares({
       floorGroup.add(volMesh);
       floorHitBoxesRef.current.push(volMesh);
 
-      // Paredes do DWG extrudadas em 3D neste pavimento
-      const wallHeight = 2.65;
+      // 2a. Elementos do IFC Estrutural TQS (New Life Studios 2025-02-06.IFC)
+      if (mostrarEstrutural3D && structIfc) {
+        // Pilares P1..P15 (altura 3.15 m)
+        for (const col of structIfc.columns || []) {
+          const wM = Math.max(0.15, (col.maxX - col.minX) * scaleCmToM);
+          const dM = Math.max(0.15, (col.maxY - col.minY) * scaleCmToM);
+          const cxM = ((col.minX + col.maxX) / 2 - centerX) * scaleCmToM;
+          const czM = -((col.minY + col.maxY) / 2 - centerY) * scaleCmToM;
+          const colMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(wM, 3.15, dM),
+            pilarMat
+          );
+          colMesh.position.set(cxM, 3.15 / 2, czM);
+          floorGroup.add(colMesh);
+        }
+
+        // Vigas V701..V718 e Vborda 1..15 posicionadas na cota exata do fundo da viga no teto do pavimento!
+        for (const b of structIfc.beams || []) {
+          const wM = Math.max(0.1, (b.maxX - b.minX) * scaleCmToM);
+          const dM = Math.max(0.1, (b.maxY - b.minY) * scaleCmToM);
+          const hM = Math.max(0.15, (b.depthCm || 50) * scaleCmToM);
+          const yBotM = Math.max(1.2, b.heightM || 2.65);
+          const cxM = ((b.minX + b.maxX) / 2 - centerX) * scaleCmToM;
+          const czM = -((b.minY + b.maxY) / 2 - centerY) * scaleCmToM;
+
+          const bMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(wM, hM, dM),
+            beamMat
+          );
+          bMesh.position.set(cxM, yBotM + hM / 2, czM);
+          floorGroup.add(bMesh);
+        }
+      }
+
+      // 2b. As 368 Cubetas Atex 800 (64,8x64,8 cm, H=25 cm, de 2,85 m a 3,10 m + capa de 5 cm até 3,15 m)
+      if (mostrarCubetas3D && structIfc?.cubetas?.length > 0) {
+        const shouldRenderAllCubetas = isIsolated || tipo === 14 || tipo === 1;
+        if (shouldRenderAllCubetas) {
+          const cubetasArr = structIfc.cubetas;
+          const instMesh = new THREE.InstancedMesh(
+            unitBoxGeo,
+            cubetaMat,
+            cubetasArr.length
+          );
+          const dummy = new THREE.Object3D();
+          cubetasArr.forEach((c, idx) => {
+            const wM = Math.max(0.1, (c.maxX - c.minX) * scaleCmToM);
+            const dM = Math.max(0.1, (c.maxY - c.minY) * scaleCmToM);
+            const cxM = ((c.minX + c.maxX) / 2 - centerX) * scaleCmToM;
+            const czM = -((c.minY + c.maxY) / 2 - centerY) * scaleCmToM;
+            // A cubeta fica entre 2.85m (fundo da nervura) e 3.10m (fundo da capa de 5cm)
+            dummy.position.set(cxM, 2.85 + 0.25 / 2, czM);
+            dummy.scale.set(wM, 0.25, dM);
+            dummy.updateMatrix();
+            instMesh.setMatrixAt(idx, dummy.matrix);
+          });
+          instMesh.instanceMatrix.needsUpdate = true;
+          floorGroup.add(instMesh);
+        }
+      }
+
+      // 2c. As 137 Paredes do DWG extrudadas com sua ALTURA ESTRUTURAL REAL (subindo até 3,10m dentro das cubetas ou parando sob as vigas!)
       for (const wp of dwgData.wallPieces) {
         const guid = `TIPO-${String(tipo).padStart(2, '0')}::${wp.id}`;
         const minX = Math.min(...wp.polygon.map((p) => p.x));
@@ -211,6 +314,7 @@ export default function Predio3DAndares({
         const minY = Math.min(...wp.polygon.map((p) => p.y));
         const maxY = Math.max(...wp.polygon.map((p) => p.y));
 
+        const wallHeight = Number(wp.alturaPadraoM) || 2.85;
         const wM = Math.max(0.09, (maxX - minX) * scaleCmToM);
         const dM = Math.max(0.09, (maxY - minY) * scaleCmToM);
         const cxM = ((minX + maxX) / 2 - centerX) * scaleCmToM;
@@ -222,7 +326,7 @@ export default function Predio3DAndares({
           roughness: 0.55,
         });
         const wMesh = new THREE.Mesh(wGeo, wMat);
-        wMesh.position.set(cxM, 0.11 + wallHeight / 2, czM);
+        wMesh.position.set(cxM, 0.05 + wallHeight / 2, czM);
         wMesh.userData = {
           isFloorHitBox: true,
           andarTipo: tipo,
@@ -269,7 +373,7 @@ export default function Predio3DAndares({
                 hb.material.opacity = 0.95;
               } else {
                 hb.material.color.setHex(0x475569);
-                hb.material.opacity = 0.78;
+                hb.material.opacity = 0.75;
               }
             }
           });
@@ -282,7 +386,7 @@ export default function Predio3DAndares({
           floorHitBoxesRef.current.forEach((hb) => {
             if (hb.geometry.parameters.height < 0.5) {
               hb.material.color.setHex(0x475569);
-              hb.material.opacity = 0.78;
+              hb.material.opacity = 0.75;
             }
           });
         }
@@ -338,12 +442,12 @@ export default function Predio3DAndares({
       dom.removeEventListener('pointerup', onPointerUp);
       renderer.dispose();
     };
-  }, [dwgData]);
+  }, [dwgData, mostrarEstrutural3D, mostrarCubetas3D, andarIsolado3D]);
 
   // Atualiza cores das paredes 3D nos 14 andares tipos sempre que medicoesMap mudar
   useEffect(() => {
     update3DWallColors();
-  }, [medicoesMap]);
+  }, [medicoesMap, mostrarEstrutural3D, mostrarCubetas3D, andarIsolado3D]);
 
   function update3DWallColors() {
     const mapMeshes = wallMeshesByGuidRef.current || {};
@@ -363,61 +467,64 @@ export default function Predio3DAndares({
     });
   }
 
-  // Opcional: Carrega também a malha IFC bruta completa de 64MB via IFC.js se o usuário clicar
-  const handleLoadRawIfc = () => {
-    if (!sceneRef.current || loadingRawIfc || rawIfcLoaded) return;
-    setLoadingRawIfc(true);
-    const ifcLoader = new IFCLoader();
-    try {
-      ifcLoader.ifcManager.setWasmPath('https://unpkg.com/web-ifc@0.0.36/');
-    } catch {
-      // ignore
-    }
-    ifcLoader.load(
-      '/api/arquivos/new-life.ifc',
-      (ifcModel) => {
-        ifcModel.position.set(28, 0, 0);
-        sceneRef.current.add(ifcModel);
-        setLoadingRawIfc(false);
-        setRawIfcLoaded(true);
-      },
-      undefined,
-      () => {
-        setLoadingRawIfc(false);
-      }
-    );
-  };
-
   const hoveredStats = hoveredAndarInfo
     ? resumo14Tipos.find((r) => r.andarTipo === hoveredAndarInfo)
     : null;
 
   return (
     <div className="tab-3d-andares-container">
-      {/* Parte Superior: Visualizador 3D do Edifício NEW LIFE */}
+      {/* Parte Superior: Visualizador 3D Integrado (Arquitetônico + Estrutural TQS + Paredes DWG) */}
       <div className="building-3d-card">
         <div className="building-3d-header">
           <div>
-            <h2>🏢 Modelo 3D do Edifício NEW LIFE (`NEW LIFE_05072024.ifc`)</h2>
+            <h2>
+              🏢 Modelo 3D Integrado: Arquitetônico (`NEW LIFE_05072024.ifc`) + Estrutural TQS (`New Life Studios 2025-02-06.IFC`)
+            </h2>
             <p>
-              Clique diretamente em qualquer <strong>Pavimento Tipo (01 a 14) no 3D</strong> ou na{' '}
-              <strong>tabela abaixo</strong> para abrir a planta `.DWG` de medição daquele andar
+              Paredes já configuradas com as alturas reais das <strong>Vigas (2,45m a 2,85m)</strong> e subindo por dentro das{' '}
+              <strong>368 Cubetas Atex 800 (H=3,10m até a capa de 5cm)</strong>. Clique em um andar para abrir o `.DWG`!
             </p>
           </div>
 
-          <div className="building-3d-actions">
-            {!rawIfcLoaded && (
-              <button
-                type="button"
-                className="btn-load-raw-ifc"
-                disabled={loadingRawIfc}
-                onClick={handleLoadRawIfc}
-              >
-                {loadingRawIfc
-                  ? '⏳ Carregando NEW LIFE_05072024.ifc (64 MB)...'
-                  : '📦 Anexar Malha IFC Completa (64 MB)'}
-              </button>
-            )}
+          <div className="building-3d-actions" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <label className="checkbox-inline-pill">
+              <input
+                type="checkbox"
+                checked={mostrarEstrutural3D}
+                onChange={(e) => setMostrarEstrutural3D(e.target.checked)}
+              />
+              <span>🏗️ Pilares e Vigas TQS</span>
+            </label>
+
+            <label className="checkbox-inline-pill">
+              <input
+                type="checkbox"
+                checked={mostrarCubetas3D}
+                onChange={(e) => setMostrarCubetas3D(e.target.checked)}
+              />
+              <span>🟪 368 Cubetas Atex 800</span>
+            </label>
+
+            <select
+              value={andarIsolado3D}
+              onChange={(e) => setAndarIsolado3D(e.target.value)}
+              style={{
+                background: '#1e293b',
+                color: '#f8fafc',
+                border: '1px solid #38bdf8',
+                borderRadius: '8px',
+                padding: '6px 10px',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+              }}
+            >
+              <option value="TODOS">🏢 Ver Prédio Completo (14 Tipos)</option>
+              {Array.from({ length: 14 }, (_, i) => i + 1).map((n) => (
+                <option key={n} value={n}>
+                  🔍 Isolar Raio-X TIPO {String(n).padStart(2, '0')} (Vigas + Cubetas)
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -427,7 +534,7 @@ export default function Predio3DAndares({
           {hoveredStats && (
             <div className="floating-floor-tooltip">
               <strong>{hoveredStats.nome}</strong>
-              <span>Cota IFC: +{hoveredStats.elevacao}m</span>
+              <span>Cota IFC: +{hoveredStats.elevacao}m • Área Total: {hoveredStats.areaTotalPotencialM2} m²</span>
               <span>
                 1ª Fiada: {hoveredStats.fiadaCount}/{totalParedesPorTipo} ({hoveredStats.pctFiada}%)
               </span>
@@ -441,19 +548,23 @@ export default function Predio3DAndares({
           <div className="viewer-legend">
             <div className="legend-item">
               <span className="legend-dot finalizada" />
-              <span>Levantamento Finalizado</span>
+              <span>Alvenaria Finalizada</span>
             </div>
             <div className="legend-item">
               <span className="legend-dot fiada" />
-              <span>1ª Fiada Concluída</span>
+              <span>1ª Fiada Pronta</span>
             </div>
             <div className="legend-item">
-              <span className="legend-dot reparo" />
-              <span>Em Reparo</span>
+              <span className="legend-dot" style={{ background: '#f97316' }} />
+              <span>Pilares TQS (P1..P15)</span>
             </div>
             <div className="legend-item">
-              <span className="legend-dot pendente" />
-              <span>Pendente</span>
+              <span className="legend-dot" style={{ background: '#38bdf8' }} />
+              <span>Vigas TQS (V701..V718)</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-dot" style={{ background: '#a855f7' }} />
+              <span>Cubetas Atex 800 (H=3,10m)</span>
             </div>
           </div>
         </div>
@@ -465,7 +576,7 @@ export default function Predio3DAndares({
           <div>
             <h2>📋 Tabela dos 14 Andares Tipos — Escolha o Pavimento para Medição (`.DWG`)</h2>
             <p className="section-subtitle">
-              O projeto `.DWG` (`app medição.dwg`) foi multiplicado pelos 14 andares tipos com controle de avanço e pedreiros independente por andar
+              Cada andar tipo possui {totalParedesPorTipo} paredes pré-configuradas com as alturas exatas do projeto estrutural (`708,30 m²` por andar considerando a alvenaria dentro das cubetas)
             </p>
           </div>
         </div>
@@ -507,7 +618,7 @@ export default function Predio3DAndares({
                   <td>
                     <div className="prod-cell">
                       <strong>
-                        {row.levM2.toFixed(2)} m² ({row.levCount}/{totalParedesPorTipo})
+                        {row.levM2.toFixed(2)} / {row.areaTotalPotencialM2} m² ({row.levCount}/{totalParedesPorTipo})
                       </strong>
                       <span>
                         R$ {row.levRs.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
