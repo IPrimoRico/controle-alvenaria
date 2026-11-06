@@ -1,0 +1,8466 @@
+{
+  "projeto": "NEW LIFE — Controle de Medição de Alvenaria",
+  "arquivoIfc": "NEW LIFE_05072024.ifc",
+  "arquivoDwg": "app medição.dwg",
+  "totalPedaçosParedePorTipo": 137,
+  "totalAndaresTipo": 14,
+  "bounds": {
+    "minX": 2337.68,
+    "minY": 1530.16,
+    "maxX": 5007.680887855195,
+    "maxY": 2992.161245839885,
+    "width": 2670.000887855195,
+    "height": 1462.0012458398849
+  },
+  "layers": {
+    "4 - TIJ-19": {
+      "espessuraCm": 19,
+      "corHex": "#ec4899",
+      "label": "Tijolo 19 cm"
+    },
+    "4 - TIJ-14": {
+      "espessuraCm": 14,
+      "corHex": "#eab308",
+      "label": "Tijolo 14 cm"
+    },
+    "3 - TIJ-11.5": {
+      "espessuraCm": 11.5,
+      "corHex": "#f59e0b",
+      "label": "Tijolo 11,5 cm"
+    },
+    "1 - TIJ-9": {
+      "espessuraCm": 9,
+      "corHex": "#a855f7",
+      "label": "Tijolo 9 cm"
+    },
+    "SICAL-14": {
+      "espessuraCm": 14,
+      "corHex": "#fb923c",
+      "label": "Sical 14 cm"
+    },
+    "SICAL-10": {
+      "espessuraCm": 10,
+      "corHex": "#38bdf8",
+      "label": "Sical 10 cm"
+    }
+  },
+  "ifcStoreys": [
+    {
+      "expressID": 105,
+      "guid": "0DaW2DXrTF4RX0UrD0hz6s",
+      "nome": "SUBSOLO 02",
+      "elevation": -2.8,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 112,
+      "guid": "2Do6rqLej1FhX$$sYOJNRs",
+      "nome": "SUBSOLO 01",
+      "elevation": 0,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 116,
+      "guid": "2Do6rqLej1FhX$$sYOJNM4",
+      "nome": "TERREO",
+      "elevation": 2.8,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 120,
+      "guid": "0DaW2DXrTF4RX0UrD0hu34",
+      "nome": "GARAGEM 01",
+      "elevation": 7.875,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 124,
+      "guid": "0DaW2DXrTF4RX0UrD0hviO",
+      "nome": "GARAGEM 02",
+      "elevation": 10.675,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 128,
+      "guid": "0DaW2DXrTF4RX0UrD0hvZp",
+      "nome": "GARAGEM 03",
+      "elevation": 13.475,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 132,
+      "guid": "0DaW2DXrTF4RX0UrD0hvY$",
+      "nome": "LAZER",
+      "elevation": 16.535,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 136,
+      "guid": "0DaW2DXrTF4RX0UrD0hvX_",
+      "nome": "TIPO 01",
+      "elevation": 21.785,
+      "isTipo": true,
+      "numeroTipo": 1
+    },
+    {
+      "expressID": 140,
+      "guid": "0DaW2DXrTF4RX0UrD0hvWD",
+      "nome": "TIPO 02",
+      "elevation": 24.935,
+      "isTipo": true,
+      "numeroTipo": 2
+    },
+    {
+      "expressID": 144,
+      "guid": "0DaW2DXrTF4RX0UrD0hvdw",
+      "nome": "TIPO 03",
+      "elevation": 28.085,
+      "isTipo": true,
+      "numeroTipo": 3
+    },
+    {
+      "expressID": 148,
+      "guid": "0DaW2DXrTF4RX0UrD0hvdh",
+      "nome": "TIPO 04",
+      "elevation": 31.235,
+      "isTipo": true,
+      "numeroTipo": 4
+    },
+    {
+      "expressID": 152,
+      "guid": "0DaW2DXrTF4RX0UrD0hvdO",
+      "nome": "TIPO 05",
+      "elevation": 34.385,
+      "isTipo": true,
+      "numeroTipo": 5
+    },
+    {
+      "expressID": 156,
+      "guid": "0DaW2DXrTF4RX0UrD0hvcd",
+      "nome": "TIPO 06",
+      "elevation": 37.535,
+      "isTipo": true,
+      "numeroTipo": 6
+    },
+    {
+      "expressID": 160,
+      "guid": "0DaW2DXrTF4RX0UrD0hvcK",
+      "nome": "TIPO 07",
+      "elevation": 40.685,
+      "isTipo": true,
+      "numeroTipo": 7
+    },
+    {
+      "expressID": 164,
+      "guid": "0DaW2DXrTF4RX0UrD0hvc5",
+      "nome": "TIPO 08",
+      "elevation": 43.835,
+      "isTipo": true,
+      "numeroTipo": 8
+    },
+    {
+      "expressID": 168,
+      "guid": "0DaW2DXrTF4RX0UrD0hvbo",
+      "nome": "TIPO 09",
+      "elevation": 46.985,
+      "isTipo": true,
+      "numeroTipo": 9
+    },
+    {
+      "expressID": 172,
+      "guid": "0DaW2DXrTF4RX0UrD0hvbZ",
+      "nome": "TIPO 10",
+      "elevation": 50.135,
+      "isTipo": true,
+      "numeroTipo": 10
+    },
+    {
+      "expressID": 176,
+      "guid": "0DaW2DXrTF4RX0UrD0hvbG",
+      "nome": "TIPO 11",
+      "elevation": 53.285,
+      "isTipo": true,
+      "numeroTipo": 11
+    },
+    {
+      "expressID": 180,
+      "guid": "0DaW2DXrTF4RX0UrD0hvb1",
+      "nome": "TIPO 12",
+      "elevation": 56.435,
+      "isTipo": true,
+      "numeroTipo": 12
+    },
+    {
+      "expressID": 184,
+      "guid": "0DaW2DXrTF4RX0UrD0hvbE",
+      "nome": "TIPO 13",
+      "elevation": 59.585,
+      "isTipo": true,
+      "numeroTipo": 13
+    },
+    {
+      "expressID": 188,
+      "guid": "0DaW2DXrTF4RX0UrD0hva$",
+      "nome": "TIPO 14",
+      "elevation": 62.735,
+      "isTipo": true,
+      "numeroTipo": 14
+    },
+    {
+      "expressID": 192,
+      "guid": "0DaW2DXrTF4RX0UrD0hvRT",
+      "nome": "LAJE COBERTURA",
+      "elevation": 65.885,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 196,
+      "guid": "0DaW2DXrTF4RX0UrD0hjed",
+      "nome": "_CASA DE MÁQUINAS",
+      "elevation": 67.935,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 200,
+      "guid": "0DaW2DXrTF4RX0UrD0hjeU",
+      "nome": "RESERVATÓRIO",
+      "elevation": 70.135,
+      "isTipo": false,
+      "numeroTipo": null
+    },
+    {
+      "expressID": 204,
+      "guid": "0DaW2DXrTF4RX0UrD0dNt8",
+      "nome": "LAJE FINAL",
+      "elevation": 72.135,
+      "isTipo": false,
+      "numeroTipo": null
+    }
+  ],
+  "structuralPolylines": [
+    {
+      "layer": "perimetro estrutural",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 4982.68,
+          "y": 1822.16
+        },
+        {
+          "x": 4982.68,
+          "y": 1742.16
+        },
+        {
+          "x": 5007.68,
+          "y": 1742.16
+        },
+        {
+          "x": 5007.68,
+          "y": 2992.16
+        },
+        {
+          "x": 4485.68,
+          "y": 2992.16
+        },
+        {
+          "x": 4485.68,
+          "y": 3029.16
+        },
+        {
+          "x": 4186.68,
+          "y": 3029.16
+        },
+        {
+          "x": 4186.68,
+          "y": 2992.16
+        },
+        {
+          "x": 3093.68,
+          "y": 2992.16
+        },
+        {
+          "x": 3093.68,
+          "y": 3029.16
+        },
+        {
+          "x": 2848.68,
+          "y": 3029.16
+        },
+        {
+          "x": 2848.68,
+          "y": 2992.16
+        },
+        {
+          "x": 2337.68,
+          "y": 2992.16
+        },
+        {
+          "x": 2337.68,
+          "y": 1742.16
+        },
+        {
+          "x": 2362.68,
+          "y": 1742.16
+        },
+        {
+          "x": 2362.68,
+          "y": 1822.16
+        },
+        {
+          "x": 2777.68,
+          "y": 1822.16
+        },
+        {
+          "x": 2777.68,
+          "y": 1620.16
+        },
+        {
+          "x": 2872.68,
+          "y": 1620.16
+        },
+        {
+          "x": 2872.68,
+          "y": 1552.16
+        },
+        {
+          "x": 3864.68,
+          "y": 1552.16
+        },
+        {
+          "x": 3864.68,
+          "y": 1530.16
+        },
+        {
+          "x": 3949.68,
+          "y": 1530.16
+        },
+        {
+          "x": 3949.68,
+          "y": 1552.16
+        },
+        {
+          "x": 4464.68,
+          "y": 1552.16
+        },
+        {
+          "x": 4464.68,
+          "y": 1620.16
+        },
+        {
+          "x": 4560.68,
+          "y": 1620.16
+        },
+        {
+          "x": 4560.68,
+          "y": 1822.16
+        },
+        {
+          "x": 4982.68,
+          "y": 1822.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 4450.68,
+          "y": 1816.16
+        },
+        {
+          "x": 4480.68,
+          "y": 1816.16
+        },
+        {
+          "x": 4480.68,
+          "y": 1946.16
+        },
+        {
+          "x": 4450.68,
+          "y": 1946.16
+        },
+        {
+          "x": 4450.68,
+          "y": 1816.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 3919.68,
+          "y": 1816.16
+        },
+        {
+          "x": 3949.68,
+          "y": 1816.16
+        },
+        {
+          "x": 3949.68,
+          "y": 1946.16
+        },
+        {
+          "x": 3919.68,
+          "y": 1946.16
+        },
+        {
+          "x": 3919.68,
+          "y": 1816.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 3383.68,
+          "y": 1816.16
+        },
+        {
+          "x": 3413.68,
+          "y": 1816.16
+        },
+        {
+          "x": 3413.68,
+          "y": 1946.16
+        },
+        {
+          "x": 3383.68,
+          "y": 1946.16
+        },
+        {
+          "x": 3383.68,
+          "y": 1816.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 3720.18,
+          "y": 2458.16
+        },
+        {
+          "x": 3750.18,
+          "y": 2458.16
+        },
+        {
+          "x": 3750.18,
+          "y": 2614.16
+        },
+        {
+          "x": 3720.18,
+          "y": 2614.16
+        },
+        {
+          "x": 3720.18,
+          "y": 2458.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 3359.18,
+          "y": 2458.16
+        },
+        {
+          "x": 3590.18,
+          "y": 2458.16
+        },
+        {
+          "x": 3590.18,
+          "y": 2488.16
+        },
+        {
+          "x": 3359.18,
+          "y": 2488.16
+        },
+        {
+          "x": 3359.18,
+          "y": 2458.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 4106.68,
+          "y": 2458.16
+        },
+        {
+          "x": 4131.68,
+          "y": 2458.16
+        },
+        {
+          "x": 4131.68,
+          "y": 2910.16
+        },
+        {
+          "x": 4106.68,
+          "y": 2910.16
+        },
+        {
+          "x": 4106.68,
+          "y": 2458.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 3295.46,
+          "y": 2992.16
+        },
+        {
+          "x": 3207.18,
+          "y": 2903.88
+        },
+        {
+          "x": 3207.18,
+          "y": 2797.31
+        },
+        {
+          "x": 3232.18,
+          "y": 2797.31
+        },
+        {
+          "x": 3232.18,
+          "y": 2886.46
+        },
+        {
+          "x": 3316.67,
+          "y": 2970.95
+        },
+        {
+          "x": 3295.46,
+          "y": 2992.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 4982.68,
+          "y": 2354.16
+        },
+        {
+          "x": 5007.68,
+          "y": 2354.16
+        },
+        {
+          "x": 5007.68,
+          "y": 2514.16
+        },
+        {
+          "x": 4982.68,
+          "y": 2514.16
+        },
+        {
+          "x": 4982.68,
+          "y": 2354.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 4982.68,
+          "y": 1822.16
+        },
+        {
+          "x": 5007.68,
+          "y": 1822.16
+        },
+        {
+          "x": 5007.68,
+          "y": 1942.16
+        },
+        {
+          "x": 4982.68,
+          "y": 1942.16
+        },
+        {
+          "x": 4982.68,
+          "y": 1822.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 4982.68,
+          "y": 2872.16
+        },
+        {
+          "x": 5007.68,
+          "y": 2872.16
+        },
+        {
+          "x": 5007.68,
+          "y": 2992.16
+        },
+        {
+          "x": 4982.68,
+          "y": 2992.16
+        },
+        {
+          "x": 4982.68,
+          "y": 2872.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 2337.68,
+          "y": 2872.16
+        },
+        {
+          "x": 2362.68,
+          "y": 2872.16
+        },
+        {
+          "x": 2362.68,
+          "y": 2992.16
+        },
+        {
+          "x": 2337.68,
+          "y": 2992.16
+        },
+        {
+          "x": 2337.68,
+          "y": 2872.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 2337.68,
+          "y": 2354.16
+        },
+        {
+          "x": 2362.68,
+          "y": 2354.16
+        },
+        {
+          "x": 2362.68,
+          "y": 2514.16
+        },
+        {
+          "x": 2337.68,
+          "y": 2514.16
+        },
+        {
+          "x": 2337.68,
+          "y": 2354.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 2856.68,
+          "y": 1816.16
+        },
+        {
+          "x": 2886.68,
+          "y": 1816.16
+        },
+        {
+          "x": 2886.68,
+          "y": 1946.16
+        },
+        {
+          "x": 2856.68,
+          "y": 1946.16
+        },
+        {
+          "x": 2856.68,
+          "y": 1816.16
+        }
+      ]
+    },
+    {
+      "layer": "EST - Fôrma Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 3500.18,
+          "y": 2962.16
+        },
+        {
+          "x": 3750.18,
+          "y": 2962.16
+        },
+        {
+          "x": 3750.18,
+          "y": 2992.16
+        },
+        {
+          "x": 3495.18,
+          "y": 2992.16
+        },
+        {
+          "x": 3495.18,
+          "y": 2962.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 3750.18,
+          "y": 2962.16
+        },
+        {
+          "x": 3495.18,
+          "y": 2962.16
+        },
+        {
+          "x": 3495.18,
+          "y": 2992.16
+        },
+        {
+          "x": 3750.18,
+          "y": 2992.16
+        }
+      ]
+    },
+    {
+      "layer": "Pilar",
+      "closed": true,
+      "vertices": [
+        {
+          "x": 2337.68,
+          "y": 1822.16
+        },
+        {
+          "x": 2362.68,
+          "y": 1822.16
+        },
+        {
+          "x": 2362.68,
+          "y": 1942.16
+        },
+        {
+          "x": 2337.68,
+          "y": 1942.16
+        },
+        {
+          "x": 2337.68,
+          "y": 1822.16
+        }
+      ]
+    }
+  ],
+  "windowLines": [
+    {
+      "x1": 2450.68,
+      "y1": 2992.16,
+      "x2": 2605.68,
+      "y2": 2992.16
+    }
+  ],
+  "wallPieces": [
+    {
+      "id": "P-001",
+      "codigo": "P-001",
+      "guid": "DWG-4TIJ19-P-001",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.58,
+      "comprimentoBrutoM": 3.58,
+      "comprimentoInternoM": 3.58,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2337.68,
+          "y": 2514.161245839885
+        },
+        {
+          "x": 2337.68,
+          "y": 2872.161245839885
+        },
+        {
+          "x": 2356.68,
+          "y": 2872.161245839885
+        },
+        {
+          "x": 2356.68,
+          "y": 2514.161245839885
+        }
+      ],
+      "center": {
+        "x": 2347.18,
+        "y": 2693.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2356.68,
+        "y1": 2514.161245839885,
+        "x2": 2356.68,
+        "y2": 2872.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2337.68,
+        "y1": 2514.161245839885,
+        "x2": 2337.68,
+        "y2": 2872.161245839885
+      },
+      "handles": [
+        "9D8",
+        "9DA"
+      ]
+    },
+    {
+      "id": "P-002",
+      "codigo": "P-002",
+      "guid": "DWG-4TIJ19-P-002",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 4.12,
+      "comprimentoBrutoM": 4.12,
+      "comprimentoInternoM": 4.12,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2337.68,
+          "y": 1942.161245839885
+        },
+        {
+          "x": 2337.68,
+          "y": 2354.161245839652
+        },
+        {
+          "x": 2356.68,
+          "y": 2354.161245839652
+        },
+        {
+          "x": 2356.68,
+          "y": 1942.161245839885
+        }
+      ],
+      "center": {
+        "x": 2347.18,
+        "y": 2148.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2356.68,
+        "y1": 1942.161245839885,
+        "x2": 2356.68,
+        "y2": 2354.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2337.68,
+        "y1": 1942.161245839885,
+        "x2": 2337.68,
+        "y2": 2354.161245839652
+      },
+      "handles": [
+        "9DC",
+        "9DE"
+      ]
+    },
+    {
+      "id": "P-003",
+      "codigo": "P-003",
+      "guid": "DWG-4TIJ19-P-003",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.58,
+      "comprimentoBrutoM": 3.58,
+      "comprimentoInternoM": 3.58,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4988.68,
+          "y": 2514.161245839885
+        },
+        {
+          "x": 4988.68,
+          "y": 2872.161245839885
+        },
+        {
+          "x": 5007.68,
+          "y": 2872.161245839885
+        },
+        {
+          "x": 5007.68,
+          "y": 2514.161245839885
+        }
+      ],
+      "center": {
+        "x": 4998.18,
+        "y": 2693.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 5007.68,
+        "y1": 2514.161245839885,
+        "x2": 5007.68,
+        "y2": 2872.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4988.68,
+        "y1": 2514.161245839885,
+        "x2": 4988.68,
+        "y2": 2872.161245839885
+      },
+      "handles": [
+        "9E0",
+        "9E1"
+      ]
+    },
+    {
+      "id": "P-004",
+      "codigo": "P-004",
+      "guid": "DWG-4TIJ19-P-004",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 4.12,
+      "comprimentoBrutoM": 4.12,
+      "comprimentoInternoM": 4.12,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4988.68,
+          "y": 1942.161245839885
+        },
+        {
+          "x": 4988.68,
+          "y": 2354.161245839652
+        },
+        {
+          "x": 5007.68,
+          "y": 2354.161245839652
+        },
+        {
+          "x": 5007.68,
+          "y": 1942.161245839885
+        }
+      ],
+      "center": {
+        "x": 4998.18,
+        "y": 2148.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 5007.68,
+        "y1": 1942.161245839885,
+        "x2": 5007.68,
+        "y2": 2354.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4988.68,
+        "y1": 1942.161245839885,
+        "x2": 4988.68,
+        "y2": 2354.161245839652
+      },
+      "handles": [
+        "9E3",
+        "9E5"
+      ]
+    },
+    {
+      "id": "P-005",
+      "codigo": "P-005",
+      "guid": "DWG-4TIJ14-P-005",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.24,
+      "comprimentoBrutoM": 3.24,
+      "comprimentoInternoM": 3.1,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4672.680887855195,
+          "y": 2978.16
+        },
+        {
+          "x": 4982.680887855195,
+          "y": 2978.16
+        },
+        {
+          "x": 4982.680887855195,
+          "y": 2992.16
+        },
+        {
+          "x": 4658.680887855195,
+          "y": 2992.16
+        }
+      ],
+      "center": {
+        "x": 4824.18,
+        "y": 2985.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4658.680887855195,
+        "y1": 2992.16,
+        "x2": 4982.680887855195,
+        "y2": 2992.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4672.680887855195,
+        "y1": 2978.16,
+        "x2": 4982.680887855195,
+        "y2": 2978.16
+      },
+      "handles": [
+        "9EB",
+        "9EC"
+      ]
+    },
+    {
+      "id": "P-006",
+      "codigo": "P-006",
+      "guid": "DWG-4TIJ14-P-006",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.68,
+      "comprimentoBrutoM": 0.96,
+      "comprimentoInternoM": 0.68,
+      "descontouCantoCm": 28,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4658.68,
+          "y": 2910.161245839885
+        },
+        {
+          "x": 4658.68,
+          "y": 2992.161245839885
+        },
+        {
+          "x": 4672.68,
+          "y": 2978.161245839652
+        },
+        {
+          "x": 4672.68,
+          "y": 2896.161245839885
+        }
+      ],
+      "center": {
+        "x": 4665.68,
+        "y": 2944.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4658.68,
+        "y1": 2910.161245839885,
+        "x2": 4658.68,
+        "y2": 2978.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4672.68,
+        "y1": 2896.161245839885,
+        "x2": 4672.68,
+        "y2": 2992.161245839885
+      },
+      "handles": [
+        "9EE",
+        "9EF"
+      ]
+    },
+    {
+      "id": "P-007",
+      "codigo": "P-007",
+      "guid": "DWG-4TIJ14-P-007",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.405,
+      "comprimentoBrutoM": 0.405,
+      "comprimentoInternoM": 0.265,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2632.1808878551947,
+          "y": 2978.16
+        },
+        {
+          "x": 2658.6808878551947,
+          "y": 2978.16
+        },
+        {
+          "x": 2672.6808878551947,
+          "y": 2992.16
+        },
+        {
+          "x": 2632.180887855194,
+          "y": 2992.16
+        }
+      ],
+      "center": {
+        "x": 2648.93,
+        "y": 2985.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2632.180887855194,
+        "y1": 2992.16,
+        "x2": 2672.6808878551947,
+        "y2": 2992.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2632.1808878551947,
+        "y1": 2978.16,
+        "x2": 2658.6808878551947,
+        "y2": 2978.16
+      },
+      "handles": [
+        "9F4",
+        "9F5"
+      ]
+    },
+    {
+      "id": "P-008",
+      "codigo": "P-008",
+      "guid": "DWG-3TIJ115-P-008",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 3.07,
+      "comprimentoBrutoM": 3.07,
+      "comprimentoInternoM": 2.955,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2356.6808878551947,
+          "y": 2704.16
+        },
+        {
+          "x": 2652.1808878551947,
+          "y": 2704.16
+        },
+        {
+          "x": 2663.6808878551947,
+          "y": 2715.66
+        },
+        {
+          "x": 2356.6808878551947,
+          "y": 2715.66
+        }
+      ],
+      "center": {
+        "x": 2507.31,
+        "y": 2709.91
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2356.6808878551947,
+        "y1": 2715.66,
+        "x2": 2663.6808878551947,
+        "y2": 2715.66
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2356.6808878551947,
+        "y1": 2704.16,
+        "x2": 2652.1808878551947,
+        "y2": 2704.16
+      },
+      "handles": [
+        "9F7",
+        "9F9"
+      ]
+    },
+    {
+      "id": "P-009",
+      "codigo": "P-009",
+      "guid": "DWG-3TIJ115-P-009",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.34,
+      "comprimentoBrutoM": 1.455,
+      "comprimentoInternoM": 1.34,
+      "descontouCantoCm": 11.5,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2652.18,
+          "y": 2570.161245839652
+        },
+        {
+          "x": 2652.18,
+          "y": 2704.161245839652
+        },
+        {
+          "x": 2663.68,
+          "y": 2715.661245839652
+        },
+        {
+          "x": 2663.68,
+          "y": 2570.161245839652
+        }
+      ],
+      "center": {
+        "x": 2657.93,
+        "y": 2640.04
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2652.18,
+        "y1": 2570.161245839652,
+        "x2": 2652.18,
+        "y2": 2704.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2663.68,
+        "y1": 2570.161245839652,
+        "x2": 2663.68,
+        "y2": 2715.661245839652
+      },
+      "handles": [
+        "9F8",
+        "9FA"
+      ]
+    },
+    {
+      "id": "P-010",
+      "codigo": "P-010",
+      "guid": "DWG-4TIJ14-P-010",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.04,
+      "comprimentoBrutoM": 2.04,
+      "comprimentoInternoM": 1.9,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2658.6808878551947,
+          "y": 2896.16
+        },
+        {
+          "x": 2862.6808878551947,
+          "y": 2896.16
+        },
+        {
+          "x": 2862.6808878551947,
+          "y": 2910.16
+        },
+        {
+          "x": 2672.6808878551947,
+          "y": 2910.16
+        }
+      ],
+      "center": {
+        "x": 2764.18,
+        "y": 2903.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2658.6808878551947,
+        "y1": 2896.16,
+        "x2": 2862.6808878551947,
+        "y2": 2896.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2672.6808878551947,
+        "y1": 2910.16,
+        "x2": 2862.6808878551947,
+        "y2": 2910.16
+      },
+      "handles": [
+        "A0D",
+        "A0F"
+      ]
+    },
+    {
+      "id": "P-011",
+      "codigo": "P-011",
+      "guid": "DWG-4TIJ14-P-011",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.68,
+      "comprimentoBrutoM": 0.96,
+      "comprimentoInternoM": 0.68,
+      "descontouCantoCm": 28,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2658.68,
+          "y": 2896.161245839885
+        },
+        {
+          "x": 2658.68,
+          "y": 2978.161245839652
+        },
+        {
+          "x": 2672.68,
+          "y": 2992.161245839885
+        },
+        {
+          "x": 2672.68,
+          "y": 2910.1612458398813
+        }
+      ],
+      "center": {
+        "x": 2665.68,
+        "y": 2944.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2658.68,
+        "y1": 2910.1612458398813,
+        "x2": 2658.68,
+        "y2": 2978.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2672.68,
+        "y1": 2896.161245839885,
+        "x2": 2672.68,
+        "y2": 2992.161245839885
+      },
+      "handles": [
+        "A12",
+        "A13"
+      ]
+    },
+    {
+      "id": "P-012",
+      "codigo": "P-012",
+      "guid": "DWG-1TIJ9-P-012",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 5,
+      "comprimentoBrutoM": 5,
+      "comprimentoInternoM": 5,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2356.6808878551947,
+          "y": 2561.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 2561.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 2570.16
+        },
+        {
+          "x": 2356.6808878551947,
+          "y": 2570.16
+        }
+      ],
+      "center": {
+        "x": 2606.68,
+        "y": 2565.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2356.6808878551947,
+        "y1": 2570.16,
+        "x2": 2856.6808878551947,
+        "y2": 2570.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2356.6808878551947,
+        "y1": 2561.16,
+        "x2": 2856.6808878551947,
+        "y2": 2561.16
+      },
+      "handles": [
+        "A14",
+        "A15"
+      ]
+    },
+    {
+      "id": "P-013",
+      "codigo": "P-013",
+      "guid": "DWG-1TIJ9-P-013",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 5,
+      "comprimentoBrutoM": 5,
+      "comprimentoInternoM": 5,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2356.6808878551947,
+          "y": 2551.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 2551.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 2560.16
+        },
+        {
+          "x": 2356.6808878551947,
+          "y": 2560.16
+        }
+      ],
+      "center": {
+        "x": 2606.68,
+        "y": 2555.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2356.6808878551947,
+        "y1": 2560.16,
+        "x2": 2856.6808878551947,
+        "y2": 2560.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2356.6808878551947,
+        "y1": 2551.16,
+        "x2": 2856.6808878551947,
+        "y2": 2551.16
+      },
+      "handles": [
+        "A16",
+        "A17"
+      ]
+    },
+    {
+      "id": "P-014",
+      "codigo": "P-014",
+      "guid": "DWG-3TIJ115-P-014",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.16,
+      "comprimentoBrutoM": 2.275,
+      "comprimentoInternoM": 2.16,
+      "descontouCantoCm": 11.5,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3004.68,
+          "y": 2479.161245839652
+        },
+        {
+          "x": 3004.68,
+          "y": 2706.661245839652
+        },
+        {
+          "x": 3016.18,
+          "y": 2695.161245839652
+        },
+        {
+          "x": 3016.18,
+          "y": 2479.161245839652
+        }
+      ],
+      "center": {
+        "x": 3010.43,
+        "y": 2590.04
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3016.18,
+        "y1": 2479.161245839652,
+        "x2": 3016.18,
+        "y2": 2695.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3004.68,
+        "y1": 2479.161245839652,
+        "x2": 3004.68,
+        "y2": 2706.661245839652
+      },
+      "handles": [
+        "A18",
+        "A19"
+      ]
+    },
+    {
+      "id": "P-015",
+      "codigo": "P-015",
+      "guid": "DWG-1TIJ9-P-015",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.988,
+      "comprimentoBrutoM": 0.988,
+      "comprimentoInternoM": 0.988,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3198.18,
+          "y": 2797.3084320975286
+        },
+        {
+          "x": 3198.18,
+          "y": 2896.161245839885
+        },
+        {
+          "x": 3207.18,
+          "y": 2896.161245839885
+        },
+        {
+          "x": 3207.18,
+          "y": 2797.3084320975286
+        }
+      ],
+      "center": {
+        "x": 3202.68,
+        "y": 2846.73
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3207.18,
+        "y1": 2797.3084320975286,
+        "x2": 3207.18,
+        "y2": 2896.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3198.18,
+        "y1": 2797.3084320975286,
+        "x2": 3198.18,
+        "y2": 2896.161245839885
+      },
+      "handles": [
+        "A1A",
+        "B83"
+      ]
+    },
+    {
+      "id": "P-016",
+      "codigo": "P-016",
+      "guid": "DWG-4TIJ14-P-016",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.82,
+      "comprimentoBrutoM": 1.82,
+      "comprimentoInternoM": 1.82,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3016.1808878551947,
+          "y": 2526.16
+        },
+        {
+          "x": 3198.1808878551947,
+          "y": 2526.16
+        },
+        {
+          "x": 3198.1808878551947,
+          "y": 2540.16
+        },
+        {
+          "x": 3016.1808878551947,
+          "y": 2540.16
+        }
+      ],
+      "center": {
+        "x": 3107.18,
+        "y": 2533.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3016.1808878551947,
+        "y1": 2540.16,
+        "x2": 3198.1808878551947,
+        "y2": 2540.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3016.1808878551947,
+        "y1": 2526.16,
+        "x2": 3198.1808878551947,
+        "y2": 2526.16
+      },
+      "handles": [
+        "A1B",
+        "A1C"
+      ]
+    },
+    {
+      "id": "P-017",
+      "codigo": "P-017",
+      "guid": "DWG-4TIJ14-P-017",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.61,
+      "comprimentoBrutoM": 1.61,
+      "comprimentoInternoM": 1.47,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3198.1808878551947,
+          "y": 2458.16
+        },
+        {
+          "x": 3359.1808878551947,
+          "y": 2458.16
+        },
+        {
+          "x": 3359.1808878551947,
+          "y": 2472.16
+        },
+        {
+          "x": 3212.1808878551947,
+          "y": 2472.16
+        }
+      ],
+      "center": {
+        "x": 3282.18,
+        "y": 2465.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3198.1808878551947,
+        "y1": 2458.16,
+        "x2": 3359.1808878551947,
+        "y2": 2458.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3212.1808878551947,
+        "y1": 2472.16,
+        "x2": 3359.1808878551947,
+        "y2": 2472.16
+      },
+      "handles": [
+        "A1D",
+        "A1E"
+      ]
+    },
+    {
+      "id": "P-018",
+      "codigo": "P-018",
+      "guid": "DWG-1TIJ9-P-018",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.36,
+      "comprimentoBrutoM": 3.36,
+      "comprimentoInternoM": 3.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2877.68,
+          "y": 1946.161245839885
+        },
+        {
+          "x": 2877.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 2886.68,
+          "y": 2282.161245839883
+        },
+        {
+          "x": 2886.68,
+          "y": 1946.161245839885
+        }
+      ],
+      "center": {
+        "x": 2882.18,
+        "y": 2114.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2886.68,
+        "y1": 1946.161245839885,
+        "x2": 2886.68,
+        "y2": 2282.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2877.68,
+        "y1": 1946.161245839885,
+        "x2": 2877.68,
+        "y2": 2282.161245839885
+      },
+      "handles": [
+        "A21",
+        "A22"
+      ]
+    },
+    {
+      "id": "P-019",
+      "codigo": "P-019",
+      "guid": "DWG-4TIJ19-P-019",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.5,
+      "comprimentoBrutoM": 2.88,
+      "comprimentoInternoM": 2.5,
+      "descontouCantoCm": 38,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2856.68,
+          "y": 2282.1612458398813
+        },
+        {
+          "x": 2856.68,
+          "y": 2570.161245839652
+        },
+        {
+          "x": 2875.68,
+          "y": 2551.161245839885
+        },
+        {
+          "x": 2875.68,
+          "y": 2301.1612458398818
+        }
+      ],
+      "center": {
+        "x": 2866.18,
+        "y": 2426.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2875.68,
+        "y1": 2301.1612458398818,
+        "x2": 2875.68,
+        "y2": 2551.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2856.68,
+        "y1": 2282.1612458398813,
+        "x2": 2856.68,
+        "y2": 2570.161245839652
+      },
+      "handles": [
+        "A26",
+        "A27"
+      ]
+    },
+    {
+      "id": "P-020",
+      "codigo": "P-020",
+      "guid": "DWG-4TIJ19-P-020",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.48,
+      "comprimentoBrutoM": 1.48,
+      "comprimentoInternoM": 1.29,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2875.6808878547363,
+          "y": 2551.16
+        },
+        {
+          "x": 3004.680887855195,
+          "y": 2551.16
+        },
+        {
+          "x": 3004.6808878551947,
+          "y": 2570.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 2570.16
+        }
+      ],
+      "center": {
+        "x": 2935.43,
+        "y": 2560.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2856.6808878551947,
+        "y1": 2570.16,
+        "x2": 3004.680887855195,
+        "y2": 2570.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2875.6808878547363,
+        "y1": 2551.16,
+        "x2": 3004.6808878551947,
+        "y2": 2551.16
+      },
+      "handles": [
+        "A2A",
+        "BCA"
+      ]
+    },
+    {
+      "id": "P-021",
+      "codigo": "P-021",
+      "guid": "DWG-4TIJ19-P-021",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 16.24,
+      "comprimentoBrutoM": 16.24,
+      "comprimentoInternoM": 15.86,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2856.6808878551947,
+          "y": 2282.16
+        },
+        {
+          "x": 4480.680887855195,
+          "y": 2282.16
+        },
+        {
+          "x": 4461.680887855195,
+          "y": 2301.16
+        },
+        {
+          "x": 2875.680887854729,
+          "y": 2301.16
+        }
+      ],
+      "center": {
+        "x": 3668.68,
+        "y": 2291.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2856.6808878551947,
+        "y1": 2282.16,
+        "x2": 4480.680887855195,
+        "y2": 2282.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2875.680887854729,
+        "y1": 2301.16,
+        "x2": 4461.680887855195,
+        "y2": 2301.16
+      },
+      "handles": [
+        "A2F",
+        "A71"
+      ]
+    },
+    {
+      "id": "P-022",
+      "codigo": "P-022",
+      "guid": "DWG-3TIJ115-P-022",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.45,
+      "comprimentoBrutoM": 2.45,
+      "comprimentoInternoM": 2.45,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2362.6808878551947,
+          "y": 2364.66
+        },
+        {
+          "x": 2607.6808878551947,
+          "y": 2364.66
+        },
+        {
+          "x": 2607.6808878551947,
+          "y": 2376.16
+        },
+        {
+          "x": 2362.6808878551947,
+          "y": 2376.16
+        }
+      ],
+      "center": {
+        "x": 2485.18,
+        "y": 2370.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2362.6808878551947,
+        "y1": 2376.16,
+        "x2": 2607.6808878551947,
+        "y2": 2376.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2362.6808878551947,
+        "y1": 2364.66,
+        "x2": 2607.6808878551947,
+        "y2": 2364.66
+      },
+      "handles": [
+        "A33",
+        "A30"
+      ]
+    },
+    {
+      "id": "P-023",
+      "codigo": "P-023",
+      "guid": "DWG-3TIJ115-P-023",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.595,
+      "comprimentoBrutoM": 0.595,
+      "comprimentoInternoM": 0.595,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2607.6808878551947,
+          "y": 2364.66
+        },
+        {
+          "x": 2667.1808878551947,
+          "y": 2364.66
+        },
+        {
+          "x": 2667.1808878551947,
+          "y": 2376.16
+        },
+        {
+          "x": 2607.6808878551947,
+          "y": 2376.16
+        }
+      ],
+      "center": {
+        "x": 2637.43,
+        "y": 2370.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2607.6808878551947,
+        "y1": 2376.16,
+        "x2": 2667.1808878551947,
+        "y2": 2376.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2607.6808878551947,
+        "y1": 2364.66,
+        "x2": 2667.1808878551947,
+        "y2": 2364.66
+      },
+      "handles": [
+        "A32",
+        "A30"
+      ]
+    },
+    {
+      "id": "P-024",
+      "codigo": "P-024",
+      "guid": "DWG-3TIJ115-P-024",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.75,
+      "comprimentoBrutoM": 1.75,
+      "comprimentoInternoM": 1.75,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2607.68,
+          "y": 2376.161245839885
+        },
+        {
+          "x": 2607.68,
+          "y": 2551.161245839885
+        },
+        {
+          "x": 2619.18,
+          "y": 2551.161245839885
+        },
+        {
+          "x": 2619.18,
+          "y": 2376.161245839885
+        }
+      ],
+      "center": {
+        "x": 2613.43,
+        "y": 2463.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2619.18,
+        "y1": 2376.161245839885,
+        "x2": 2619.18,
+        "y2": 2551.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2607.68,
+        "y1": 2376.161245839885,
+        "x2": 2607.68,
+        "y2": 2551.161245839885
+      },
+      "handles": [
+        "A39",
+        "A3A"
+      ]
+    },
+    {
+      "id": "P-025",
+      "codigo": "P-025",
+      "guid": "DWG-1TIJ9-P-025",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.36,
+      "comprimentoBrutoM": 3.36,
+      "comprimentoInternoM": 3.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3383.68,
+          "y": 1946.161245839885
+        },
+        {
+          "x": 3383.68,
+          "y": 2282.161245839883
+        },
+        {
+          "x": 3392.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 3392.68,
+          "y": 1946.161245839885
+        }
+      ],
+      "center": {
+        "x": 3388.18,
+        "y": 2114.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3392.68,
+        "y1": 1946.161245839885,
+        "x2": 3392.68,
+        "y2": 2282.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3383.68,
+        "y1": 1946.161245839885,
+        "x2": 3383.68,
+        "y2": 2282.161245839885
+      },
+      "handles": [
+        "A3B",
+        "A3C"
+      ]
+    },
+    {
+      "id": "P-026",
+      "codigo": "P-026",
+      "guid": "DWG-1TIJ9-P-026",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.36,
+      "comprimentoBrutoM": 3.36,
+      "comprimentoInternoM": 3.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3404.68,
+          "y": 1946.161245839885
+        },
+        {
+          "x": 3404.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 3413.68,
+          "y": 2282.161245839883
+        },
+        {
+          "x": 3413.68,
+          "y": 1946.161245839885
+        }
+      ],
+      "center": {
+        "x": 3409.18,
+        "y": 2114.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3413.68,
+        "y1": 1946.161245839885,
+        "x2": 3413.68,
+        "y2": 2282.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3404.68,
+        "y1": 1946.161245839885,
+        "x2": 3404.68,
+        "y2": 2282.161245839885
+      },
+      "handles": [
+        "A3E",
+        "A3F"
+      ]
+    },
+    {
+      "id": "P-027",
+      "codigo": "P-027",
+      "guid": "DWG-3TIJ115-P-027",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.75,
+      "comprimentoBrutoM": 1.75,
+      "comprimentoInternoM": 1.75,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3117.18,
+          "y": 2107.161245839885
+        },
+        {
+          "x": 3117.18,
+          "y": 2282.1612458398827
+        },
+        {
+          "x": 3128.68,
+          "y": 2282.1612458398827
+        },
+        {
+          "x": 3128.68,
+          "y": 2107.161245839885
+        }
+      ],
+      "center": {
+        "x": 3122.93,
+        "y": 2194.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3128.68,
+        "y1": 2107.161245839885,
+        "x2": 3128.68,
+        "y2": 2282.1612458398827
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3117.18,
+        "y1": 2107.161245839885,
+        "x2": 3117.18,
+        "y2": 2282.1612458398827
+      },
+      "handles": [
+        "A47",
+        "A48"
+      ]
+    },
+    {
+      "id": "P-028",
+      "codigo": "P-028",
+      "guid": "DWG-3TIJ115-P-028",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.78,
+      "comprimentoBrutoM": 0.78,
+      "comprimentoInternoM": 0.78,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2886.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 2964.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 2964.6808878551947,
+          "y": 2107.16
+        },
+        {
+          "x": 2886.6808878551947,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 2925.68,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2886.6808878551947,
+        "y1": 2107.16,
+        "x2": 2964.6808878551947,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2886.6808878551947,
+        "y1": 2095.66,
+        "x2": 2964.6808878551947,
+        "y2": 2095.66
+      },
+      "handles": [
+        "A4A",
+        "A4C"
+      ]
+    },
+    {
+      "id": "P-029",
+      "codigo": "P-029",
+      "guid": "DWG-3TIJ115-P-029",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.75,
+      "comprimentoBrutoM": 1.75,
+      "comprimentoInternoM": 1.75,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3668.68,
+          "y": 2107.161245839885
+        },
+        {
+          "x": 3668.68,
+          "y": 2282.1612458398827
+        },
+        {
+          "x": 3680.18,
+          "y": 2282.1612458398827
+        },
+        {
+          "x": 3680.18,
+          "y": 2107.161245839885
+        }
+      ],
+      "center": {
+        "x": 3674.43,
+        "y": 2194.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3680.18,
+        "y1": 2107.161245839885,
+        "x2": 3680.18,
+        "y2": 2282.1612458398827
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3668.68,
+        "y1": 2107.161245839885,
+        "x2": 3668.68,
+        "y2": 2282.1612458398827
+      },
+      "handles": [
+        "A54",
+        "A55"
+      ]
+    },
+    {
+      "id": "P-030",
+      "codigo": "P-030",
+      "guid": "DWG-3TIJ115-P-030",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.78,
+      "comprimentoBrutoM": 0.78,
+      "comprimentoInternoM": 0.78,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3841.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3919.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3919.6808878551947,
+          "y": 2107.16
+        },
+        {
+          "x": 3841.6808878551947,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 3880.68,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3841.6808878551947,
+        "y1": 2107.16,
+        "x2": 3919.6808878551947,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3841.6808878551947,
+        "y1": 2095.66,
+        "x2": 3919.6808878551947,
+        "y2": 2095.66
+      },
+      "handles": [
+        "A56",
+        "A58"
+      ]
+    },
+    {
+      "id": "P-031",
+      "codigo": "P-031",
+      "guid": "DWG-1TIJ9-P-031",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.36,
+      "comprimentoBrutoM": 3.36,
+      "comprimentoInternoM": 3.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3919.68,
+          "y": 1946.161245839885
+        },
+        {
+          "x": 3919.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 3928.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 3928.68,
+          "y": 1946.161245839885
+        }
+      ],
+      "center": {
+        "x": 3924.18,
+        "y": 2114.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3928.68,
+        "y1": 1946.161245839885,
+        "x2": 3928.68,
+        "y2": 2282.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3919.68,
+        "y1": 1946.161245839885,
+        "x2": 3919.68,
+        "y2": 2282.161245839885
+      },
+      "handles": [
+        "A59",
+        "A5A"
+      ]
+    },
+    {
+      "id": "P-032",
+      "codigo": "P-032",
+      "guid": "DWG-1TIJ9-P-032",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.36,
+      "comprimentoBrutoM": 3.36,
+      "comprimentoInternoM": 3.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3940.68,
+          "y": 1946.161245839885
+        },
+        {
+          "x": 3940.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 3949.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 3949.68,
+          "y": 1946.161245839885
+        }
+      ],
+      "center": {
+        "x": 3945.18,
+        "y": 2114.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3949.68,
+        "y1": 1946.161245839885,
+        "x2": 3949.68,
+        "y2": 2282.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3940.68,
+        "y1": 1946.161245839885,
+        "x2": 3940.68,
+        "y2": 2282.161245839885
+      },
+      "handles": [
+        "A5C",
+        "A5D"
+      ]
+    },
+    {
+      "id": "P-033",
+      "codigo": "P-033",
+      "guid": "DWG-1TIJ9-P-033",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.36,
+      "comprimentoBrutoM": 3.36,
+      "comprimentoInternoM": 3.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4450.68,
+          "y": 1946.161245839885
+        },
+        {
+          "x": 4450.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 4459.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 4459.68,
+          "y": 1946.161245839885
+        }
+      ],
+      "center": {
+        "x": 4455.18,
+        "y": 2114.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4459.68,
+        "y1": 1946.161245839885,
+        "x2": 4459.68,
+        "y2": 2282.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4450.68,
+        "y1": 1946.161245839885,
+        "x2": 4450.68,
+        "y2": 2282.161245839885
+      },
+      "handles": [
+        "A5F",
+        "A60"
+      ]
+    },
+    {
+      "id": "P-034",
+      "codigo": "P-034",
+      "guid": "DWG-3TIJ115-P-034",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.55,
+      "comprimentoBrutoM": 2.55,
+      "comprimentoInternoM": 2.55,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3949.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 4204.680887855195,
+          "y": 2095.66
+        },
+        {
+          "x": 4204.680887855195,
+          "y": 2107.16
+        },
+        {
+          "x": 3949.6808878551947,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 4077.18,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3949.6808878551947,
+        "y1": 2107.16,
+        "x2": 4204.680887855195,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3949.6808878551947,
+        "y1": 2095.66,
+        "x2": 4204.680887855195,
+        "y2": 2095.66
+      },
+      "handles": [
+        "A69",
+        "A66"
+      ]
+    },
+    {
+      "id": "P-035",
+      "codigo": "P-035",
+      "guid": "DWG-3TIJ115-P-035",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.64,
+      "comprimentoBrutoM": 0.64,
+      "comprimentoInternoM": 0.64,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4204.680887855195,
+          "y": 2095.66
+        },
+        {
+          "x": 4268.680887854729,
+          "y": 2095.66
+        },
+        {
+          "x": 4268.680887854729,
+          "y": 2107.16
+        },
+        {
+          "x": 4204.680887855195,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 4236.68,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4204.680887855195,
+        "y1": 2107.16,
+        "x2": 4268.680887854729,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4204.680887855195,
+        "y1": 2095.66,
+        "x2": 4268.680887854729,
+        "y2": 2095.66
+      },
+      "handles": [
+        "A68",
+        "A66"
+      ]
+    },
+    {
+      "id": "P-036",
+      "codigo": "P-036",
+      "guid": "DWG-3TIJ115-P-036",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.75,
+      "comprimentoBrutoM": 1.75,
+      "comprimentoInternoM": 1.75,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4204.68,
+          "y": 2107.161245839885
+        },
+        {
+          "x": 4204.68,
+          "y": 2282.1612458398827
+        },
+        {
+          "x": 4216.18,
+          "y": 2282.1612458398827
+        },
+        {
+          "x": 4216.18,
+          "y": 2107.161245839885
+        }
+      ],
+      "center": {
+        "x": 4210.43,
+        "y": 2194.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4216.18,
+        "y1": 2107.161245839885,
+        "x2": 4216.18,
+        "y2": 2282.1612458398827
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4204.68,
+        "y1": 2107.161245839885,
+        "x2": 4204.68,
+        "y2": 2282.1612458398827
+      },
+      "handles": [
+        "A6A",
+        "A6C"
+      ]
+    },
+    {
+      "id": "P-037",
+      "codigo": "P-037",
+      "guid": "DWG-4TIJ19-P-037",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.5,
+      "comprimentoBrutoM": 2.88,
+      "comprimentoInternoM": 2.5,
+      "descontouCantoCm": 38,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4461.68,
+          "y": 2301.161245839885
+        },
+        {
+          "x": 4461.68,
+          "y": 2551.161245839885
+        },
+        {
+          "x": 4480.68,
+          "y": 2570.161245839652
+        },
+        {
+          "x": 4480.68,
+          "y": 2282.161245839885
+        }
+      ],
+      "center": {
+        "x": 4471.18,
+        "y": 2426.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4461.68,
+        "y1": 2301.161245839885,
+        "x2": 4461.68,
+        "y2": 2551.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4480.68,
+        "y1": 2282.161245839885,
+        "x2": 4480.68,
+        "y2": 2570.161245839652
+      },
+      "handles": [
+        "A76",
+        "BC9"
+      ]
+    },
+    {
+      "id": "P-038",
+      "codigo": "P-038",
+      "guid": "DWG-3TIJ115-P-038",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.215,
+      "comprimentoBrutoM": 3.215,
+      "comprimentoInternoM": 3.1,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4678.680887855195,
+          "y": 2704.16
+        },
+        {
+          "x": 4988.680887855195,
+          "y": 2704.16
+        },
+        {
+          "x": 4988.680887855195,
+          "y": 2715.66
+        },
+        {
+          "x": 4667.180887855195,
+          "y": 2715.66
+        }
+      ],
+      "center": {
+        "x": 4830.81,
+        "y": 2709.91
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4667.180887855195,
+        "y1": 2715.66,
+        "x2": 4988.680887855195,
+        "y2": 2715.66
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4678.680887855195,
+        "y1": 2704.16,
+        "x2": 4988.680887855195,
+        "y2": 2704.16
+      },
+      "handles": [
+        "A7B",
+        "A7D"
+      ]
+    },
+    {
+      "id": "P-039",
+      "codigo": "P-039",
+      "guid": "DWG-3TIJ115-P-039",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.34,
+      "comprimentoBrutoM": 1.455,
+      "comprimentoInternoM": 1.34,
+      "descontouCantoCm": 11.5,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4667.18,
+          "y": 2570.161245839652
+        },
+        {
+          "x": 4667.18,
+          "y": 2715.661245839652
+        },
+        {
+          "x": 4678.68,
+          "y": 2704.161245839652
+        },
+        {
+          "x": 4678.68,
+          "y": 2570.1612458396526
+        }
+      ],
+      "center": {
+        "x": 4672.93,
+        "y": 2640.04
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4678.68,
+        "y1": 2570.161245839652,
+        "x2": 4678.68,
+        "y2": 2704.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4667.18,
+        "y1": 2570.161245839652,
+        "x2": 4667.18,
+        "y2": 2715.661245839652
+      },
+      "handles": [
+        "A7C",
+        "A7F"
+      ]
+    },
+    {
+      "id": "P-040",
+      "codigo": "P-040",
+      "guid": "DWG-1TIJ9-P-040",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 5.08,
+      "comprimentoBrutoM": 5.08,
+      "comprimentoInternoM": 5.08,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4480.680887855195,
+          "y": 2561.16
+        },
+        {
+          "x": 4988.680887855195,
+          "y": 2561.16
+        },
+        {
+          "x": 4988.680887855202,
+          "y": 2570.16
+        },
+        {
+          "x": 4480.680887855195,
+          "y": 2570.16
+        }
+      ],
+      "center": {
+        "x": 4734.68,
+        "y": 2565.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4480.680887855195,
+        "y1": 2570.16,
+        "x2": 4988.680887855202,
+        "y2": 2570.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4480.680887855195,
+        "y1": 2561.16,
+        "x2": 4988.680887855195,
+        "y2": 2561.16
+      },
+      "handles": [
+        "A83",
+        "A84"
+      ]
+    },
+    {
+      "id": "P-041",
+      "codigo": "P-041",
+      "guid": "DWG-1TIJ9-P-041",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 5.08,
+      "comprimentoBrutoM": 5.08,
+      "comprimentoInternoM": 5.08,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4480.680887855202,
+          "y": 2551.16
+        },
+        {
+          "x": 4988.680887855202,
+          "y": 2551.16
+        },
+        {
+          "x": 4988.680887855195,
+          "y": 2560.16
+        },
+        {
+          "x": 4480.680887855195,
+          "y": 2560.16
+        }
+      ],
+      "center": {
+        "x": 4734.68,
+        "y": 2555.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4480.680887855195,
+        "y1": 2560.16,
+        "x2": 4988.680887855202,
+        "y2": 2560.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4480.680887855202,
+        "y1": 2551.16,
+        "x2": 4988.680887855195,
+        "y2": 2551.16
+      },
+      "handles": [
+        "A86",
+        "A87"
+      ]
+    },
+    {
+      "id": "P-042",
+      "codigo": "P-042",
+      "guid": "DWG-3TIJ115-P-042",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.627,
+      "comprimentoBrutoM": 0.627,
+      "comprimentoInternoM": 0.627,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4663.430887855195,
+          "y": 2364.66
+        },
+        {
+          "x": 4726.180887855195,
+          "y": 2364.66
+        },
+        {
+          "x": 4726.180887855195,
+          "y": 2376.16
+        },
+        {
+          "x": 4663.430887855195,
+          "y": 2376.16
+        }
+      ],
+      "center": {
+        "x": 4694.81,
+        "y": 2370.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4663.430887855195,
+        "y1": 2376.16,
+        "x2": 4726.180887855195,
+        "y2": 2376.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4663.430887855195,
+        "y1": 2364.66,
+        "x2": 4726.180887855195,
+        "y2": 2364.66
+      },
+      "handles": [
+        "A89",
+        "A8B"
+      ]
+    },
+    {
+      "id": "P-043",
+      "codigo": "P-043",
+      "guid": "DWG-3TIJ115-P-043",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.565,
+      "comprimentoBrutoM": 2.565,
+      "comprimentoInternoM": 2.565,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4726.180887855195,
+          "y": 2364.66
+        },
+        {
+          "x": 4982.680887855195,
+          "y": 2364.66
+        },
+        {
+          "x": 4982.680887855195,
+          "y": 2376.16
+        },
+        {
+          "x": 4726.180887855195,
+          "y": 2376.16
+        }
+      ],
+      "center": {
+        "x": 4854.43,
+        "y": 2370.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4726.180887855195,
+        "y1": 2376.16,
+        "x2": 4982.680887855195,
+        "y2": 2376.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4726.180887855195,
+        "y1": 2364.66,
+        "x2": 4982.680887855195,
+        "y2": 2364.66
+      },
+      "handles": [
+        "A88",
+        "A8B"
+      ]
+    },
+    {
+      "id": "P-044",
+      "codigo": "P-044",
+      "guid": "DWG-3TIJ115-P-044",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.75,
+      "comprimentoBrutoM": 1.75,
+      "comprimentoInternoM": 1.75,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4726.18,
+          "y": 2376.161245839885
+        },
+        {
+          "x": 4726.18,
+          "y": 2551.161245839885
+        },
+        {
+          "x": 4737.68,
+          "y": 2551.161245839885
+        },
+        {
+          "x": 4737.68,
+          "y": 2376.161245839885
+        }
+      ],
+      "center": {
+        "x": 4731.93,
+        "y": 2463.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4737.68,
+        "y1": 2376.161245839885,
+        "x2": 4737.68,
+        "y2": 2551.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4726.18,
+        "y1": 2376.161245839885,
+        "x2": 4726.18,
+        "y2": 2551.161245839885
+      },
+      "handles": [
+        "A91",
+        "A92"
+      ]
+    },
+    {
+      "id": "P-045",
+      "codigo": "P-045",
+      "guid": "DWG-4TIJ14-P-045",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.01,
+      "comprimentoBrutoM": 2.01,
+      "comprimentoInternoM": 1.87,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4131.680887855195,
+          "y": 2522.16
+        },
+        {
+          "x": 4332.680887855202,
+          "y": 2522.16
+        },
+        {
+          "x": 4318.680887855195,
+          "y": 2536.16
+        },
+        {
+          "x": 4131.680887855195,
+          "y": 2536.16
+        }
+      ],
+      "center": {
+        "x": 4228.68,
+        "y": 2529.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4131.680887855195,
+        "y1": 2522.16,
+        "x2": 4332.680887855202,
+        "y2": 2522.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4131.680887855195,
+        "y1": 2536.16,
+        "x2": 4318.680887855195,
+        "y2": 2536.16
+      },
+      "handles": [
+        "A93",
+        "A94"
+      ]
+    },
+    {
+      "id": "P-046",
+      "codigo": "P-046",
+      "guid": "DWG-4TIJ14-P-046",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.34,
+      "comprimentoBrutoM": 0.48,
+      "comprimentoInternoM": 0.34,
+      "descontouCantoCm": 14,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4318.68,
+          "y": 2536.161245839652
+        },
+        {
+          "x": 4318.68,
+          "y": 2570.1612458396485
+        },
+        {
+          "x": 4332.68,
+          "y": 2570.161245839652
+        },
+        {
+          "x": 4332.68,
+          "y": 2522.161245839885
+        }
+      ],
+      "center": {
+        "x": 4325.68,
+        "y": 2549.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4318.68,
+        "y1": 2536.161245839652,
+        "x2": 4318.68,
+        "y2": 2570.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4332.68,
+        "y1": 2522.161245839885,
+        "x2": 4332.68,
+        "y2": 2570.161245839652
+      },
+      "handles": [
+        "A95",
+        "BCD"
+      ]
+    },
+    {
+      "id": "P-047",
+      "codigo": "P-047",
+      "guid": "DWG-1TIJ9-P-047",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.64,
+      "comprimentoBrutoM": 0.64,
+      "comprimentoInternoM": 0.64,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4323.68,
+          "y": 2458.161245839885
+        },
+        {
+          "x": 4323.68,
+          "y": 2522.161245839885
+        },
+        {
+          "x": 4332.68,
+          "y": 2522.161245839885
+        },
+        {
+          "x": 4332.68,
+          "y": 2458.161245839885
+        }
+      ],
+      "center": {
+        "x": 4328.18,
+        "y": 2490.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4332.68,
+        "y1": 2458.161245839885,
+        "x2": 4332.68,
+        "y2": 2522.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4323.68,
+        "y1": 2458.161245839885,
+        "x2": 4323.68,
+        "y2": 2522.161245839885
+      },
+      "handles": [
+        "A96",
+        "BCC"
+      ]
+    },
+    {
+      "id": "P-048",
+      "codigo": "P-048",
+      "guid": "DWG-1TIJ9-P-048",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.6,
+      "comprimentoBrutoM": 3.6,
+      "comprimentoInternoM": 3.6,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4131.68,
+          "y": 2536.161245839652
+        },
+        {
+          "x": 4131.68,
+          "y": 2896.161245839885
+        },
+        {
+          "x": 4140.68,
+          "y": 2896.161245839885
+        },
+        {
+          "x": 4140.68,
+          "y": 2536.161245839652
+        }
+      ],
+      "center": {
+        "x": 4136.18,
+        "y": 2716.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4140.68,
+        "y1": 2536.161245839652,
+        "x2": 4140.68,
+        "y2": 2896.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4131.68,
+        "y1": 2536.161245839652,
+        "x2": 4131.68,
+        "y2": 2896.161245839885
+      },
+      "handles": [
+        "A97",
+        "A98"
+      ]
+    },
+    {
+      "id": "P-049",
+      "codigo": "P-049",
+      "guid": "DWG-3TIJ115-P-049",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.21,
+      "comprimentoBrutoM": 1.325,
+      "comprimentoInternoM": 1.21,
+      "descontouCantoCm": 11.5,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4318.68,
+          "y": 2570.1612458396485
+        },
+        {
+          "x": 4318.68,
+          "y": 2691.161245839885
+        },
+        {
+          "x": 4330.18,
+          "y": 2702.661245839885
+        },
+        {
+          "x": 4330.18,
+          "y": 2570.161245839652
+        }
+      ],
+      "center": {
+        "x": 4324.43,
+        "y": 2633.54
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4318.68,
+        "y1": 2570.1612458396485,
+        "x2": 4318.68,
+        "y2": 2691.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4330.18,
+        "y1": 2570.1612458396485,
+        "x2": 4330.18,
+        "y2": 2702.661245839885
+      },
+      "handles": [
+        "A99",
+        "A9A"
+      ]
+    },
+    {
+      "id": "P-050",
+      "codigo": "P-050",
+      "guid": "DWG-3TIJ115-P-050",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.695,
+      "comprimentoBrutoM": 0.695,
+      "comprimentoInternoM": 0.58,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4260.680887855195,
+          "y": 2691.16
+        },
+        {
+          "x": 4318.680887855195,
+          "y": 2691.16
+        },
+        {
+          "x": 4330.180887855195,
+          "y": 2702.66
+        },
+        {
+          "x": 4260.680887855195,
+          "y": 2702.66
+        }
+      ],
+      "center": {
+        "x": 4292.56,
+        "y": 2696.91
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4260.680887855195,
+        "y1": 2702.66,
+        "x2": 4330.180887855195,
+        "y2": 2702.66
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4260.680887855195,
+        "y1": 2691.16,
+        "x2": 4318.680887855195,
+        "y2": 2691.16
+      },
+      "handles": [
+        "A9B",
+        "A9D"
+      ]
+    },
+    {
+      "id": "P-051",
+      "codigo": "P-051",
+      "guid": "DWG-4TIJ14-P-051",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.31,
+      "comprimentoBrutoM": 2.31,
+      "comprimentoInternoM": 2.17,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4441.680887855195,
+          "y": 2896.16
+        },
+        {
+          "x": 4672.680887855195,
+          "y": 2896.16
+        },
+        {
+          "x": 4658.680887855202,
+          "y": 2910.16
+        },
+        {
+          "x": 4441.680887855195,
+          "y": 2910.16
+        }
+      ],
+      "center": {
+        "x": 4553.68,
+        "y": 2903.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4441.680887855195,
+        "y1": 2896.16,
+        "x2": 4672.680887855195,
+        "y2": 2896.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4441.680887855195,
+        "y1": 2910.16,
+        "x2": 4658.680887855202,
+        "y2": 2910.16
+      },
+      "handles": [
+        "A9E",
+        "AA0"
+      ]
+    },
+    {
+      "id": "P-052",
+      "codigo": "P-052",
+      "guid": "DWG-4TIJ14-P-052",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.565,
+      "comprimentoBrutoM": 3.565,
+      "comprimentoInternoM": 3.565,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3750.1808878552,
+          "y": 2896.16
+        },
+        {
+          "x": 4106.680887855195,
+          "y": 2896.16
+        },
+        {
+          "x": 4106.680887855195,
+          "y": 2910.16
+        },
+        {
+          "x": 3750.1808878552006,
+          "y": 2910.16
+        }
+      ],
+      "center": {
+        "x": 3928.43,
+        "y": 2903.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3750.1808878552,
+        "y1": 2910.16,
+        "x2": 4106.680887855195,
+        "y2": 2910.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3750.1808878552006,
+        "y1": 2896.16,
+        "x2": 4106.680887855195,
+        "y2": 2896.16
+      },
+      "handles": [
+        "AB5",
+        "B8C"
+      ]
+    },
+    {
+      "id": "P-053",
+      "codigo": "P-053",
+      "guid": "DWG-1TIJ9-P-053",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.71,
+      "comprimentoBrutoM": 0.8,
+      "comprimentoInternoM": 0.71,
+      "descontouCantoCm": 9,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2337.68,
+          "y": 1742.161245839885
+        },
+        {
+          "x": 2337.68,
+          "y": 1822.161245839885
+        },
+        {
+          "x": 2346.68,
+          "y": 1822.161245839885
+        },
+        {
+          "x": 2346.68,
+          "y": 1751.161245839885
+        }
+      ],
+      "center": {
+        "x": 2342.18,
+        "y": 1784.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2346.68,
+        "y1": 1751.161245839885,
+        "x2": 2346.68,
+        "y2": 1822.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2337.68,
+        "y1": 1742.161245839885,
+        "x2": 2337.68,
+        "y2": 1822.161245839885
+      },
+      "handles": [
+        "AB6",
+        "AB7"
+      ]
+    },
+    {
+      "id": "P-054",
+      "codigo": "P-054",
+      "guid": "DWG-1TIJ9-P-054",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.25,
+      "comprimentoBrutoM": 0.25,
+      "comprimentoInternoM": 0.25,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2337.6808878551947,
+          "y": 1742.16
+        },
+        {
+          "x": 2362.6808878551947,
+          "y": 1742.16
+        },
+        {
+          "x": 2362.6808878551947,
+          "y": 1742.16
+        },
+        {
+          "x": 2337.6808878551947,
+          "y": 1742.16
+        }
+      ],
+      "center": {
+        "x": 2350.18,
+        "y": 1742.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2337.6808878551947,
+        "y1": 1742.16,
+        "x2": 2362.6808878551947,
+        "y2": 1742.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2337.6808878551947,
+        "y1": 1742.16,
+        "x2": 2362.6808878551947,
+        "y2": 1742.16
+      },
+      "handles": [
+        "AB9"
+      ]
+    },
+    {
+      "id": "P-055",
+      "codigo": "P-055",
+      "guid": "DWG-1TIJ9-P-055",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.71,
+      "comprimentoBrutoM": 0.8,
+      "comprimentoInternoM": 0.71,
+      "descontouCantoCm": 9,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2353.68,
+          "y": 1751.161245839885
+        },
+        {
+          "x": 2353.68,
+          "y": 1822.161245839885
+        },
+        {
+          "x": 2362.68,
+          "y": 1822.161245839885
+        },
+        {
+          "x": 2362.68,
+          "y": 1742.161245839885
+        }
+      ],
+      "center": {
+        "x": 2358.18,
+        "y": 1784.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2353.68,
+        "y1": 1751.161245839885,
+        "x2": 2353.68,
+        "y2": 1822.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2362.68,
+        "y1": 1742.161245839885,
+        "x2": 2362.68,
+        "y2": 1822.161245839885
+      },
+      "handles": [
+        "ABB",
+        "ABD"
+      ]
+    },
+    {
+      "id": "P-056",
+      "codigo": "P-056",
+      "guid": "DWG-4TIJ14-P-056",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.83,
+      "comprimentoBrutoM": 1.11,
+      "comprimentoInternoM": 0.83,
+      "descontouCantoCm": 28,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2606.68,
+          "y": 1907.161245839885
+        },
+        {
+          "x": 2606.68,
+          "y": 2004.161245839652
+        },
+        {
+          "x": 2620.68,
+          "y": 1990.161245839885
+        },
+        {
+          "x": 2620.68,
+          "y": 1893.161245839885
+        }
+      ],
+      "center": {
+        "x": 2613.68,
+        "y": 1948.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2606.68,
+        "y1": 1907.161245839885,
+        "x2": 2606.68,
+        "y2": 1990.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2620.68,
+        "y1": 1893.161245839885,
+        "x2": 2620.68,
+        "y2": 2004.161245839652
+      },
+      "handles": [
+        "ABE",
+        "AC0"
+      ]
+    },
+    {
+      "id": "P-057",
+      "codigo": "P-057",
+      "guid": "DWG-4TIJ14-P-057",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.5,
+      "comprimentoBrutoM": 2.5,
+      "comprimentoInternoM": 2.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2620.680887854729,
+          "y": 1990.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 1990.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 2004.16
+        },
+        {
+          "x": 2606.6808878551947,
+          "y": 2004.16
+        }
+      ],
+      "center": {
+        "x": 2735.18,
+        "y": 1997.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2606.6808878551947,
+        "y1": 2004.16,
+        "x2": 2856.6808878551947,
+        "y2": 2004.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2620.680887854729,
+        "y1": 1990.16,
+        "x2": 2856.6808878551947,
+        "y2": 1990.16
+      },
+      "handles": [
+        "ABF",
+        "AC1"
+      ]
+    },
+    {
+      "id": "P-058",
+      "codigo": "P-058",
+      "guid": "DWG-1TIJ9-P-058",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.36,
+      "comprimentoBrutoM": 3.36,
+      "comprimentoInternoM": 3.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2856.68,
+          "y": 1946.161245839885
+        },
+        {
+          "x": 2856.68,
+          "y": 2282.1612458398813
+        },
+        {
+          "x": 2865.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 2865.68,
+          "y": 1946.161245839885
+        }
+      ],
+      "center": {
+        "x": 2861.18,
+        "y": 2114.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2865.68,
+        "y1": 1946.161245839885,
+        "x2": 2865.68,
+        "y2": 2282.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2856.68,
+        "y1": 1946.161245839885,
+        "x2": 2856.68,
+        "y2": 2282.161245839885
+      },
+      "handles": [
+        "ADE",
+        "ADF"
+      ]
+    },
+    {
+      "id": "P-059",
+      "codigo": "P-059",
+      "guid": "DWG-4TIJ14-P-059",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.77,
+      "comprimentoBrutoM": 1.05,
+      "comprimentoInternoM": 0.77,
+      "descontouCantoCm": 28,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3114.68,
+          "y": 1620.161245839652
+        },
+        {
+          "x": 3114.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 3128.68,
+          "y": 1725.161245839652
+        },
+        {
+          "x": 3128.68,
+          "y": 1634.161245839885
+        }
+      ],
+      "center": {
+        "x": 3121.68,
+        "y": 1672.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3114.68,
+        "y1": 1634.161245839885,
+        "x2": 3114.68,
+        "y2": 1711.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3128.68,
+        "y1": 1620.161245839652,
+        "x2": 3128.68,
+        "y2": 1725.161245839652
+      },
+      "handles": [
+        "AE4",
+        "AE6"
+      ]
+    },
+    {
+      "id": "P-060",
+      "codigo": "P-060",
+      "guid": "DWG-4TIJ14-P-060",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.225,
+      "comprimentoBrutoM": 0.225,
+      "comprimentoInternoM": 0.225,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3106.1808878551947,
+          "y": 1725.16
+        },
+        {
+          "x": 3128.6808878551947,
+          "y": 1725.16
+        },
+        {
+          "x": 3128.6808878551947,
+          "y": 1725.16
+        },
+        {
+          "x": 3106.1808878551947,
+          "y": 1725.16
+        }
+      ],
+      "center": {
+        "x": 3117.43,
+        "y": 1725.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3106.1808878551947,
+        "y1": 1725.16,
+        "x2": 3128.6808878551947,
+        "y2": 1725.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3106.1808878551947,
+        "y1": 1725.16,
+        "x2": 3128.6808878551947,
+        "y2": 1725.16
+      },
+      "handles": [
+        "AE5"
+      ]
+    },
+    {
+      "id": "P-061",
+      "codigo": "P-061",
+      "guid": "DWG-1TIJ9-P-061",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.55,
+      "comprimentoBrutoM": 2.55,
+      "comprimentoInternoM": 2.55,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3383.68,
+          "y": 1561.1612458396503
+        },
+        {
+          "x": 3383.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 3392.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 3392.68,
+          "y": 1561.161245839652
+        }
+      ],
+      "center": {
+        "x": 3388.18,
+        "y": 1688.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3392.68,
+        "y1": 1561.1612458396503,
+        "x2": 3392.68,
+        "y2": 1816.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3383.68,
+        "y1": 1561.1612458396503,
+        "x2": 3383.68,
+        "y2": 1816.161245839885
+      },
+      "handles": [
+        "AEC",
+        "AED"
+      ]
+    },
+    {
+      "id": "P-062",
+      "codigo": "P-062",
+      "guid": "DWG-1TIJ9-P-062",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.55,
+      "comprimentoBrutoM": 2.55,
+      "comprimentoInternoM": 2.55,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3404.68,
+          "y": 1561.161245839652
+        },
+        {
+          "x": 3404.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 3413.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 3413.68,
+          "y": 1561.1612458396503
+        }
+      ],
+      "center": {
+        "x": 3409.18,
+        "y": 1688.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3413.68,
+        "y1": 1561.1612458396503,
+        "x2": 3413.68,
+        "y2": 1816.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3404.68,
+        "y1": 1561.1612458396503,
+        "x2": 3404.68,
+        "y2": 1816.161245839885
+      },
+      "handles": [
+        "AEF",
+        "AF0"
+      ]
+    },
+    {
+      "id": "P-063",
+      "codigo": "P-063",
+      "guid": "DWG-1TIJ9-P-063",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.91,
+      "comprimentoBrutoM": 0.91,
+      "comprimentoInternoM": 0.91,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3919.68,
+          "y": 1725.161245839652
+        },
+        {
+          "x": 3919.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 3928.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 3928.68,
+          "y": 1725.161245839652
+        }
+      ],
+      "center": {
+        "x": 3924.18,
+        "y": 1770.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3928.68,
+        "y1": 1725.161245839652,
+        "x2": 3928.68,
+        "y2": 1816.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3919.68,
+        "y1": 1725.161245839652,
+        "x2": 3919.68,
+        "y2": 1816.161245839885
+      },
+      "handles": [
+        "AF5",
+        "AF6"
+      ]
+    },
+    {
+      "id": "P-064",
+      "codigo": "P-064",
+      "guid": "DWG-1TIJ9-P-064",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.91,
+      "comprimentoBrutoM": 0.91,
+      "comprimentoInternoM": 0.91,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3940.68,
+          "y": 1725.161245839652
+        },
+        {
+          "x": 3940.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 3949.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 3949.68,
+          "y": 1725.161245839885
+        }
+      ],
+      "center": {
+        "x": 3945.18,
+        "y": 1770.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3949.68,
+        "y1": 1725.161245839652,
+        "x2": 3949.68,
+        "y2": 1816.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3940.68,
+        "y1": 1725.161245839652,
+        "x2": 3940.68,
+        "y2": 1816.161245839885
+      },
+      "handles": [
+        "AF8",
+        "AF9"
+      ]
+    },
+    {
+      "id": "P-065",
+      "codigo": "P-065",
+      "guid": "DWG-4TIJ14-P-065",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.77,
+      "comprimentoBrutoM": 1.05,
+      "comprimentoInternoM": 0.77,
+      "descontouCantoCm": 28,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3668.68,
+          "y": 1634.161245839885
+        },
+        {
+          "x": 3668.68,
+          "y": 1725.161245839652
+        },
+        {
+          "x": 3682.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 3682.68,
+          "y": 1620.161245839652
+        }
+      ],
+      "center": {
+        "x": 3675.68,
+        "y": 1672.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3668.68,
+        "y1": 1634.161245839885,
+        "x2": 3668.68,
+        "y2": 1711.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3682.68,
+        "y1": 1620.161245839652,
+        "x2": 3682.68,
+        "y2": 1725.161245839652
+      },
+      "handles": [
+        "AFB",
+        "AFD"
+      ]
+    },
+    {
+      "id": "P-066",
+      "codigo": "P-066",
+      "guid": "DWG-4TIJ14-P-066",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.77,
+      "comprimentoBrutoM": 1.05,
+      "comprimentoInternoM": 0.77,
+      "descontouCantoCm": 28,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4204.68,
+          "y": 1634.161245839885
+        },
+        {
+          "x": 4204.68,
+          "y": 1725.161245839652
+        },
+        {
+          "x": 4218.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 4218.68,
+          "y": 1620.161245839652
+        }
+      ],
+      "center": {
+        "x": 4211.68,
+        "y": 1672.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4204.68,
+        "y1": 1634.161245839885,
+        "x2": 4204.68,
+        "y2": 1711.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4218.68,
+        "y1": 1620.161245839652,
+        "x2": 4218.68,
+        "y2": 1725.161245839652
+      },
+      "handles": [
+        "B02",
+        "B04"
+      ]
+    },
+    {
+      "id": "P-067",
+      "codigo": "P-067",
+      "guid": "DWG-4TIJ14-P-067",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.245,
+      "comprimentoBrutoM": 0.245,
+      "comprimentoInternoM": 0.245,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4204.680887855195,
+          "y": 1725.16
+        },
+        {
+          "x": 4229.180887855195,
+          "y": 1725.16
+        },
+        {
+          "x": 4229.180887855195,
+          "y": 1725.16
+        },
+        {
+          "x": 4204.680887855195,
+          "y": 1725.16
+        }
+      ],
+      "center": {
+        "x": 4216.93,
+        "y": 1725.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4204.680887855195,
+        "y1": 1725.16,
+        "x2": 4229.180887855195,
+        "y2": 1725.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4204.680887855195,
+        "y1": 1725.16,
+        "x2": 4229.180887855195,
+        "y2": 1725.16
+      },
+      "handles": [
+        "B03"
+      ]
+    },
+    {
+      "id": "P-068",
+      "codigo": "P-068",
+      "guid": "DWG-4TIJ14-P-068",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.83,
+      "comprimentoBrutoM": 2.83,
+      "comprimentoInternoM": 2.69,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3935.680887855196,
+          "y": 1620.16
+        },
+        {
+          "x": 4218.680887855195,
+          "y": 1620.16
+        },
+        {
+          "x": 4204.680887855195,
+          "y": 1634.16
+        },
+        {
+          "x": 3935.6808878551947,
+          "y": 1634.16
+        }
+      ],
+      "center": {
+        "x": 4073.68,
+        "y": 1627.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3935.6808878551947,
+        "y1": 1620.16,
+        "x2": 4218.680887855195,
+        "y2": 1620.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3935.680887855196,
+        "y1": 1634.16,
+        "x2": 4204.680887855195,
+        "y2": 1634.16
+      },
+      "handles": [
+        "B0D",
+        "B0F"
+      ]
+    },
+    {
+      "id": "P-069",
+      "codigo": "P-069",
+      "guid": "DWG-1TIJ9-P-069",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.3,
+      "comprimentoBrutoM": 0.3,
+      "comprimentoInternoM": 0.3,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3383.6808878551947,
+          "y": 1552.16
+        },
+        {
+          "x": 3413.6808878551947,
+          "y": 1552.16
+        },
+        {
+          "x": 3413.6808878551947,
+          "y": 1552.16
+        },
+        {
+          "x": 3383.6808878551947,
+          "y": 1552.16
+        }
+      ],
+      "center": {
+        "x": 3398.68,
+        "y": 1552.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3383.6808878551947,
+        "y1": 1552.16,
+        "x2": 3413.6808878551947,
+        "y2": 1552.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3383.6808878551947,
+        "y1": 1552.16,
+        "x2": 3413.6808878551947,
+        "y2": 1552.16
+      },
+      "handles": [
+        "B13"
+      ]
+    },
+    {
+      "id": "P-070",
+      "codigo": "P-070",
+      "guid": "DWG-4TIJ14-P-070",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.69,
+      "comprimentoBrutoM": 2.69,
+      "comprimentoInternoM": 2.55,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3413.6808878551947,
+          "y": 1620.16
+        },
+        {
+          "x": 3682.6808878551947,
+          "y": 1620.16
+        },
+        {
+          "x": 3668.680887855194,
+          "y": 1634.16
+        },
+        {
+          "x": 3413.6808878551947,
+          "y": 1634.16
+        }
+      ],
+      "center": {
+        "x": 3544.68,
+        "y": 1627.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3413.6808878551947,
+        "y1": 1620.16,
+        "x2": 3682.6808878551947,
+        "y2": 1620.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3413.6808878551947,
+        "y1": 1634.16,
+        "x2": 3668.680887855194,
+        "y2": 1634.16
+      },
+      "handles": [
+        "B15",
+        "B19"
+      ]
+    },
+    {
+      "id": "P-071",
+      "codigo": "P-071",
+      "guid": "DWG-4TIJ14-P-071",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.69,
+      "comprimentoBrutoM": 2.69,
+      "comprimentoInternoM": 2.55,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3114.6808878551947,
+          "y": 1620.16
+        },
+        {
+          "x": 3383.6808878551947,
+          "y": 1620.16
+        },
+        {
+          "x": 3383.6808878551947,
+          "y": 1634.16
+        },
+        {
+          "x": 3128.680887855194,
+          "y": 1634.16
+        }
+      ],
+      "center": {
+        "x": 3252.68,
+        "y": 1627.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3114.6808878551947,
+        "y1": 1620.16,
+        "x2": 3383.6808878551947,
+        "y2": 1620.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3128.680887855194,
+        "y1": 1634.16,
+        "x2": 3383.6808878551947,
+        "y2": 1634.16
+      },
+      "handles": [
+        "B16",
+        "B18"
+      ]
+    },
+    {
+      "id": "P-072",
+      "codigo": "P-072",
+      "guid": "DWG-4TIJ14-P-072",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.83,
+      "comprimentoBrutoM": 1.11,
+      "comprimentoInternoM": 0.83,
+      "descontouCantoCm": 28,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4724.68,
+          "y": 1893.161245839885
+        },
+        {
+          "x": 4724.68,
+          "y": 1990.161245839885
+        },
+        {
+          "x": 4738.68,
+          "y": 2004.161245839652
+        },
+        {
+          "x": 4738.68,
+          "y": 1907.161245839885
+        }
+      ],
+      "center": {
+        "x": 4731.68,
+        "y": 1948.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4724.68,
+        "y1": 1907.161245839885,
+        "x2": 4724.68,
+        "y2": 1990.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4738.68,
+        "y1": 1893.161245839885,
+        "x2": 4738.68,
+        "y2": 2004.161245839652
+      },
+      "handles": [
+        "B3F",
+        "B40"
+      ]
+    },
+    {
+      "id": "P-073",
+      "codigo": "P-073",
+      "guid": "DWG-4TIJ14-P-073",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.58,
+      "comprimentoBrutoM": 2.58,
+      "comprimentoInternoM": 2.44,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4724.680887855195,
+          "y": 1893.16
+        },
+        {
+          "x": 4982.680887855195,
+          "y": 1893.16
+        },
+        {
+          "x": 4982.680887855195,
+          "y": 1907.16
+        },
+        {
+          "x": 4738.680887855195,
+          "y": 1907.16
+        }
+      ],
+      "center": {
+        "x": 4857.18,
+        "y": 1900.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4724.680887855195,
+        "y1": 1893.16,
+        "x2": 4982.680887855195,
+        "y2": 1893.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4738.680887855195,
+        "y1": 1907.16,
+        "x2": 4982.680887855195,
+        "y2": 1907.16
+      },
+      "handles": [
+        "B41",
+        "B43"
+      ]
+    },
+    {
+      "id": "P-074",
+      "codigo": "P-074",
+      "guid": "DWG-1TIJ9-P-074",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.71,
+      "comprimentoBrutoM": 0.8,
+      "comprimentoInternoM": 0.71,
+      "descontouCantoCm": 9,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4982.68,
+          "y": 1742.161245839885
+        },
+        {
+          "x": 4982.68,
+          "y": 1822.161245839885
+        },
+        {
+          "x": 4991.68,
+          "y": 1822.161245839885
+        },
+        {
+          "x": 4991.68,
+          "y": 1751.161245839885
+        }
+      ],
+      "center": {
+        "x": 4987.18,
+        "y": 1784.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4991.68,
+        "y1": 1751.161245839885,
+        "x2": 4991.68,
+        "y2": 1822.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4982.68,
+        "y1": 1742.161245839885,
+        "x2": 4982.68,
+        "y2": 1822.161245839885
+      },
+      "handles": [
+        "B48",
+        "B49"
+      ]
+    },
+    {
+      "id": "P-075",
+      "codigo": "P-075",
+      "guid": "DWG-1TIJ9-P-075",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.25,
+      "comprimentoBrutoM": 0.25,
+      "comprimentoInternoM": 0.25,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4982.680887855195,
+          "y": 1742.16
+        },
+        {
+          "x": 5007.680887855195,
+          "y": 1742.16
+        },
+        {
+          "x": 5007.680887855195,
+          "y": 1742.16
+        },
+        {
+          "x": 4982.680887855195,
+          "y": 1742.16
+        }
+      ],
+      "center": {
+        "x": 4995.18,
+        "y": 1742.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4982.680887855195,
+        "y1": 1742.16,
+        "x2": 5007.680887855195,
+        "y2": 1742.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4982.680887855195,
+        "y1": 1742.16,
+        "x2": 5007.680887855195,
+        "y2": 1742.16
+      },
+      "handles": [
+        "B4B"
+      ]
+    },
+    {
+      "id": "P-076",
+      "codigo": "P-076",
+      "guid": "DWG-1TIJ9-P-076",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.71,
+      "comprimentoBrutoM": 0.8,
+      "comprimentoInternoM": 0.71,
+      "descontouCantoCm": 9,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4998.68,
+          "y": 1751.161245839885
+        },
+        {
+          "x": 4998.68,
+          "y": 1822.161245839885
+        },
+        {
+          "x": 5007.68,
+          "y": 1822.161245839885
+        },
+        {
+          "x": 5007.68,
+          "y": 1742.161245839885
+        }
+      ],
+      "center": {
+        "x": 5003.18,
+        "y": 1784.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4998.68,
+        "y1": 1751.161245839885,
+        "x2": 4998.68,
+        "y2": 1822.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 5007.68,
+        "y1": 1742.161245839885,
+        "x2": 5007.68,
+        "y2": 1822.161245839885
+      },
+      "handles": [
+        "B4D",
+        "B4F"
+      ]
+    },
+    {
+      "id": "P-077",
+      "codigo": "P-077",
+      "guid": "DWG-1TIJ9-P-077",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.36,
+      "comprimentoBrutoM": 3.36,
+      "comprimentoInternoM": 3.36,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4471.68,
+          "y": 1946.161245839885
+        },
+        {
+          "x": 4471.68,
+          "y": 2282.161245839885
+        },
+        {
+          "x": 4480.68,
+          "y": 2282.1612458398886
+        },
+        {
+          "x": 4480.68,
+          "y": 1946.161245839885
+        }
+      ],
+      "center": {
+        "x": 4476.18,
+        "y": 2114.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4480.68,
+        "y1": 1946.161245839885,
+        "x2": 4480.68,
+        "y2": 2282.1612458398886
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4471.68,
+        "y1": 1946.161245839885,
+        "x2": 4471.68,
+        "y2": 2282.1612458398886
+      },
+      "handles": [
+        "B56",
+        "B57"
+      ]
+    },
+    {
+      "id": "P-078",
+      "codigo": "P-078",
+      "guid": "DWG-4TIJ14-P-078",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.58,
+      "comprimentoBrutoM": 2.58,
+      "comprimentoInternoM": 2.44,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4480.680887855195,
+          "y": 1990.16
+        },
+        {
+          "x": 4724.680887855195,
+          "y": 1990.16
+        },
+        {
+          "x": 4738.680887855195,
+          "y": 2004.16
+        },
+        {
+          "x": 4480.680887855195,
+          "y": 2004.16
+        }
+      ],
+      "center": {
+        "x": 4606.18,
+        "y": 1997.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4480.680887855195,
+        "y1": 2004.16,
+        "x2": 4738.680887855195,
+        "y2": 2004.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4480.680887855195,
+        "y1": 1990.16,
+        "x2": 4724.680887855195,
+        "y2": 1990.16
+      },
+      "handles": [
+        "B5B",
+        "B5C"
+      ]
+    },
+    {
+      "id": "P-079",
+      "codigo": "P-079",
+      "guid": "DWG-SICAL14-P-079",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.438,
+      "comprimentoBrutoM": 3.438,
+      "comprimentoInternoM": 3.438,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3495.18,
+          "y": 2618.3612458398384
+        },
+        {
+          "x": 3495.18,
+          "y": 2962.161245839652
+        },
+        {
+          "x": 3509.18,
+          "y": 2962.161245839652
+        },
+        {
+          "x": 3509.18,
+          "y": 2618.3612458398384
+        }
+      ],
+      "center": {
+        "x": 3502.18,
+        "y": 2790.26
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3509.18,
+        "y1": 2618.3612458398384,
+        "x2": 3509.18,
+        "y2": 2962.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3495.18,
+        "y1": 2618.3612458398384,
+        "x2": 3495.18,
+        "y2": 2962.161245839652
+      },
+      "handles": [
+        "B6A",
+        "B6B"
+      ]
+    },
+    {
+      "id": "P-080",
+      "codigo": "P-080",
+      "guid": "DWG-SICAL14-P-080",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.27,
+      "comprimentoBrutoM": 2.27,
+      "comprimentoInternoM": 2.27,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3509.1808878551947,
+          "y": 2758.16
+        },
+        {
+          "x": 3736.1808878551947,
+          "y": 2758.16
+        },
+        {
+          "x": 3736.1808878551947,
+          "y": 2772.16
+        },
+        {
+          "x": 3509.1808878551947,
+          "y": 2772.16
+        }
+      ],
+      "center": {
+        "x": 3622.68,
+        "y": 2765.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3509.1808878551947,
+        "y1": 2772.16,
+        "x2": 3736.1808878551947,
+        "y2": 2772.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3509.1808878551947,
+        "y1": 2758.16,
+        "x2": 3736.1808878551947,
+        "y2": 2758.16
+      },
+      "handles": [
+        "B6D",
+        "B6E"
+      ]
+    },
+    {
+      "id": "P-081",
+      "codigo": "P-081",
+      "guid": "DWG-SICAL14-P-081",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14.5,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.48,
+      "comprimentoBrutoM": 3.48,
+      "comprimentoInternoM": 3.48,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3735.68,
+          "y": 2614.161245839884
+        },
+        {
+          "x": 3735.68,
+          "y": 2962.161245839652
+        },
+        {
+          "x": 3750.18,
+          "y": 2962.161245839652
+        },
+        {
+          "x": 3750.18,
+          "y": 2614.161245839884
+        }
+      ],
+      "center": {
+        "x": 3742.93,
+        "y": 2788.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3750.18,
+        "y1": 2614.161245839884,
+        "x2": 3750.18,
+        "y2": 2962.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3735.68,
+        "y1": 2614.161245839884,
+        "x2": 3735.68,
+        "y2": 2962.161245839652
+      },
+      "handles": [
+        "B80",
+        "B81"
+      ]
+    },
+    {
+      "id": "P-082",
+      "codigo": "P-082",
+      "guid": "DWG-4TIJ14-P-082",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 3.251,
+      "comprimentoBrutoM": 3.391,
+      "comprimentoInternoM": 3.251,
+      "descontouCantoCm": 14,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3198.18,
+          "y": 2458.1612458398813
+        },
+        {
+          "x": 3198.18,
+          "y": 2797.3084320975286
+        },
+        {
+          "x": 3212.18,
+          "y": 2797.3084320975286
+        },
+        {
+          "x": 3212.18,
+          "y": 2472.161245839885
+        }
+      ],
+      "center": {
+        "x": 3205.18,
+        "y": 2631.23
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3212.18,
+        "y1": 2472.161245839885,
+        "x2": 3212.18,
+        "y2": 2797.3084320975286
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3198.18,
+        "y1": 2458.1612458398813,
+        "x2": 3198.18,
+        "y2": 2797.3084320975286
+      },
+      "handles": [
+        "B84",
+        "B86"
+      ]
+    },
+    {
+      "id": "P-083",
+      "codigo": "P-083",
+      "guid": "DWG-SICAL10-P-083",
+      "layer": "SICAL-10",
+      "layerLabel": "Sical 10 cm",
+      "corLayer": "#38bdf8",
+      "espessuraCm": 10,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.9,
+      "comprimentoBrutoM": 1.9,
+      "comprimentoInternoM": 1.9,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3618.18,
+          "y": 2772.161245839885
+        },
+        {
+          "x": 3618.18,
+          "y": 2962.161245839652
+        },
+        {
+          "x": 3628.18,
+          "y": 2962.161245839652
+        },
+        {
+          "x": 3628.18,
+          "y": 2772.161245839885
+        }
+      ],
+      "center": {
+        "x": 3623.18,
+        "y": 2867.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3628.18,
+        "y1": 2772.161245839885,
+        "x2": 3628.18,
+        "y2": 2962.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3618.18,
+        "y1": 2772.161245839885,
+        "x2": 3618.18,
+        "y2": 2962.161245839652
+      },
+      "handles": [
+        "B89",
+        "B8B"
+      ]
+    },
+    {
+      "id": "P-084",
+      "codigo": "P-084",
+      "guid": "DWG-SICAL14-P-084",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.7,
+      "comprimentoBrutoM": 0.7,
+      "comprimentoInternoM": 0.56,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3495.1808878551947,
+          "y": 2618.36
+        },
+        {
+          "x": 3565.1808878551947,
+          "y": 2618.36
+        },
+        {
+          "x": 3565.1808878551947,
+          "y": 2632.36
+        },
+        {
+          "x": 3509.1808878551947,
+          "y": 2632.36
+        }
+      ],
+      "center": {
+        "x": 3533.68,
+        "y": 2625.36
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3495.1808878551947,
+        "y1": 2618.36,
+        "x2": 3565.1808878551947,
+        "y2": 2618.36
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3509.1808878551947,
+        "y1": 2632.36,
+        "x2": 3565.1808878551947,
+        "y2": 2632.36
+      },
+      "handles": [
+        "B90",
+        "B91"
+      ]
+    },
+    {
+      "id": "P-085",
+      "codigo": "P-085",
+      "guid": "DWG-SICAL14-P-085",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.302,
+      "comprimentoBrutoM": 1.442,
+      "comprimentoInternoM": 1.302,
+      "descontouCantoCm": 14,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3551.18,
+          "y": 2488.161245839884
+        },
+        {
+          "x": 3551.18,
+          "y": 2618.3612458398384
+        },
+        {
+          "x": 3565.18,
+          "y": 2632.3612458398384
+        },
+        {
+          "x": 3565.18,
+          "y": 2488.161245839884
+        }
+      ],
+      "center": {
+        "x": 3558.18,
+        "y": 2556.76
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3551.18,
+        "y1": 2488.161245839884,
+        "x2": 3551.18,
+        "y2": 2618.3612458398384
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3565.18,
+        "y1": 2488.161245839884,
+        "x2": 3565.18,
+        "y2": 2632.3612458398384
+      },
+      "handles": [
+        "B92",
+        "B93"
+      ]
+    },
+    {
+      "id": "P-086",
+      "codigo": "P-086",
+      "guid": "DWG-4TIJ14-P-086",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 2.58,
+      "comprimentoBrutoM": 2.58,
+      "comprimentoInternoM": 2.44,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2362.6808878551947,
+          "y": 1893.16
+        },
+        {
+          "x": 2620.680887854729,
+          "y": 1893.16
+        },
+        {
+          "x": 2606.6808878551947,
+          "y": 1907.16
+        },
+        {
+          "x": 2362.6808878551947,
+          "y": 1907.16
+        }
+      ],
+      "center": {
+        "x": 2488.18,
+        "y": 1900.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2362.6808878551947,
+        "y1": 1893.16,
+        "x2": 2620.680887854729,
+        "y2": 1893.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2362.6808878551947,
+        "y1": 1907.16,
+        "x2": 2606.6808878551947,
+        "y2": 1907.16
+      },
+      "handles": [
+        "B9B",
+        "B9D"
+      ]
+    },
+    {
+      "id": "P-087",
+      "codigo": "P-087",
+      "guid": "DWG-3TIJ115-P-087",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.71,
+      "comprimentoBrutoM": 0.71,
+      "comprimentoInternoM": 0.595,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3016.1808878551947,
+          "y": 2695.16
+        },
+        {
+          "x": 3075.6808878551947,
+          "y": 2695.16
+        },
+        {
+          "x": 3075.6808878551947,
+          "y": 2706.66
+        },
+        {
+          "x": 3004.6808878551947,
+          "y": 2706.66
+        }
+      ],
+      "center": {
+        "x": 3043.06,
+        "y": 2700.91
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3004.6808878551947,
+        "y1": 2706.66,
+        "x2": 3075.6808878551947,
+        "y2": 2706.66
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3016.1808878551947,
+        "y1": 2695.16,
+        "x2": 3075.6808878551947,
+        "y2": 2695.16
+      },
+      "handles": [
+        "BA2",
+        "BA3"
+      ]
+    },
+    {
+      "id": "P-088",
+      "codigo": "P-088",
+      "guid": "DWG-3TIJ115-P-088",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.78,
+      "comprimentoBrutoM": 0.78,
+      "comprimentoInternoM": 0.78,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4372.680887854729,
+          "y": 2095.66
+        },
+        {
+          "x": 4450.680887855195,
+          "y": 2095.66
+        },
+        {
+          "x": 4450.680887855195,
+          "y": 2107.16
+        },
+        {
+          "x": 4372.680887854729,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 4411.68,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4372.680887854729,
+        "y1": 2107.16,
+        "x2": 4450.680887855195,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4372.680887854729,
+        "y1": 2095.66,
+        "x2": 4450.680887855195,
+        "y2": 2095.66
+      },
+      "handles": [
+        "BA7",
+        "BA8"
+      ]
+    },
+    {
+      "id": "P-089",
+      "codigo": "P-089",
+      "guid": "DWG-3TIJ115-P-089",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.55,
+      "comprimentoBrutoM": 2.55,
+      "comprimentoInternoM": 2.55,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3413.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3668.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3668.6808878551947,
+          "y": 2107.16
+        },
+        {
+          "x": 3413.6808878551947,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 3541.18,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3413.6808878551947,
+        "y1": 2107.16,
+        "x2": 3668.6808878551947,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3413.6808878551947,
+        "y1": 2095.66,
+        "x2": 3668.6808878551947,
+        "y2": 2095.66
+      },
+      "handles": [
+        "BAB",
+        "BAC"
+      ]
+    },
+    {
+      "id": "P-090",
+      "codigo": "P-090",
+      "guid": "DWG-3TIJ115-P-090",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.69,
+      "comprimentoBrutoM": 0.69,
+      "comprimentoInternoM": 0.69,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3668.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3737.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3737.6808878551947,
+          "y": 2107.16
+        },
+        {
+          "x": 3668.6808878551947,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 3703.18,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3668.6808878551947,
+        "y1": 2107.16,
+        "x2": 3737.6808878551947,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3668.6808878551947,
+        "y1": 2095.66,
+        "x2": 3737.6808878551947,
+        "y2": 2095.66
+      },
+      "handles": [
+        "BAA",
+        "BAC"
+      ]
+    },
+    {
+      "id": "P-091",
+      "codigo": "P-091",
+      "guid": "DWG-3TIJ115-P-091",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.485,
+      "comprimentoBrutoM": 0.485,
+      "comprimentoInternoM": 0.485,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3068.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3117.1808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3117.1808878551947,
+          "y": 2107.16
+        },
+        {
+          "x": 3068.6808878551947,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 3092.93,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3068.6808878551947,
+        "y1": 2107.16,
+        "x2": 3117.1808878551947,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3068.6808878551947,
+        "y1": 2095.66,
+        "x2": 3117.1808878551947,
+        "y2": 2095.66
+      },
+      "handles": [
+        "BB0",
+        "BAE"
+      ]
+    },
+    {
+      "id": "P-092",
+      "codigo": "P-092",
+      "guid": "DWG-3TIJ115-P-092",
+      "layer": "3 - TIJ-11.5",
+      "layerLabel": "Tijolo 11,5 cm",
+      "corLayer": "#f59e0b",
+      "espessuraCm": 11.5,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.665,
+      "comprimentoBrutoM": 2.665,
+      "comprimentoInternoM": 2.665,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3117.1808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3383.6808878551947,
+          "y": 2095.66
+        },
+        {
+          "x": 3383.6808878551947,
+          "y": 2107.16
+        },
+        {
+          "x": 3117.1808878551947,
+          "y": 2107.16
+        }
+      ],
+      "center": {
+        "x": 3250.43,
+        "y": 2101.41
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3117.1808878551947,
+        "y1": 2107.16,
+        "x2": 3383.6808878551947,
+        "y2": 2107.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3117.1808878551947,
+        "y1": 2095.66,
+        "x2": 3383.6808878551947,
+        "y2": 2095.66
+      },
+      "handles": [
+        "BAF",
+        "BAE"
+      ]
+    },
+    {
+      "id": "P-093",
+      "codigo": "P-093",
+      "guid": "DWG-SICAL14-P-093",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.3,
+      "comprimentoBrutoM": 1.3,
+      "comprimentoInternoM": 1.3,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3590.1808878551947,
+          "y": 2474.16
+        },
+        {
+          "x": 3720.1808878551947,
+          "y": 2474.16
+        },
+        {
+          "x": 3720.1808878551947,
+          "y": 2488.16
+        },
+        {
+          "x": 3590.1808878551947,
+          "y": 2488.16
+        }
+      ],
+      "center": {
+        "x": 3655.18,
+        "y": 2481.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3590.1808878551947,
+        "y1": 2488.16,
+        "x2": 3720.1808878551947,
+        "y2": 2488.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3590.1808878551947,
+        "y1": 2474.16,
+        "x2": 3720.1808878551947,
+        "y2": 2474.16
+      },
+      "handles": [
+        "BB2",
+        "BB4"
+      ]
+    },
+    {
+      "id": "P-094",
+      "codigo": "P-094",
+      "guid": "DWG-4TIJ14-P-094",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.3,
+      "comprimentoBrutoM": 1.3,
+      "comprimentoInternoM": 1.3,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3590.1808878551947,
+          "y": 2458.16
+        },
+        {
+          "x": 3720.1808878551947,
+          "y": 2458.16
+        },
+        {
+          "x": 3720.1808878551947,
+          "y": 2472.16
+        },
+        {
+          "x": 3590.1808878551947,
+          "y": 2472.16
+        }
+      ],
+      "center": {
+        "x": 3655.18,
+        "y": 2465.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3590.1808878551947,
+        "y1": 2472.16,
+        "x2": 3720.1808878551947,
+        "y2": 2472.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3590.1808878551947,
+        "y1": 2458.16,
+        "x2": 3720.1808878551947,
+        "y2": 2458.16
+      },
+      "handles": [
+        "BB6",
+        "BB8"
+      ]
+    },
+    {
+      "id": "P-095",
+      "codigo": "P-095",
+      "guid": "DWG-4TIJ14-P-095",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.015,
+      "comprimentoBrutoM": 2.015,
+      "comprimentoInternoM": 2.015,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3905.180887855194,
+          "y": 2474.16
+        },
+        {
+          "x": 4106.680887855195,
+          "y": 2474.16
+        },
+        {
+          "x": 4106.680887855195,
+          "y": 2488.16
+        },
+        {
+          "x": 3905.1808878551947,
+          "y": 2488.16
+        }
+      ],
+      "center": {
+        "x": 4005.93,
+        "y": 2481.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3905.180887855194,
+        "y1": 2488.16,
+        "x2": 4106.680887855195,
+        "y2": 2488.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3905.1808878551947,
+        "y1": 2474.16,
+        "x2": 4106.680887855195,
+        "y2": 2474.16
+      },
+      "handles": [
+        "BBA",
+        "BBB"
+      ]
+    },
+    {
+      "id": "P-096",
+      "codigo": "P-096",
+      "guid": "DWG-4TIJ14-P-096",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 2.015,
+      "comprimentoBrutoM": 2.015,
+      "comprimentoInternoM": 2.015,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3905.1808878551947,
+          "y": 2458.16
+        },
+        {
+          "x": 4106.680887855195,
+          "y": 2458.16
+        },
+        {
+          "x": 4106.680887855195,
+          "y": 2472.16
+        },
+        {
+          "x": 3905.180887855194,
+          "y": 2472.16
+        }
+      ],
+      "center": {
+        "x": 4005.93,
+        "y": 2465.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3905.180887855194,
+        "y1": 2472.16,
+        "x2": 4106.680887855195,
+        "y2": 2472.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3905.1808878551947,
+        "y1": 2458.16,
+        "x2": 4106.680887855195,
+        "y2": 2458.16
+      },
+      "handles": [
+        "BBD",
+        "BBE"
+      ]
+    },
+    {
+      "id": "P-097",
+      "codigo": "P-097",
+      "guid": "DWG-4TIJ19-P-097",
+      "layer": "4 - TIJ-19",
+      "layerLabel": "Tijolo 19 cm",
+      "corLayer": "#ec4899",
+      "espessuraCm": 19,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.48,
+      "comprimentoBrutoM": 1.48,
+      "comprimentoInternoM": 1.29,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4332.680887855198,
+          "y": 2551.16
+        },
+        {
+          "x": 4461.680887855195,
+          "y": 2551.16
+        },
+        {
+          "x": 4480.680887855202,
+          "y": 2570.16
+        },
+        {
+          "x": 4332.680887855195,
+          "y": 2570.16
+        }
+      ],
+      "center": {
+        "x": 4401.93,
+        "y": 2560.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4332.680887855195,
+        "y1": 2570.16,
+        "x2": 4480.680887855202,
+        "y2": 2570.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4332.680887855198,
+        "y1": 2551.16,
+        "x2": 4461.680887855195,
+        "y2": 2551.16
+      },
+      "handles": [
+        "BC7",
+        "BC8"
+      ]
+    },
+    {
+      "id": "P-098",
+      "codigo": "P-098",
+      "guid": "DWG-4TIJ14-P-098",
+      "layer": "4 - TIJ-14",
+      "layerLabel": "Tijolo 14 cm",
+      "corLayer": "#eab308",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.997,
+      "comprimentoBrutoM": 1.997,
+      "comprimentoInternoM": 1.857,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3309.4580195151702,
+          "y": 2978.16
+        },
+        {
+          "x": 3495.1808878551947,
+          "y": 2978.16
+        },
+        {
+          "x": 3495.1808878551947,
+          "y": 2992.16
+        },
+        {
+          "x": 3295.458019603435,
+          "y": 2992.16
+        }
+      ],
+      "center": {
+        "x": 3398.82,
+        "y": 2985.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3295.458019603435,
+        "y1": 2992.16,
+        "x2": 3495.1808878551947,
+        "y2": 2992.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3309.4580195151702,
+        "y1": 2978.16,
+        "x2": 3495.1808878551947,
+        "y2": 2978.16
+      },
+      "handles": [
+        "BDC",
+        "BF1"
+      ]
+    },
+    {
+      "id": "P-099",
+      "codigo": "P-099",
+      "guid": "DWG-SICAL14-P-099",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 1.873,
+      "comprimentoBrutoM": 1.873,
+      "comprimentoInternoM": 1.837,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3307.8843844637067,
+          "y": 2962.16
+        },
+        {
+          "x": 3495.1808878551947,
+          "y": 2962.16
+        },
+        {
+          "x": 3495.1808878551947,
+          "y": 2976.16
+        },
+        {
+          "x": 3311.458019609685,
+          "y": 2976.16
+        }
+      ],
+      "center": {
+        "x": 3402.43,
+        "y": 2969.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3307.8843844637067,
+        "y1": 2962.16,
+        "x2": 3495.1808878551947,
+        "y2": 2962.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3311.458019609685,
+        "y1": 2976.16,
+        "x2": 3495.1808878551947,
+        "y2": 2976.16
+      },
+      "handles": [
+        "BDF",
+        "BE1"
+      ]
+    },
+    {
+      "id": "P-100",
+      "codigo": "P-100",
+      "guid": "DWG-1TIJ9-P-100",
+      "layer": "1 - TIJ-9",
+      "layerLabel": "Tijolo 9 cm",
+      "corLayer": "#a855f7",
+      "espessuraCm": 9,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.68,
+      "comprimentoBrutoM": 0.68,
+      "comprimentoInternoM": 0.68,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3364.6808878551947,
+          "y": 1552.16
+        },
+        {
+          "x": 3432.6808878551947,
+          "y": 1552.16
+        },
+        {
+          "x": 3432.6808878551947,
+          "y": 1552.16
+        },
+        {
+          "x": 3364.6808878551947,
+          "y": 1552.16
+        }
+      ],
+      "center": {
+        "x": 3398.68,
+        "y": 1552.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3364.6808878551947,
+        "y1": 1552.16,
+        "x2": 3432.6808878551947,
+        "y2": 1552.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3364.6808878551947,
+        "y1": 1552.16,
+        "x2": 3432.6808878551947,
+        "y2": 1552.16
+      },
+      "handles": [
+        "BF4"
+      ]
+    },
+    {
+      "id": "P-101",
+      "codigo": "P-101",
+      "guid": "DWG-SICAL14-P-101",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.74,
+      "comprimentoBrutoM": 0.74,
+      "comprimentoInternoM": 0.6,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3093.6808878551947,
+          "y": 2978.16
+        },
+        {
+          "x": 3153.6808878551947,
+          "y": 2978.16
+        },
+        {
+          "x": 3153.6808878551947,
+          "y": 2992.16
+        },
+        {
+          "x": 3079.6808878551947,
+          "y": 2992.16
+        }
+      ],
+      "center": {
+        "x": 3120.18,
+        "y": 2985.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3079.6808878551947,
+        "y1": 2992.16,
+        "x2": 3153.6808878551947,
+        "y2": 2992.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3093.6808878551947,
+        "y1": 2978.16,
+        "x2": 3153.6808878551947,
+        "y2": 2978.16
+      },
+      "handles": [
+        "46CD",
+        "46CB"
+      ]
+    },
+    {
+      "id": "P-102",
+      "codigo": "P-102",
+      "guid": "DWG-SICAL14-P-102",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.418,
+      "comprimentoBrutoM": 1.418,
+      "comprimentoInternoM": 1.278,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3153.6808878551947,
+          "y": 2978.16
+        },
+        {
+          "x": 3281.4585574108914,
+          "y": 2978.16
+        },
+        {
+          "x": 3295.458019329306,
+          "y": 2992.16
+        },
+        {
+          "x": 3153.6808878551947,
+          "y": 2992.16
+        }
+      ],
+      "center": {
+        "x": 3221.07,
+        "y": 2985.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3153.6808878551947,
+        "y1": 2992.16,
+        "x2": 3295.458019329306,
+        "y2": 2992.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3153.6808878551947,
+        "y1": 2978.16,
+        "x2": 3281.4585574108914,
+        "y2": 2978.16
+      },
+      "handles": [
+        "46CE",
+        "46CB"
+      ]
+    },
+    {
+      "id": "P-103",
+      "codigo": "P-103",
+      "guid": "DWG-SICAL14-P-103",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.74,
+      "comprimentoBrutoM": 0.74,
+      "comprimentoInternoM": 0.6,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3079.6808878551947,
+          "y": 2896.16
+        },
+        {
+          "x": 3153.6808878551947,
+          "y": 2896.16
+        },
+        {
+          "x": 3153.6808878551947,
+          "y": 2910.16
+        },
+        {
+          "x": 3093.6808878551947,
+          "y": 2910.16
+        }
+      ],
+      "center": {
+        "x": 3120.18,
+        "y": 2903.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3079.6808878551947,
+        "y1": 2896.16,
+        "x2": 3153.6808878551947,
+        "y2": 2896.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3093.6808878551947,
+        "y1": 2910.16,
+        "x2": 3153.6808878551947,
+        "y2": 2910.16
+      },
+      "handles": [
+        "46D6",
+        "46D4"
+      ]
+    },
+    {
+      "id": "P-104",
+      "codigo": "P-104",
+      "guid": "DWG-SICAL14-P-104",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.598,
+      "comprimentoBrutoM": 0.598,
+      "comprimentoInternoM": 0.535,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3153.6808878551947,
+          "y": 2896.16
+        },
+        {
+          "x": 3207.1808878551947,
+          "y": 2896.16
+        },
+        {
+          "x": 3213.461173254129,
+          "y": 2910.16
+        },
+        {
+          "x": 3153.6808878551947,
+          "y": 2910.16
+        }
+      ],
+      "center": {
+        "x": 3182,
+        "y": 2903.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3153.6808878551947,
+        "y1": 2910.16,
+        "x2": 3213.461173254129,
+        "y2": 2910.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3153.6808878551947,
+        "y1": 2896.16,
+        "x2": 3207.1808878551947,
+        "y2": 2896.16
+      },
+      "handles": [
+        "46D5",
+        "46D4"
+      ]
+    },
+    {
+      "id": "P-105",
+      "codigo": "P-105",
+      "guid": "DWG-SICAL14-P-105",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.68,
+      "comprimentoBrutoM": 0.68,
+      "comprimentoInternoM": 0.68,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3153.68,
+          "y": 2910.161245839885
+        },
+        {
+          "x": 3153.68,
+          "y": 2978.161245839652
+        },
+        {
+          "x": 3167.68,
+          "y": 2978.161245839652
+        },
+        {
+          "x": 3167.68,
+          "y": 2910.161245839885
+        }
+      ],
+      "center": {
+        "x": 3160.68,
+        "y": 2944.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3167.68,
+        "y1": 2910.161245839885,
+        "x2": 3167.68,
+        "y2": 2978.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3153.68,
+        "y1": 2910.161245839885,
+        "x2": 3153.68,
+        "y2": 2978.161245839652
+      },
+      "handles": [
+        "46D7",
+        "46D8"
+      ]
+    },
+    {
+      "id": "P-106",
+      "codigo": "P-106",
+      "guid": "DWG-SICAL14-P-106",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.3,
+      "comprimentoBrutoM": 0.3,
+      "comprimentoInternoM": 0.3,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4200.680887855195,
+          "y": 2896.16
+        },
+        {
+          "x": 4230.680887855195,
+          "y": 2896.16
+        },
+        {
+          "x": 4230.680887855195,
+          "y": 2910.16
+        },
+        {
+          "x": 4200.680887855195,
+          "y": 2910.16
+        }
+      ],
+      "center": {
+        "x": 4215.68,
+        "y": 2903.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4200.680887855195,
+        "y1": 2910.16,
+        "x2": 4230.680887855195,
+        "y2": 2910.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4200.680887855195,
+        "y1": 2896.16,
+        "x2": 4230.680887855195,
+        "y2": 2896.16
+      },
+      "handles": [
+        "46DB",
+        "4748"
+      ]
+    },
+    {
+      "id": "P-107",
+      "codigo": "P-107",
+      "guid": "DWG-SICAL14-P-107",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.69,
+      "comprimentoBrutoM": 0.69,
+      "comprimentoInternoM": 0.55,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4131.680887855195,
+          "y": 2896.16
+        },
+        {
+          "x": 4200.680887855195,
+          "y": 2896.16
+        },
+        {
+          "x": 4186.680887855195,
+          "y": 2910.16
+        },
+        {
+          "x": 4131.680887855195,
+          "y": 2910.16
+        }
+      ],
+      "center": {
+        "x": 4162.68,
+        "y": 2903.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4131.680887855195,
+        "y1": 2896.16,
+        "x2": 4200.680887855195,
+        "y2": 2896.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4131.680887855195,
+        "y1": 2910.16,
+        "x2": 4186.680887855195,
+        "y2": 2910.16
+      },
+      "handles": [
+        "46DC",
+        "46DD"
+      ]
+    },
+    {
+      "id": "P-108",
+      "codigo": "P-108",
+      "guid": "DWG-SICAL14-P-108",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.67,
+      "comprimentoBrutoM": 0.67,
+      "comprimentoInternoM": 0.53,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4059.6808878551947,
+          "y": 2978.16
+        },
+        {
+          "x": 4112.680887855195,
+          "y": 2978.16
+        },
+        {
+          "x": 4112.680887855195,
+          "y": 2992.16
+        },
+        {
+          "x": 4045.680887854729,
+          "y": 2992.16
+        }
+      ],
+      "center": {
+        "x": 4082.68,
+        "y": 2985.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4045.680887854729,
+        "y1": 2992.16,
+        "x2": 4112.680887855195,
+        "y2": 2992.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4059.6808878551947,
+        "y1": 2978.16,
+        "x2": 4112.680887855195,
+        "y2": 2978.16
+      },
+      "handles": [
+        "46EA",
+        "46E5"
+      ]
+    },
+    {
+      "id": "P-109",
+      "codigo": "P-109",
+      "guid": "DWG-SICAL14-P-109",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.88,
+      "comprimentoBrutoM": 0.88,
+      "comprimentoInternoM": 0.74,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4112.680887855195,
+          "y": 2978.16
+        },
+        {
+          "x": 4186.680887855195,
+          "y": 2978.16
+        },
+        {
+          "x": 4200.680887855195,
+          "y": 2992.16
+        },
+        {
+          "x": 4112.680887855195,
+          "y": 2992.16
+        }
+      ],
+      "center": {
+        "x": 4153.18,
+        "y": 2985.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4112.680887855195,
+        "y1": 2992.16,
+        "x2": 4200.680887855195,
+        "y2": 2992.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4112.680887855195,
+        "y1": 2978.16,
+        "x2": 4186.680887855195,
+        "y2": 2978.16
+      },
+      "handles": [
+        "46E6",
+        "46E5"
+      ]
+    },
+    {
+      "id": "P-110",
+      "codigo": "P-110",
+      "guid": "DWG-SICAL14-P-110",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.68,
+      "comprimentoBrutoM": 0.68,
+      "comprimentoInternoM": 0.68,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4112.68,
+          "y": 2910.161245839885
+        },
+        {
+          "x": 4112.68,
+          "y": 2978.161245839652
+        },
+        {
+          "x": 4126.68,
+          "y": 2978.161245839652
+        },
+        {
+          "x": 4126.68,
+          "y": 2910.161245839885
+        }
+      ],
+      "center": {
+        "x": 4119.68,
+        "y": 2944.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4126.68,
+        "y1": 2910.161245839885,
+        "x2": 4126.68,
+        "y2": 2978.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4112.68,
+        "y1": 2910.161245839885,
+        "x2": 4112.68,
+        "y2": 2978.161245839652
+      },
+      "handles": [
+        "46E7",
+        "46E8"
+      ]
+    },
+    {
+      "id": "P-111",
+      "codigo": "P-111",
+      "guid": "DWG-SICAL14-P-111",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.68,
+      "comprimentoBrutoM": 0.82,
+      "comprimentoInternoM": 0.68,
+      "descontouCantoCm": 14,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4045.68,
+          "y": 2910.161245839884
+        },
+        {
+          "x": 4045.68,
+          "y": 2992.161245839885
+        },
+        {
+          "x": 4059.68,
+          "y": 2978.161245839652
+        },
+        {
+          "x": 4059.68,
+          "y": 2910.161245839885
+        }
+      ],
+      "center": {
+        "x": 4052.68,
+        "y": 2947.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4059.68,
+        "y1": 2910.161245839884,
+        "x2": 4059.68,
+        "y2": 2978.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4045.68,
+        "y1": 2910.161245839884,
+        "x2": 4045.68,
+        "y2": 2992.161245839885
+      },
+      "handles": [
+        "46EB",
+        "46EC"
+      ]
+    },
+    {
+      "id": "P-112",
+      "codigo": "P-112",
+      "guid": "DWG-SICAL14-P-112",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.65,
+      "comprimentoBrutoM": 0.65,
+      "comprimentoInternoM": 0.65,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2791.6808878551947,
+          "y": 1816.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 1816.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 1830.16
+        },
+        {
+          "x": 2791.6808878551947,
+          "y": 1830.16
+        }
+      ],
+      "center": {
+        "x": 2824.18,
+        "y": 1823.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2791.6808878551947,
+        "y1": 1830.16,
+        "x2": 2856.6808878551947,
+        "y2": 1830.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2791.6808878551947,
+        "y1": 1816.16,
+        "x2": 2856.6808878551947,
+        "y2": 1816.16
+      },
+      "handles": [
+        "46ED",
+        "46EE"
+      ]
+    },
+    {
+      "id": "P-113",
+      "codigo": "P-113",
+      "guid": "DWG-SICAL14-P-113",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.77,
+      "comprimentoBrutoM": 0.91,
+      "comprimentoInternoM": 0.77,
+      "descontouCantoCm": 14,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2777.68,
+          "y": 1620.161245839652
+        },
+        {
+          "x": 2777.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 2791.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 2791.68,
+          "y": 1634.161245839652
+        }
+      ],
+      "center": {
+        "x": 2784.68,
+        "y": 1669.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2791.68,
+        "y1": 1634.161245839652,
+        "x2": 2791.68,
+        "y2": 1711.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2777.68,
+        "y1": 1620.161245839652,
+        "x2": 2777.68,
+        "y2": 1711.161245839652
+      },
+      "handles": [
+        "46F0",
+        "46F4"
+      ]
+    },
+    {
+      "id": "P-114",
+      "codigo": "P-114",
+      "guid": "DWG-SICAL14-P-114",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.05,
+      "comprimentoBrutoM": 1.27,
+      "comprimentoInternoM": 1.05,
+      "descontouCantoCm": 22,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2777.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 2777.68,
+          "y": 1838.161245839885
+        },
+        {
+          "x": 2791.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 2791.68,
+          "y": 1711.161245839652
+        }
+      ],
+      "center": {
+        "x": 2784.68,
+        "y": 1769.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2791.68,
+        "y1": 1711.161245839652,
+        "x2": 2791.68,
+        "y2": 1816.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2777.68,
+        "y1": 1711.161245839652,
+        "x2": 2777.68,
+        "y2": 1838.161245839885
+      },
+      "handles": [
+        "46F1",
+        "46F4"
+      ]
+    },
+    {
+      "id": "P-115",
+      "codigo": "P-115",
+      "guid": "DWG-SICAL14-P-115",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.22,
+      "comprimentoBrutoM": 0.22,
+      "comprimentoInternoM": 0.22,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2777.68,
+          "y": 1902.161245839652
+        },
+        {
+          "x": 2777.68,
+          "y": 1924.161245839885
+        },
+        {
+          "x": 2777.68,
+          "y": 1924.161245839885
+        },
+        {
+          "x": 2777.68,
+          "y": 1902.161245839652
+        }
+      ],
+      "center": {
+        "x": 2777.68,
+        "y": 1913.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2777.68,
+        "y1": 1902.161245839652,
+        "x2": 2777.68,
+        "y2": 1924.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2777.68,
+        "y1": 1902.161245839652,
+        "x2": 2777.68,
+        "y2": 1924.161245839885
+      },
+      "handles": [
+        "46F6"
+      ]
+    },
+    {
+      "id": "P-116",
+      "codigo": "P-116",
+      "guid": "DWG-SICAL14-P-116",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.79,
+      "comprimentoBrutoM": 0.79,
+      "comprimentoInternoM": 0.65,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2791.6808878551947,
+          "y": 1910.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 1910.16
+        },
+        {
+          "x": 2856.6808878551947,
+          "y": 1924.16
+        },
+        {
+          "x": 2777.6808878551947,
+          "y": 1924.16
+        }
+      ],
+      "center": {
+        "x": 2820.68,
+        "y": 1917.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2777.6808878551947,
+        "y1": 1924.16,
+        "x2": 2856.6808878551947,
+        "y2": 1924.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2791.6808878551947,
+        "y1": 1910.16,
+        "x2": 2856.6808878551947,
+        "y2": 1910.16
+      },
+      "handles": [
+        "46F8",
+        "46FA"
+      ]
+    },
+    {
+      "id": "P-117",
+      "codigo": "P-117",
+      "guid": "DWG-SICAL14-P-117",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.09,
+      "comprimentoBrutoM": 1.09,
+      "comprimentoInternoM": 0.65,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2777.6808878551947,
+          "y": 1620.16
+        },
+        {
+          "x": 2886.6808878551947,
+          "y": 1620.16
+        },
+        {
+          "x": 2872.6808878551947,
+          "y": 1634.16
+        },
+        {
+          "x": 2807.6808878551947,
+          "y": 1634.16
+        }
+      ],
+      "center": {
+        "x": 2836.18,
+        "y": 1627.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2777.6808878551947,
+        "y1": 1620.16,
+        "x2": 2886.6808878551947,
+        "y2": 1620.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2807.6808878551947,
+        "y1": 1634.16,
+        "x2": 2872.6808878551947,
+        "y2": 1634.16
+      },
+      "handles": [
+        "46FB",
+        "46FD"
+      ]
+    },
+    {
+      "id": "P-118",
+      "codigo": "P-118",
+      "guid": "DWG-SICAL14-P-118",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.91,
+      "comprimentoBrutoM": 0.91,
+      "comprimentoInternoM": 0.91,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2872.68,
+          "y": 1725.161245839652
+        },
+        {
+          "x": 2872.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 2886.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 2886.68,
+          "y": 1725.161245839652
+        }
+      ],
+      "center": {
+        "x": 2879.68,
+        "y": 1770.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2886.68,
+        "y1": 1725.161245839652,
+        "x2": 2886.68,
+        "y2": 1816.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2872.68,
+        "y1": 1725.161245839652,
+        "x2": 2872.68,
+        "y2": 1816.161245839885
+      },
+      "handles": [
+        "4703",
+        "474C"
+      ]
+    },
+    {
+      "id": "P-119",
+      "codigo": "P-119",
+      "guid": "DWG-SICAL14-P-119",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.81,
+      "comprimentoBrutoM": 0.81,
+      "comprimentoInternoM": 0.65,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2807.6808878551947,
+          "y": 1711.16
+        },
+        {
+          "x": 2872.6808878551947,
+          "y": 1711.16
+        },
+        {
+          "x": 2872.6808878551947,
+          "y": 1725.16
+        },
+        {
+          "x": 2791.6808878551947,
+          "y": 1725.16
+        }
+      ],
+      "center": {
+        "x": 2836.18,
+        "y": 1718.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2791.6808878551947,
+        "y1": 1725.16,
+        "x2": 2872.6808878551947,
+        "y2": 1725.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2807.6808878551947,
+        "y1": 1711.16,
+        "x2": 2872.6808878551947,
+        "y2": 1711.16
+      },
+      "handles": [
+        "4707",
+        "4708"
+      ]
+    },
+    {
+      "id": "P-120",
+      "codigo": "P-120",
+      "guid": "DWG-SICAL14-P-120",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.91,
+      "comprimentoBrutoM": 0.91,
+      "comprimentoInternoM": 0.91,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4450.68,
+          "y": 1725.161245839652
+        },
+        {
+          "x": 4450.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 4464.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 4464.68,
+          "y": 1725.161245839652
+        }
+      ],
+      "center": {
+        "x": 4457.68,
+        "y": 1770.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4464.68,
+        "y1": 1725.161245839652,
+        "x2": 4464.68,
+        "y2": 1816.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4450.68,
+        "y1": 1725.161245839652,
+        "x2": 4450.68,
+        "y2": 1816.161245839885
+      },
+      "handles": [
+        "470C",
+        "470D"
+      ]
+    },
+    {
+      "id": "P-121",
+      "codigo": "P-121",
+      "guid": "DWG-SICAL14-P-121",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.71,
+      "comprimentoBrutoM": 1.07,
+      "comprimentoInternoM": 0.71,
+      "descontouCantoCm": 36,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3935.68,
+          "y": 1566.161245839652
+        },
+        {
+          "x": 3935.68,
+          "y": 1637.161245839652
+        },
+        {
+          "x": 3949.68,
+          "y": 1637.161245839652
+        },
+        {
+          "x": 3949.68,
+          "y": 1530.161245839885
+        }
+      ],
+      "center": {
+        "x": 3942.68,
+        "y": 1592.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3935.68,
+        "y1": 1566.161245839652,
+        "x2": 3935.68,
+        "y2": 1637.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3949.68,
+        "y1": 1530.161245839885,
+        "x2": 3949.68,
+        "y2": 1637.161245839652
+      },
+      "handles": [
+        "4715",
+        "4745"
+      ]
+    },
+    {
+      "id": "P-122",
+      "codigo": "P-122",
+      "guid": "DWG-SICAL14-P-122",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.74,
+      "comprimentoBrutoM": 0.88,
+      "comprimentoInternoM": 0.74,
+      "descontouCantoCm": 14,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3935.68,
+          "y": 1637.161245839652
+        },
+        {
+          "x": 3935.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 3949.68,
+          "y": 1725.161245839652
+        },
+        {
+          "x": 3949.68,
+          "y": 1637.161245839652
+        }
+      ],
+      "center": {
+        "x": 3942.68,
+        "y": 1677.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3935.68,
+        "y1": 1637.161245839652,
+        "x2": 3935.68,
+        "y2": 1711.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3949.68,
+        "y1": 1637.161245839652,
+        "x2": 3949.68,
+        "y2": 1725.161245839652
+      },
+      "handles": [
+        "4714",
+        "4745"
+      ]
+    },
+    {
+      "id": "P-123",
+      "codigo": "P-123",
+      "guid": "DWG-SICAL14-P-123",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.395,
+      "comprimentoBrutoM": 0.395,
+      "comprimentoInternoM": 0.395,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3861.68,
+          "y": 1530.161245839885
+        },
+        {
+          "x": 3861.68,
+          "y": 1569.661245839652
+        },
+        {
+          "x": 3861.68,
+          "y": 1569.661245839652
+        },
+        {
+          "x": 3861.68,
+          "y": 1530.161245839885
+        }
+      ],
+      "center": {
+        "x": 3861.68,
+        "y": 1549.91
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3861.68,
+        "y1": 1530.161245839885,
+        "x2": 3861.68,
+        "y2": 1569.661245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3861.68,
+        "y1": 1530.161245839885,
+        "x2": 3861.68,
+        "y2": 1569.661245839652
+      },
+      "handles": [
+        "471A"
+      ]
+    },
+    {
+      "id": "P-124",
+      "codigo": "P-124",
+      "guid": "DWG-SICAL14-P-124",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.6,
+      "comprimentoBrutoM": 0.775,
+      "comprimentoInternoM": 0.6,
+      "descontouCantoCm": 17.5,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3861.68,
+          "y": 1633.661245839885
+        },
+        {
+          "x": 3861.68,
+          "y": 1711.1612458396523
+        },
+        {
+          "x": 3875.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 3875.68,
+          "y": 1651.161245839652
+        }
+      ],
+      "center": {
+        "x": 3868.68,
+        "y": 1676.79
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3875.68,
+        "y1": 1651.161245839652,
+        "x2": 3875.68,
+        "y2": 1711.1612458396523
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3861.68,
+        "y1": 1633.661245839885,
+        "x2": 3861.68,
+        "y2": 1711.1612458396523
+      },
+      "handles": [
+        "471C",
+        "471D"
+      ]
+    },
+    {
+      "id": "P-125",
+      "codigo": "P-125",
+      "guid": "DWG-SICAL14-P-125",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.6,
+      "comprimentoBrutoM": 0.6,
+      "comprimentoInternoM": 0.6,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3875.6808878551947,
+          "y": 1552.16
+        },
+        {
+          "x": 3935.6808878551947,
+          "y": 1552.16
+        },
+        {
+          "x": 3935.6808878551947,
+          "y": 1566.16
+        },
+        {
+          "x": 3875.6808878551947,
+          "y": 1566.16
+        }
+      ],
+      "center": {
+        "x": 3905.68,
+        "y": 1559.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3875.6808878551947,
+        "y1": 1566.16,
+        "x2": 3935.6808878551947,
+        "y2": 1566.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3875.6808878551947,
+        "y1": 1552.16,
+        "x2": 3935.6808878551947,
+        "y2": 1552.16
+      },
+      "handles": [
+        "471F",
+        "4720"
+      ]
+    },
+    {
+      "id": "P-126",
+      "codigo": "P-126",
+      "guid": "DWG-SICAL14-P-126",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.88,
+      "comprimentoBrutoM": 0.88,
+      "comprimentoInternoM": 0.6,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3861.6808878551947,
+          "y": 1530.16
+        },
+        {
+          "x": 3949.6808878551947,
+          "y": 1530.16
+        },
+        {
+          "x": 3935.6808878551947,
+          "y": 1544.16
+        },
+        {
+          "x": 3875.6808878551947,
+          "y": 1544.16
+        }
+      ],
+      "center": {
+        "x": 3905.68,
+        "y": 1537.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3861.6808878551947,
+        "y1": 1530.16,
+        "x2": 3949.6808878551947,
+        "y2": 1530.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3875.6808878551947,
+        "y1": 1544.16,
+        "x2": 3935.6808878551947,
+        "y2": 1544.16
+      },
+      "handles": [
+        "4721",
+        "4722"
+      ]
+    },
+    {
+      "id": "P-127",
+      "codigo": "P-127",
+      "guid": "DWG-SICAL14-P-127",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.88,
+      "comprimentoBrutoM": 0.88,
+      "comprimentoInternoM": 0.74,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3861.6808878551947,
+          "y": 1711.16
+        },
+        {
+          "x": 3935.6808878551947,
+          "y": 1711.16
+        },
+        {
+          "x": 3949.6808878551947,
+          "y": 1725.16
+        },
+        {
+          "x": 3861.6808878551947,
+          "y": 1725.16
+        }
+      ],
+      "center": {
+        "x": 3902.18,
+        "y": 1718.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3861.6808878551947,
+        "y1": 1725.16,
+        "x2": 3949.6808878551947,
+        "y2": 1725.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3861.6808878551947,
+        "y1": 1711.16,
+        "x2": 3935.6808878551947,
+        "y2": 1711.16
+      },
+      "handles": [
+        "4723",
+        "4724"
+      ]
+    },
+    {
+      "id": "P-128",
+      "codigo": "P-128",
+      "guid": "DWG-SICAL14-P-128",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.6,
+      "comprimentoBrutoM": 0.6,
+      "comprimentoInternoM": 0.6,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 3875.6808878551947,
+          "y": 1637.16
+        },
+        {
+          "x": 3935.6808878551947,
+          "y": 1637.16
+        },
+        {
+          "x": 3935.6808878551947,
+          "y": 1651.16
+        },
+        {
+          "x": 3875.6808878551947,
+          "y": 1651.16
+        }
+      ],
+      "center": {
+        "x": 3905.68,
+        "y": 1644.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 3875.6808878551947,
+        "y1": 1651.16,
+        "x2": 3935.6808878551947,
+        "y2": 1651.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 3875.6808878551947,
+        "y1": 1637.16,
+        "x2": 3935.6808878551947,
+        "y2": 1637.16
+      },
+      "handles": [
+        "4725",
+        "4726"
+      ]
+    },
+    {
+      "id": "P-129",
+      "codigo": "P-129",
+      "guid": "DWG-SICAL14-P-129",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.1,
+      "comprimentoBrutoM": 1.1,
+      "comprimentoInternoM": 0.65,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4450.680887855195,
+          "y": 1620.16
+        },
+        {
+          "x": 4560.680887855195,
+          "y": 1620.16
+        },
+        {
+          "x": 4529.680887855195,
+          "y": 1634.16
+        },
+        {
+          "x": 4464.680887855195,
+          "y": 1634.16
+        }
+      ],
+      "center": {
+        "x": 4501.43,
+        "y": 1627.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4450.680887855195,
+        "y1": 1620.16,
+        "x2": 4560.680887855195,
+        "y2": 1620.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4464.680887855195,
+        "y1": 1634.16,
+        "x2": 4529.680887855195,
+        "y2": 1634.16
+      },
+      "handles": [
+        "4727",
+        "4729"
+      ]
+    },
+    {
+      "id": "P-130",
+      "codigo": "P-130",
+      "guid": "DWG-SICAL14-P-130",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": true,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.77,
+      "comprimentoBrutoM": 0.91,
+      "comprimentoInternoM": 0.77,
+      "descontouCantoCm": 14,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4546.68,
+          "y": 1634.161245839652
+        },
+        {
+          "x": 4546.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 4560.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 4560.68,
+          "y": 1620.161245839652
+        }
+      ],
+      "center": {
+        "x": 4553.68,
+        "y": 1669.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4546.68,
+        "y1": 1634.161245839652,
+        "x2": 4546.68,
+        "y2": 1711.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4560.68,
+        "y1": 1620.161245839652,
+        "x2": 4560.68,
+        "y2": 1711.161245839652
+      },
+      "handles": [
+        "472E",
+        "472A"
+      ]
+    },
+    {
+      "id": "P-131",
+      "codigo": "P-131",
+      "guid": "DWG-SICAL14-P-131",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 1.05,
+      "comprimentoBrutoM": 1.27,
+      "comprimentoInternoM": 1.05,
+      "descontouCantoCm": 22,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4546.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 4546.68,
+          "y": 1816.161245839885
+        },
+        {
+          "x": 4560.68,
+          "y": 1838.161245839885
+        },
+        {
+          "x": 4560.68,
+          "y": 1711.161245839652
+        }
+      ],
+      "center": {
+        "x": 4553.68,
+        "y": 1769.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4546.68,
+        "y1": 1711.161245839652,
+        "x2": 4546.68,
+        "y2": 1816.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4560.68,
+        "y1": 1711.161245839652,
+        "x2": 4560.68,
+        "y2": 1838.161245839885
+      },
+      "handles": [
+        "472D",
+        "472A"
+      ]
+    },
+    {
+      "id": "P-132",
+      "codigo": "P-132",
+      "guid": "DWG-SICAL14-P-132",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.22,
+      "comprimentoBrutoM": 0.22,
+      "comprimentoInternoM": 0.22,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4560.68,
+          "y": 1902.161245839652
+        },
+        {
+          "x": 4560.68,
+          "y": 1924.161245839885
+        },
+        {
+          "x": 4560.68,
+          "y": 1924.161245839885
+        },
+        {
+          "x": 4560.68,
+          "y": 1902.161245839652
+        }
+      ],
+      "center": {
+        "x": 4560.68,
+        "y": 1913.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4560.68,
+        "y1": 1902.161245839652,
+        "x2": 4560.68,
+        "y2": 1924.161245839885
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4560.68,
+        "y1": 1902.161245839652,
+        "x2": 4560.68,
+        "y2": 1924.161245839885
+      },
+      "handles": [
+        "472F"
+      ]
+    },
+    {
+      "id": "P-133",
+      "codigo": "P-133",
+      "guid": "DWG-SICAL14-P-133",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.8,
+      "comprimentoBrutoM": 0.8,
+      "comprimentoInternoM": 0.66,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4480.680887855195,
+          "y": 1910.16
+        },
+        {
+          "x": 4546.680887854729,
+          "y": 1910.16
+        },
+        {
+          "x": 4560.680887855195,
+          "y": 1924.16
+        },
+        {
+          "x": 4480.680887855195,
+          "y": 1924.16
+        }
+      ],
+      "center": {
+        "x": 4517.18,
+        "y": 1917.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4480.680887855195,
+        "y1": 1924.16,
+        "x2": 4560.680887855195,
+        "y2": 1924.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4480.680887855195,
+        "y1": 1910.16,
+        "x2": 4546.680887854729,
+        "y2": 1910.16
+      },
+      "handles": [
+        "4732",
+        "4733"
+      ]
+    },
+    {
+      "id": "P-134",
+      "codigo": "P-134",
+      "guid": "DWG-SICAL14-P-134",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.66,
+      "comprimentoBrutoM": 0.66,
+      "comprimentoInternoM": 0.66,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4480.680887855195,
+          "y": 1816.16
+        },
+        {
+          "x": 4546.680887854729,
+          "y": 1816.16
+        },
+        {
+          "x": 4546.680887854729,
+          "y": 1830.16
+        },
+        {
+          "x": 4480.680887855195,
+          "y": 1830.16
+        }
+      ],
+      "center": {
+        "x": 4513.68,
+        "y": 1823.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4480.680887855195,
+        "y1": 1830.16,
+        "x2": 4546.680887854729,
+        "y2": 1830.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4480.680887855195,
+        "y1": 1816.16,
+        "x2": 4546.680887854729,
+        "y2": 1816.16
+      },
+      "handles": [
+        "4734",
+        "4735"
+      ]
+    },
+    {
+      "id": "P-135",
+      "codigo": "P-135",
+      "guid": "DWG-SICAL14-P-135",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 14,
+      "orientacao": "H",
+      "temCanto": true,
+      "hasCornerStart": false,
+      "hasCornerEnd": true,
+      "comprimentoM": 0.82,
+      "comprimentoBrutoM": 0.82,
+      "comprimentoInternoM": 0.65,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4464.680887855195,
+          "y": 1711.16
+        },
+        {
+          "x": 4529.680887855195,
+          "y": 1711.16
+        },
+        {
+          "x": 4546.680887854729,
+          "y": 1725.16
+        },
+        {
+          "x": 4464.680887855195,
+          "y": 1725.16
+        }
+      ],
+      "center": {
+        "x": 4501.43,
+        "y": 1718.16
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4464.680887855195,
+        "y1": 1725.16,
+        "x2": 4546.680887854729,
+        "y2": 1725.16
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4464.680887855195,
+        "y1": 1711.16,
+        "x2": 4529.680887855195,
+        "y2": 1711.16
+      },
+      "handles": [
+        "4737",
+        "4739"
+      ]
+    },
+    {
+      "id": "P-136",
+      "codigo": "P-136",
+      "guid": "DWG-SICAL14-P-136",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.77,
+      "comprimentoBrutoM": 0.77,
+      "comprimentoInternoM": 0.77,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 2796.18,
+          "y": 1634.161245839652
+        },
+        {
+          "x": 2796.18,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 2807.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 2807.68,
+          "y": 1634.161245839652
+        }
+      ],
+      "center": {
+        "x": 2801.93,
+        "y": 1672.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 2807.68,
+        "y1": 1634.161245839652,
+        "x2": 2807.68,
+        "y2": 1711.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 2796.18,
+        "y1": 1634.161245839652,
+        "x2": 2796.18,
+        "y2": 1711.161245839652
+      },
+      "handles": [
+        "4740",
+        "4741"
+      ]
+    },
+    {
+      "id": "P-137",
+      "codigo": "P-137",
+      "guid": "DWG-SICAL14-P-137",
+      "layer": "SICAL-14",
+      "layerLabel": "Sical 14 cm",
+      "corLayer": "#fb923c",
+      "espessuraCm": 11.5,
+      "orientacao": "V",
+      "temCanto": false,
+      "hasCornerStart": false,
+      "hasCornerEnd": false,
+      "comprimentoM": 0.77,
+      "comprimentoBrutoM": 0.77,
+      "comprimentoInternoM": 0.77,
+      "descontouCantoCm": 0,
+      "alturaPadraoM": 2.65,
+      "polygon": [
+        {
+          "x": 4529.68,
+          "y": 1634.161245839652
+        },
+        {
+          "x": 4529.68,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 4541.18,
+          "y": 1711.161245839652
+        },
+        {
+          "x": 4541.18,
+          "y": 1634.161245839652
+        }
+      ],
+      "center": {
+        "x": 4535.43,
+        "y": 1672.66
+      },
+      "linhaMedicaoPadrao": {
+        "x1": 4541.18,
+        "y1": 1634.161245839652,
+        "x2": 4541.18,
+        "y2": 1711.161245839652
+      },
+      "linhaMedicaoAlternativa": {
+        "x1": 4529.68,
+        "y1": 1634.161245839652,
+        "x2": 4529.68,
+        "y2": 1711.161245839652
+      },
+      "handles": [
+        "4742",
+        "4743"
+      ]
+    }
+  ]
+}

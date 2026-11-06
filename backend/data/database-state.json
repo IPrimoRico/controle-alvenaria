@@ -1,0 +1,65 @@
+{
+  "configuracoes": {
+    "preco_m2_levantamento": 16,
+    "preco_m_primeira_fiada": 10,
+    "altura_padrao_m": 2.65,
+    "descontar_vaos": false,
+    "limite_vao_m2": 2,
+    "regra_vao": "excedente",
+    "dias_uteis_padrao": 22
+  },
+  "pedreiros": [
+    {
+      "id": 1,
+      "nome": "João da Silva",
+      "especialidade": "Ambos",
+      "dias_trabalhados_mes": 22,
+      "ativo": true
+    },
+    {
+      "id": 2,
+      "nome": "Carlos Ferreira (1ª Fiada)",
+      "especialidade": "Primeira Fiada",
+      "dias_trabalhados_mes": 22,
+      "ativo": true
+    },
+    {
+      "id": 3,
+      "nome": "Antônio Oliveira (Alvenaria)",
+      "especialidade": "Levantamento",
+      "dias_trabalhados_mes": 22,
+      "ativo": true
+    }
+  ],
+  "medicoes": {
+    "TIPO-01::P-001": {
+      "andar_tipo": 1,
+      "parede_id": "P-001",
+      "layer": "4 - TIJ-19",
+      "espessura_cm": 19,
+      "modo_canto": "padrao_sem_duplicar",
+      "comprimento_m": 3.58,
+      "altura_m": 2.65,
+      "area_vao_m2": 0,
+      "descontar_vao_nesta_parede": false,
+      "fiada_status": "Finalizada",
+      "fiada_pedreiro_id": null,
+      "fiada_pedreiro_nome": "",
+      "fiada_data": "2026-11-06",
+      "status": "Finalizada",
+      "levantamento_pedreiro_id": null,
+      "levantamento_pedreiro_nome": "",
+      "levantamento_data": "2026-11-06",
+      "observacao": "",
+      "guid": "TIPO-01::P-001",
+      "pavimento_nome": "TIPO 01",
+      "updated_at": "2026-11-06T14:12:45.904Z",
+      "desconto_vao_aplicado_m2": 0,
+      "area_bruta_m2": 9.487,
+      "area_liquida_m2": 9.487,
+      "fiada_valor_rs": 35.8,
+      "levantamento_valor_rs": 151.79
+    }
+  },
+  "alturasPorParede": {}
+}
